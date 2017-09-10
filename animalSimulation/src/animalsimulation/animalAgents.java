@@ -22,7 +22,9 @@ public class animalAgents {
     public int id; //unique id for the agent
     
     
-    public animalAgents(){
+    public animalAgents(int argID, int argGroup){
+        this.id=argID;
+        this.groupNumber=argGroup;
         
     }
     

@@ -31,6 +31,7 @@ public class mainFrame extends javax.swing.JFrame {
     private int numAgents; // total number of imput images (will be collected by user input)
     private ArrayList<JLabel> tiles; //list of Jlabels that are used to display images
     private ArrayList<ImageIcon> icons; //list of imported images for rendering
+    private ArrayList<animalAgents> agents; //List of all created agents
     private int [][] grid; // 2D matrix that represents the world in format of [height] [width]
     
     public mainFrame() {
@@ -38,7 +39,7 @@ public class mainFrame extends javax.swing.JFrame {
       initComponents(); //creating and managing the main components
       System.out.println("Initializing Components Completed");
       System.out.println("Initializing Variables:"); 
-      this.imagePath=System.getProperty("user.dir")+"\\src\\images"; //setting the path to image folder
+      this.imagePath=System.getProperty("user.dir")+"\\images"; //setting the path to image folder
       System.out.println("path:"+imagePath);
       frameSetup(); //handeling other (non-static) parameters 
     }
@@ -50,6 +51,7 @@ public class mainFrame extends javax.swing.JFrame {
     this.numAgents=0;
     this.tiles =new ArrayList<>();
     this.icons =new ArrayList<>();
+    this.agents=new ArrayList<>();
     readIcons(); //calling the method to read all the images
     
     }
@@ -247,6 +249,7 @@ public class mainFrame extends javax.swing.JFrame {
     
    private void setupWorld(){
        try {
+          JOptionPane.showMessageDialog(null,"Rendering Images from:"+ imagePath);
         //Reading the three main inputs from the user   
         gridHeight=Integer.parseInt(jtf_height.getText());
         gridWidth=Integer.parseInt(jtf_width.getText());
@@ -334,6 +337,32 @@ public class mainFrame extends javax.swing.JFrame {
             }else{ //if not 
                 return false; //return false (occupied)
             }
+   }
+   private void createAgents(){
+        //recreate the array list
+        agents.retainAll(agents);
+        agents=new ArrayList<>();
+        System.out.println(agents.size());
+        
+        for(int i=0;i<=numAgents-1;i++){
+            int randomId;
+            boolean counter=false;
+            while(!counter){
+                randomId= getRandom(100, 999);
+                if(acceptableID(randomId)){
+                    
+                }
+            }
+            
+        }
+   }
+   private boolean acceptableID(int argId){
+       for(int j=0;j<=agents.size()-1;j++){
+                    if(argId == agents.get(j).id){
+                        return false;
+                    }
+                }
+       return true;
    }
    private void render(){ //rendering method to display images
        int counter =0;
