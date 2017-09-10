@@ -292,6 +292,7 @@ public class mainFrame extends javax.swing.JFrame {
         }  
         
         //place animals
+        createAgents();
         for(int i=0;i<=numAgents-1;i++){ //for the number of agents assign a random position in the grid
             boolean counter= false;
             while(!counter){
@@ -304,7 +305,8 @@ public class mainFrame extends javax.swing.JFrame {
               result in going through the loop again until it finds an acceptable spot
               */
               if(acceptableTile(argHeight, argWidth)){ 
-                  grid[argHeight][argWidth]=2;
+                  grid[argHeight][argWidth]=agents.get(i).id;
+                  agents.get(i).setCoordination(argHeight, argWidth);
                   counter=true;
               }
               else{
@@ -345,15 +347,18 @@ public class mainFrame extends javax.swing.JFrame {
         System.out.println(agents.size());
         
         for(int i=0;i<=numAgents-1;i++){
+            animalAgents argAgent = new animalAgents();
             int randomId;
             boolean counter=false;
             while(!counter){
                 randomId= getRandom(100, 999);
                 if(acceptableID(randomId)){
-                    
+                   argAgent.setId(randomId);
+                   counter=true;
                 }
             }
-            
+            agents.add(argAgent);
+            System.out.println("Agent created with id: "+argAgent.id);
         }
    }
    private boolean acceptableID(int argId){
@@ -386,6 +391,10 @@ public class mainFrame extends javax.swing.JFrame {
                        tiles.get(counter).setText("");  
                        break;
                     }
+                    
+                    default:
+                    {
+                    switch(getAgentGroup(grid[i][j])){
                     case 2:
                     {
                        tiles.get(counter).setIcon(icons.get(2));
@@ -416,10 +425,7 @@ public class mainFrame extends javax.swing.JFrame {
                        tiles.get(counter).setText("");
                        break;
                     }
-                    default:
-                    {
-                      tiles.get(counter).setIcon(icons.get(0));
-                       tiles.get(counter).setText("ERROR"); //add ERROR message to the tile to easily identify the issue 
+                      }
                        break;
                     }
                    
@@ -427,6 +433,16 @@ public class mainFrame extends javax.swing.JFrame {
                 counter++;
             }
         }   
+   }
+   private int getAgentGroup(int argID){
+       int agentPosition=0;
+       for(int i=0;i<=agents.size()-1;i++){
+           if(argID== agents.get(i).id){
+               agentPosition=agents.get(i).groupNumber;
+               return agentPosition;
+           }
+       }
+       return agentPosition;
    }
    
    private void removeTiles(){
