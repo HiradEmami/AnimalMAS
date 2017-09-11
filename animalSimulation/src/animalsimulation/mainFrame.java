@@ -1,13 +1,9 @@
 /*animal Simulator*/
-
 /**
  *
  * @author Hirad Gorgoroth
- * This class is basically the main frame and UI 
+ * This class is basically the main frame and UI
  */
-
-
-
 package animalsimulation;
 
 //required imports 
@@ -26,58 +22,57 @@ import javax.swing.*;
 import java.util.*;
 
 public class mainFrame extends javax.swing.JFrame {
-    
-    private String imagePath; //the path to the folder which contains the images
-    private int gridHeight; //height of the main grid(will be collected by user input)
-    private int gridWidth; //width if the grid (will be collected by user input)
-    private int numAgents; // total number of imput images (will be collected by user input)
-    private ArrayList<JLabel> tiles; //list of Jlabels that are used to display images
-    private ArrayList<ImageIcon> icons; //list of imported images for rendering
+
+    private String imagePath;               //the path to the folder which contains the images
+    private int gridHeight;                 //height of the main grid(will be collected by user input)
+    private int gridWidth;                  //width if the grid (will be collected by user input)
+    private int numAgents;                  //total number of imput images (will be collected by user input)
+    private ArrayList<JLabel> tiles;        //list of Jlabels that are used to display images
+    private ArrayList<ImageIcon> icons;     //list of imported images for rendering
     private ArrayList<animalAgents> agents; //List of all created agents
-    private int [][] grid; // 2D matrix that represents the world in format of [height] [width]
-    
+    private int[][] grid;                   // 2D matrix that represents the world in format of [height] [width]
+
     public mainFrame() {
-      System.out.println("Initializing Components:"); 
-      initComponents(); //creating and managing the main components
-      System.out.println("Initializing Components Completed");
-      System.out.println("Initializing Variables:"); 
-      this.imagePath=System.getProperty("user.dir")+"\\images"; //setting the path to image folder
-      System.out.println("path:"+imagePath);
-      frameSetup(); //handeling other (non-static) parameters 
+        System.out.println("Initializing Components:");
+        initComponents();                   //creating and managing the main components
+        System.out.println("Initializing Components Completed");
+        System.out.println("Initializing Variables:");
+        this.imagePath = System.getProperty("user.dir") + "\\images";
+        //setting the path to image folder
+        System.out.println("path:" + imagePath);
+        frameSetup();                       //handeling other (non-static) parameters 
     }
 
-    public void frameSetup(){ //This method will rebuild all the parameters and can be used to reset them
-     
-    this.gridHeight=0;
-    this.gridWidth=0;
-    this.numAgents=0;
-    this.tiles =new ArrayList<>();
-    this.icons =new ArrayList<>();
-    this.agents=new ArrayList<>();
-    readIcons(); //calling the method to read all the images
-    
-    //set the guide icons
-    guid_food.setIcon(icons.get(1));
-    guid_empty.setIcon(icons.get(0));
-    guid_individual.setIcon(icons.get(2));
-    guid_group1.setIcon(icons.get(3));
-    guid_group2.setIcon(icons.get(4));
-    guid_group3.setIcon(icons.get(5));
-    guid_group4.setIcon(icons.get(6));
-    
-    
+    //This method will rebuild all the parameters and can be used to reset them
+    public void frameSetup() {
+        this.gridHeight = 0;
+        this.gridWidth = 0;
+        this.numAgents = 0;
+        this.tiles = new ArrayList<>();
+        this.icons = new ArrayList<>();
+        this.agents = new ArrayList<>();
+        readIcons();                        //calling the method to read all the images
+
+        //set the guide icons
+        guid_empty.setIcon(icons.get(0));
+        guid_food.setIcon(icons.get(1));
+        guid_individual.setIcon(icons.get(2));
+        guid_group1.setIcon(icons.get(3));
+        guid_group2.setIcon(icons.get(4));
+        guid_group3.setIcon(icons.get(5));
+        guid_group4.setIcon(icons.get(6));
+
     }
-    
-    private void topPanelManager(int argPanel){
+
+    private void topPanelManager(int argPanel) {
         //Simulation Control =0
-       // World Information =1
+        //World Information =1
         //Agent Information =2
-       // Individual Agent =3
-       //guide = 4
-       
+        //Individual Agent =3
+        //Guide = 4
 
-        switch(argPanel){
-            case 0:{
+        switch (argPanel) {
+            case 0: {
                 jp_Agents.setVisible(false);
                 jp_individualAgent.setVisible(false);
                 jp_world.setVisible(false);
@@ -85,7 +80,7 @@ public class mainFrame extends javax.swing.JFrame {
                 jp_simulationControl.setVisible(true);
                 break;
             }
-            case 1:{
+            case 1: {
                 jp_Agents.setVisible(false);
                 jp_individualAgent.setVisible(false);
                 jp_guide.setVisible(false);
@@ -93,7 +88,7 @@ public class mainFrame extends javax.swing.JFrame {
                 jp_world.setVisible(true);
                 break;
             }
-            case 2:{
+            case 2: {
                 jp_individualAgent.setVisible(false);
                 jp_world.setVisible(false);
                 jp_guide.setVisible(false);
@@ -101,7 +96,7 @@ public class mainFrame extends javax.swing.JFrame {
                 jp_Agents.setVisible(true);
                 break;
             }
-            case 3:{
+            case 3: {
                 jp_Agents.setVisible(false);
                 jp_world.setVisible(false);
                 jp_guide.setVisible(false);
@@ -109,7 +104,7 @@ public class mainFrame extends javax.swing.JFrame {
                 jp_individualAgent.setVisible(true);
                 break;
             }
-            case 4:{
+            case 4: {
                 jp_Agents.setVisible(false);
                 jp_individualAgent.setVisible(false);
                 jp_world.setVisible(false);
@@ -119,6 +114,7 @@ public class mainFrame extends javax.swing.JFrame {
             }
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -260,9 +256,9 @@ public class mainFrame extends javax.swing.JFrame {
             jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_individualAgentLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                .addGroup(jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combo_agnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,32 +333,28 @@ public class mainFrame extends javax.swing.JFrame {
         jp_guide.setLayout(jp_guideLayout);
         jp_guideLayout.setHorizontalGroup(
             jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_guideLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addGap(80, 80, 80)
+                .addComponent(jb_githubButton)
+                .addContainerGap())
             .addGroup(jp_guideLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jp_guideLayout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jb_githubButton)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_guideLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(guid_empty)
-                        .addGap(601, 601, 601))))
-            .addGroup(jp_guideLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(guid_group4)
-                .addGap(86, 86, 86)
+                .addGap(80, 80, 80)
+                .addComponent(guid_food)
+                .addGap(80, 80, 80)
                 .addComponent(guid_individual)
-                .addGap(64, 64, 64)
-                .addComponent(guid_food, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(80, 80, 80)
                 .addComponent(guid_group1)
-                .addGap(89, 89, 89)
+                .addGap(80, 80, 80)
                 .addComponent(guid_group2)
-                .addGap(100, 100, 100)
+                .addGap(80, 80, 80)
                 .addComponent(guid_group3)
-                .addGap(0, 102, Short.MAX_VALUE))
+                .addGap(80, 80, 80)
+                .addComponent(guid_group4)
+                .addGap(80, 80, 80)
+                .addComponent(guid_empty)
+                .addGap(24, 24, 24))
         );
         jp_guideLayout.setVerticalGroup(
             jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,10 +370,9 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(guid_food)
                     .addComponent(guid_group1)
                     .addComponent(guid_group2)
-                    .addComponent(guid_group3))
-                .addGap(87, 87, 87)
-                .addComponent(guid_empty)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(guid_group3)
+                    .addComponent(guid_empty))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         jp_infoPanel.add(jp_guide, "card3");
@@ -416,7 +407,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Animal:");
 
-        combo_Control.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simulation Control", "World Information", "Agent Information", "Individual Agent", "guide" }));
+        combo_Control.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simulation Control", "World Information", "Agent Information", "Individual Agent", "Guide" }));
 
         jLabel5.setText("Information Panel");
 
@@ -523,20 +514,22 @@ public class mainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void readIcons(){ //method to read images and add them to 
-        icons.add(new ImageIcon(imagePath+"\\EmptyTile.jpg"));  //Position 0 is the empty tile
-        icons.add(new ImageIcon(imagePath+"\\Food.jpg"));  //Position 1 is the Food
-        icons.add(new ImageIcon(imagePath+"\\horse_group1.jpg"));  //Position 2 is the hourse_group1
-        icons.add(new ImageIcon(imagePath+"\\horse_group2.jpg"));  //Position 3 is the hourse_group2
-        icons.add(new ImageIcon(imagePath+"\\horse_group3.jpg"));  //Position 4 is the hourse_group3
-        icons.add(new ImageIcon(imagePath+"\\horse_group4.jpg"));  //Position 5 is the hourse_group4
-        icons.add(new ImageIcon(imagePath+"\\horse_group5.jpg"));  //Position 6 is the hourse_group5 
+    private void readIcons() {                                              //method to read images and add them to 
+        icons.add(new ImageIcon(imagePath + "\\EmptyTile.jpg"));            //Position 0 is the empty tile
+        icons.add(new ImageIcon(imagePath + "\\Food.jpg"));                 //Position 1 is the Food
+        icons.add(new ImageIcon(imagePath + "\\horse_individual.jpg"));     //Position 6 is the horse_individual
+        icons.add(new ImageIcon(imagePath + "\\horse_group1.jpg"));         //Position 2 is the horse_group1
+        icons.add(new ImageIcon(imagePath + "\\horse_group2.jpg"));         //Position 3 is the horse_group2
+        icons.add(new ImageIcon(imagePath + "\\horse_group3.jpg"));         //Position 4 is the horse_group3
+        icons.add(new ImageIcon(imagePath + "\\horse_group4.jpg"));         //Position 5 is the horse_group4
     }
+
+    //Action Event for the setup button that runs the simulation
     private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SetupButtonActionPerformed
-       //Action Event for the setup button that runs the simulation
-        removeTiles(); //Method to remove the previously built tiles (reset UI)
-        setupWorld(); //Creating the grid and calling render method within
-       
+
+        removeTiles();      //Method to remove the previously built tiles (reset UI)
+        setupWorld();       //Creating the grid and calling render method within
+
     }//GEN-LAST:event_jb_SetupButtonActionPerformed
 
     private void jb_setPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_setPanelButtonActionPerformed
@@ -544,233 +537,233 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_setPanelButtonActionPerformed
 
     private void jb_githubButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_githubButtonActionPerformed
-               try {
-          
-  Desktop desktop = java.awt.Desktop.getDesktop();
-  URI oURL = new URI("https://github.com/HiradEmami/AnimalMAS");
-  desktop.browse(oURL);
-} catch (Exception e) {
-  e.printStackTrace();
-}
+        try {
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            URI oURL = new URI("https://github.com/HiradEmami/AnimalMAS");
+            desktop.browse(oURL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jb_githubButtonActionPerformed
-   
-   private void setupWorld(){
-       try {
-          JOptionPane.showMessageDialog(null,"Rendering Images from:"+ imagePath);
-        //Reading the three main inputs from the user   
-        gridHeight=Integer.parseInt(jtf_height.getText());
-        gridWidth=Integer.parseInt(jtf_width.getText());
-        numAgents=Integer.parseInt(jtf_animal.getText());
-        //setup the labels and organize them according to width and height
-        jp_worldPanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        for(int i=0;i<=gridHeight-1;i++){
-            for(int j=0; j<=gridWidth-1;j++){
-              c.fill=GridBagConstraints.HORIZONTAL;
-              c.gridx =j;
-              c.gridy=i;
-              JLabel newTile = new JLabel();
-              newTile.setText("SETUP");
-              tiles.add(newTile);
-              
-              jp_worldPanel.add(tiles.get(tiles.size()-1),c);
+
+    private void setupWorld() {
+        try {
+            //JOptionPane.showMessageDialog(null, "Rendering Images from:" + imagePath);
+            //Reading the three main inputs from the user   
+            gridHeight = Integer.parseInt(jtf_height.getText());
+            gridWidth = Integer.parseInt(jtf_width.getText());
+            numAgents = Integer.parseInt(jtf_animal.getText());
+            //Setup the labels and organize them according to width and height
+            jp_worldPanel.setLayout(new GridBagLayout());
+            GridBagConstraints c = new GridBagConstraints();
+            for (int i = 0; i <= gridHeight - 1; i++) {
+                for (int j = 0; j <= gridWidth - 1; j++) {
+                    c.fill = GridBagConstraints.HORIZONTAL;
+                    c.gridx = j;
+                    c.gridy = i;
+                    JLabel newTile = new JLabel();
+                    newTile.setText("SETUP");
+                    tiles.add(newTile);
+
+                    jp_worldPanel.add(tiles.get(tiles.size() - 1), c);
+                }
+            }
+            generateGridSetup();                                        //create the 2d Grid representing the world
+            render();                                                   //render the labels with the designed texture images accoording to grid 
+
+            // this.pack();                                             //pack the window to look organized 
+            this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);   //to make it full screen
+
+        } catch (Exception e) {                                         //Display the error if it failed to create the simulation
+            JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);
+        }
+    }
+
+    //place all empty tiles at the beginning in the grid 
+    //at the end of this loop the 2d grid matrix will be all zeros (empty tiles)
+    private void generateGridSetup() {
+        grid = new int[gridHeight][gridWidth];                          //creading the array (2d Matrix)
+        for (int i = 0; i <= gridHeight - 1; i++) {
+            for (int j = 0; j <= gridWidth - 1; j++) {
+                grid[i][j] = 0;
             }
         }
-       generateGridSetup();//create the 2d Grid representing the world
-       render(); //render the labels with the designed texture images accoording to grid 
-      
-       
-        // this.pack(); //pack the window to look organized 
-         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); //to make it full screen
-         
-       } catch (Exception e) {//Display the error if it failed to create the simulation
-           
-           JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: "+e);
-       }
-   } 
-   private void generateGridSetup(){
-       //place all empty tiles at the beginning in the grid 
-       //at the end of this loop the 2d grid matrix will be all zeros (empty tiles)
-        grid = new int[gridHeight][gridWidth];//creading the array (2d Matrix)
-        for(int i=0;i<=gridHeight-1;i++){
-            for(int j=0; j<=gridWidth-1;j++){
-                grid[i][j]= 0; 
-            }
-        }  
-        
+
         //place animals
         createAgents();
-        for(int i=0;i<=numAgents-1;i++){ //for the number of agents assign a random position in the grid
-            boolean counter= false;
-            while(!counter){
-              int argHeight= getRandom(0, gridHeight-1); //getting random height 
-              int argWidth=  getRandom(0, gridWidth-1);  //getting a random width
-              /*the following method (acceptableTile) returns boolean 
-              based on the current state of the grid,
-              if the coordination in the grid is zero (empty) the animal can occupy it 
-              if the grid is already occupied then it returns false which will 
-              result in going through the loop again until it finds an acceptable spot
-              */
-              if(acceptableTile(argHeight, argWidth)){ 
-                  grid[argHeight][argWidth]=agents.get(i).id;
-                  agents.get(i).setCoordination(argHeight, argWidth);
-                  counter=true;
-              }
-              else{
-                  counter=false;
-              }
-            }   
+        //for the number of agents assign a random position in the grid
+        for (int i = 0; i <= numAgents - 1; i++) {
+            boolean counter = false;
+            while (!counter) {
+                int argHeight = getRandom(0, gridHeight - 1);           //getting random height 
+                int argWidth = getRandom(0, gridWidth - 1);             //getting a random width
+                /*the following method (acceptableTile) returns boolean 
+                              based on the current state of the grid,
+                              if the coordination in the grid is zero (empty) the animal can occupy it 
+                              if the grid is already occupied then it returns false which will 
+                              result in going through the loop again until it finds an acceptable spot
+                 */
+                if (acceptableTile(argHeight, argWidth)) {
+                    grid[argHeight][argWidth] = agents.get(i).id;
+                    agents.get(i).setCoordination(argHeight, argWidth);
+                    counter = true;
+                } else {
+                    counter = false;
+                }
+            }
         }
         //place food 
         //this section follows the exact same logic as placing the animals 
-         for(int i=0;i<=1-1;i++){
-            boolean counter= false;
-            while(!counter){
-              int argHeight= getRandom(0, gridHeight-1);
-              int argWidth=  getRandom(0, gridWidth-1); 
-              if(acceptableTile(argHeight, argWidth)){
-                  grid[argHeight][argWidth]=1;
-                  counter=true;
-              }
-              else{
-                  counter=false;
-              }
-            }   
-        }
-   }
-   private boolean acceptableTile(int x , int y){ 
-       //method that checks if the random coordination in the grid is
-       //empty (available) or occupied
-       if(grid[x][y]==0){ //if the spot was empty
-               return true; //return true (available)
-            }else{ //if not 
-                return false; //return false (occupied)
+        for (int i = 0; i <= 1 - 1; i++) {
+            boolean counter = false;
+            while (!counter) {
+                int argHeight = getRandom(0, gridHeight - 1);
+                int argWidth = getRandom(0, gridWidth - 1);
+                if (acceptableTile(argHeight, argWidth)) {
+                    grid[argHeight][argWidth] = 1;
+                    counter = true;
+                } else {
+                    counter = false;
+                }
             }
-   }
-   private void createAgents(){
+        }
+    }
+
+    private boolean acceptableTile(int x, int y) {
+        //method that checks if the random coordination in the grid is
+        //empty (available) or occupied
+        if (grid[x][y] == 0) { //if the spot was empty
+            return true; //return true (available)
+        } else { //if not 
+            return false; //return false (occupied)
+        }
+    }
+
+    private void createAgents() {
         //recreate the array list
         agents.retainAll(agents);
-        agents=new ArrayList<>();
+        agents = new ArrayList<>();
         System.out.println(agents.size());
-        
-        for(int i=0;i<=numAgents-1;i++){
+
+        for (int i = 0; i <= numAgents - 1; i++) {
             animalAgents argAgent = new animalAgents();
             int randomId;
-            boolean counter=false;
-            while(!counter){
-                randomId= getRandom(100, 999);
-                if(acceptableID(randomId)){
-                   argAgent.setId(randomId);
-                   counter=true;
+            boolean counter = false;
+            while (!counter) {
+                randomId = getRandom(100, 999);
+                if (acceptableID(randomId)) {
+                    argAgent.setId(randomId);
+                    counter = true;
                 }
             }
             agents.add(argAgent);
-            System.out.println("Agent created with id: "+argAgent.id);
+            System.out.println("Agent created with id: " + argAgent.id);
         }
-   }
-   private boolean acceptableID(int argId){
-       for(int j=0;j<=agents.size()-1;j++){
-                    if(argId == agents.get(j).id){
-                        return false;
-                    }
-                }
-       return true;
-   }
-   private void render(){ //rendering method to display images
-       int counter =0;
-        for(int i=0;i<=gridHeight-1;i++){
-            for(int j=0; j<=gridWidth-1;j++){
-                switch(grid[i][j]){ //checking the value of the grid cells 
+    }
+
+    private boolean acceptableID(int argId) {
+        for (int j = 0; j <= agents.size() - 1; j++) {
+            if (argId == agents.get(j).id) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //rendering method to display images
+    private void render() {
+        int counter = 0;
+        for (int i = 0; i <= gridHeight - 1; i++) {
+            for (int j = 0; j <= gridWidth - 1; j++) {
+                //checking the value of the grid cells 
+                switch (grid[i][j]) {
                     /* in this swich every value represents specific thing based on
                     the values defined for the images, Look at the animal agents'
                     group value comment for more information
-                    */
-                    
-                    case 0: //empty tile 
+                     */
+
+                    case 0: //Empty tile 
                     {
-                       tiles.get(counter).setIcon(icons.get(0)); //display the image 
-                       tiles.get(counter).setText(""); //remove the testing text 
-                       break;
+                        tiles.get(counter).setIcon(icons.get(0)); //display the image 
+                        tiles.get(counter).setText(""); //remove the testing text 
+                        break;
                     }
-                    case 1://Food tile 
+                    case 1: //Food tile 
                     {
-                       tiles.get(counter).setIcon(icons.get(1));
-                       tiles.get(counter).setText("");  
-                       break;
+                        tiles.get(counter).setIcon(icons.get(1));
+                        tiles.get(counter).setText("");
+                        break;
                     }
-                    
-                    default:
-                    {
-                    switch(getAgentGroup(grid[i][j])){
-                    case 2:
-                    {
-                       tiles.get(counter).setIcon(icons.get(2));
-                       tiles.get(counter).setText(""); 
-                       break;
+
+                    default: {
+                        switch (getAgentGroup(grid[i][j])) {
+                            case 2: { //Individual
+                                tiles.get(counter).setIcon(icons.get(2));
+                                tiles.get(counter).setText("");
+                                break;
+                            }
+                            case 3: { //Group 1
+                                tiles.get(counter).setIcon(icons.get(3));
+                                tiles.get(counter).setText("");
+                                break;
+                            }
+                            case 4: { //Group 2
+                                tiles.get(counter).setIcon(icons.get(4));
+                                tiles.get(counter).setText("");
+                                break;
+                            }
+                            case 5: { //Group 3
+                                tiles.get(counter).setIcon(icons.get(5));
+                                tiles.get(counter).setText("");
+                                break;
+                            }
+                            case 6: { //Group 4
+                                tiles.get(counter).setIcon(icons.get(6));
+                                tiles.get(counter).setText("");
+                                break;
+                            }
+                        }
+                        break;
                     }
-                    case 3:
-                    {
-                      tiles.get(counter).setIcon(icons.get(3));
-                       tiles.get(counter).setText("");
-                       break;
-                    }
-                    case 4:
-                    {
-                       tiles.get(counter).setIcon(icons.get(4));
-                       tiles.get(counter).setText("");
-                       break;
-                    }
-                    case 5:
-                    {
-                      tiles.get(counter).setIcon(icons.get(5));
-                       tiles.get(counter).setText("");  
-                       break;
-                    }
-                    case 6:
-                    {
-                       tiles.get(counter).setIcon(icons.get(6));
-                       tiles.get(counter).setText("");
-                       break;
-                    }
-                      }
-                       break;
-                    }
-                   
                 }
                 counter++;
             }
-        }   
-        
-   }
-   private int getAgentGroup(int argID){
-       int agentPosition=0;
-       for(int i=0;i<=agents.size()-1;i++){
-           if(argID== agents.get(i).id){
-               agentPosition=agents.get(i).groupNumber;
-               return agentPosition;
-           }
-       }
-       return agentPosition;
-   }
-   private void removeTiles(){
-        for(int i=0;i<=tiles.size()-1;i++){
+        }
+    }
+
+    private int getAgentGroup(int argID) {
+        int agentPosition = 0;
+        for (int i = 0; i <= agents.size() - 1; i++) {
+            if (argID == agents.get(i).id) {
+                agentPosition = agents.get(i).groupNumber;
+                return agentPosition;
+            }
+        }
+        return agentPosition;
+    }
+
+    private void removeTiles() {
+        for (int i = 0; i <= tiles.size() - 1; i++) {
             jp_worldPanel.remove(tiles.get(i));
         }
         jp_worldPanel.revalidate();
         jp_worldPanel.repaint();
         tiles.retainAll(tiles);
-        tiles=new ArrayList<>();
+        tiles = new ArrayList<>();
         System.out.println(tiles.size());
-   }
-   private static int getRandom(int min, int max) { //method to get random 
+    }
 
-	if (min >= max) {
-		throw new IllegalArgumentException("max must be greater than min");
-	}
+    //method to get random 
+    private static int getRandom(int min, int max) { 
 
-	Random r = new Random();
-	return r.nextInt((max - min) + 1) + min;
-}
+        if (min >= max) {
+            throw new IllegalArgumentException("max must be greater than min");
+        }
+
+        Random r = new Random();
+        return r.nextInt((max - min) + 1) + min;
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
