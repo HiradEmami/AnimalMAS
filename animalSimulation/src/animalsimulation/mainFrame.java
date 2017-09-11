@@ -156,10 +156,11 @@ public class mainFrame extends javax.swing.JFrame {
         jtf_width = new javax.swing.JTextField();
         jb_SetupButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jtf_animal = new javax.swing.JTextField();
         combo_Control = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jb_setPanelButton = new javax.swing.JButton();
+        jsl_animal = new javax.swing.JSlider();
+        tlb_animal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -398,6 +399,10 @@ public class mainFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Height:");
 
+        jtf_height.setText("10");
+
+        jtf_width.setText("10");
+
         jb_SetupButton.setText("Setup");
         jb_SetupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,6 +423,15 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
+        jsl_animal.setValue(10);
+        jsl_animal.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jsl_animalStateChanged(evt);
+            }
+        });
+
+        tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
+
         javax.swing.GroupLayout jp_SetupPanelLayout = new javax.swing.GroupLayout(jp_SetupPanel);
         jp_SetupPanel.setLayout(jp_SetupPanelLayout);
         jp_SetupPanelLayout.setHorizontalGroup(
@@ -436,12 +450,15 @@ public class mainFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jtf_height))
                             .addGroup(jp_SetupPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jp_SetupPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtf_animal)))
+                                .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(jp_SetupPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tlb_animal)
+                                            .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -450,7 +467,7 @@ public class mainFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(combo_Control, 0, 148, Short.MAX_VALUE)
+                        .addComponent(combo_Control, 0, 150, Short.MAX_VALUE)
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -471,12 +488,14 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jtf_height, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jtf_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                    .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tlb_animal)
+                .addGap(28, 28, 28)
                 .addComponent(jb_SetupButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
                 .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combo_Control, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
@@ -484,6 +503,8 @@ public class mainFrame extends javax.swing.JFrame {
                 .addComponent(jb_setPanelButton)
                 .addGap(26, 26, 26))
         );
+
+        jsl_animal.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -546,13 +567,19 @@ public class mainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_githubButtonActionPerformed
 
+    private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsl_animalStateChanged
+        tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
+        removeTiles();      //Method to remove the previously built tiles (reset UI)
+        setupWorld();
+    }//GEN-LAST:event_jsl_animalStateChanged
+
     private void setupWorld() {
         try {
             //JOptionPane.showMessageDialog(null, "Rendering Images from:" + imagePath);
             //Reading the three main inputs from the user   
             gridHeight = Integer.parseInt(jtf_height.getText());
             gridWidth = Integer.parseInt(jtf_width.getText());
-            numAgents = Integer.parseInt(jtf_animal.getText());
+            numAgents = jsl_animal.getValue();
             //Setup the labels and organize them according to width and height
             jp_worldPanel.setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
@@ -835,8 +862,9 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jp_simulationControl;
     private javax.swing.JPanel jp_world;
     private javax.swing.JPanel jp_worldPanel;
-    private javax.swing.JTextField jtf_animal;
+    private javax.swing.JSlider jsl_animal;
     private javax.swing.JTextField jtf_height;
     private javax.swing.JTextField jtf_width;
+    private javax.swing.JLabel tlb_animal;
     // End of variables declaration//GEN-END:variables
 }

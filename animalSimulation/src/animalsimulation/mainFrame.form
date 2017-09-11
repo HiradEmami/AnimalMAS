@@ -479,13 +479,18 @@
                                   <Component id="jtf_height" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="tlb_animal" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jsl_animal" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jtf_animal" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -498,7 +503,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="combo_Control" pref="148" max="32767" attributes="0"/>
+                          <Component id="combo_Control" pref="150" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -526,13 +531,15 @@
                       <Component id="jtf_height" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtf_animal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="jsl_animal" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="tlb_animal" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="jb_SetupButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="285" max="32767" attributes="0"/>
+                  <EmptySpace pref="282" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="combo_Control" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -561,8 +568,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtf_height">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="10"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtf_width">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="10"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jb_SetupButton">
           <Properties>
@@ -576,8 +589,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Animal:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtf_animal">
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_Control">
           <Properties>
@@ -607,6 +618,24 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_setPanelButtonActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JSlider" name="jsl_animal">
+          <Properties>
+            <Property name="value" type="int" value="10"/>
+          </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
+          </AccessibilityProperties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jsl_animalStateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="tlb_animal">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="Integer.toString(jsl_animal.getValue())" type="code"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
