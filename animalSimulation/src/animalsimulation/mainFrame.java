@@ -590,7 +590,7 @@ public class mainFrame extends javax.swing.JFrame {
         jsl_animal.setMaximum((int)(Math.round((inputHeight * inputWidth)*0.75)));
         jsl_animal.setMinimum((0));
 
-        if (inputHeight > 10 || inputWidth > 10) {
+        if (inputHeight > 200 || inputWidth > 200) {
             JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 10 x 10 ");
         } else {
             removeTiles();      //Method to remove the previously built tiles (reset UI)
@@ -620,7 +620,7 @@ public class mainFrame extends javax.swing.JFrame {
         jsl_animal.setMaximum((int)(Math.round((inputHeight * inputWidth)*0.75)));
         jsl_animal.setMinimum((0));
 
-        if (inputHeight > 10 || inputWidth > 10) {
+        if (inputHeight > 200 || inputWidth > 200) {
             JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 10 x 10 ");
         } else {
             tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
@@ -743,7 +743,7 @@ public class mainFrame extends javax.swing.JFrame {
                 }
             }
             agents.add(argAgent);
-            System.out.println("Agent created with id: " + argAgent.id);
+            //System.out.println("Agent created with id: " + argAgent.id);
         }
     }
 
