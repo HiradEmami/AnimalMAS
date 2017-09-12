@@ -32,7 +32,8 @@ public class mainFrame extends javax.swing.JFrame {
     private ArrayList<ImageIcon> icons;     //list of imported images for rendering
     private ArrayList<animalAgents> agents; //List of all created agents
     private int[][] grid;                   // 2D matrix that represents the world in format of [height] [width]
-    private  DefaultTableModel table1;
+    private DefaultTableModel table1;
+
     public mainFrame() {
         System.out.println("Initializing Components:");
         initComponents();                   //creating and managing the main components
@@ -42,7 +43,7 @@ public class mainFrame extends javax.swing.JFrame {
         //setting the path to image folder
         System.out.println("path:" + imagePath);
         frameSetup();                       //handeling other (non-static) parameters 
-        table1= (DefaultTableModel) jTable1.getModel();
+        table1 = (DefaultTableModel) jTable1.getModel();
     }
 
     //This method will rebuild all the parameters and can be used to reset them
@@ -64,25 +65,23 @@ public class mainFrame extends javax.swing.JFrame {
         guid_group3.setIcon(icons.get(5));
         guid_group4.setIcon(icons.get(6));
         this.pack();
-
     }
-   private void setupTable(){
-        for(int i=0;i<=agents.size()-1;i++)
-           {String cord=agents.get(i).currentHeight+" x "+agents.get(i).currentWidth;
-                table1.addRow(new Object[]{(i+1),agents.get(i).id,agents.get(i).groupNumber,cord});
-           }
-        
-   }
-   private void refreshTable(){
-         table1 = (DefaultTableModel) jTable1.getModel(); 
-          int x= table1.getRowCount()-1;
-           while(x>=0)
-        {
+
+    private void setupTable() {
+        for (int i = 0; i <= agents.size() - 1; i++) {
+            String cord = agents.get(i).currentHeight + " x " + agents.get(i).currentWidth;
+            table1.addRow(new Object[]{(i + 1), agents.get(i).id, agents.get(i).groupNumber, cord});
+        }
+    }
+
+    private void refreshTable() {
+        table1 = (DefaultTableModel) jTable1.getModel();
+        int x = table1.getRowCount() - 1;
+        while (x >= 0) {
             table1.removeRow(x);
             x--;
         }
-            
-   }
+    }
 
     private void topPanelManager(int argPanel) {
         //Simulation Control =0
@@ -586,18 +585,17 @@ public class mainFrame extends javax.swing.JFrame {
     //Action Event for the setup button that runs the simulation
     private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SetupButtonActionPerformed
         //Reading the three main inputs from the user   
-           int inputHeight = Integer.parseInt(jtf_height.getText());
-            int inputWidth = Integer.parseInt(jtf_width.getText());
-            jsl_animal.setMaximum((inputHeight*inputWidth)-1);
-            jsl_animal.setMinimum((0));
-        
-        if(inputHeight>10 || inputWidth>10){
-          JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 10 x 10 ");
-        }else{
+        int inputHeight = Integer.parseInt(jtf_height.getText());
+        int inputWidth = Integer.parseInt(jtf_width.getText());
+        jsl_animal.setMaximum((int)(Math.round((inputHeight * inputWidth)*0.75)));
+        jsl_animal.setMinimum((0));
+
+        if (inputHeight > 10 || inputWidth > 10) {
+            JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 10 x 10 ");
+        } else {
             removeTiles();      //Method to remove the previously built tiles (reset UI)
             setupWorld();       //Creating the grid and calling render method within
         }
-
     }//GEN-LAST:event_jb_SetupButtonActionPerformed
 
     private void jb_setPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_setPanelButtonActionPerformed
@@ -615,16 +613,17 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_githubButtonActionPerformed
 
     private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsl_animalStateChanged
-    
+
         //Reading the three main inputs from the user   
-           int inputHeight = Integer.parseInt(jtf_height.getText());
-            int inputWidth = Integer.parseInt(jtf_width.getText());
-            jsl_animal.setMaximum((inputHeight*inputWidth)-1);
-            jsl_animal.setMinimum((0));
-        
-        if(inputHeight>10 || inputWidth>10){
-          JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 10 x 10 ");
-        }else{
+        int inputHeight = Integer.parseInt(jtf_height.getText());
+        int inputWidth = Integer.parseInt(jtf_width.getText());
+        jsl_animal.setMaximum((int)(Math.round((inputHeight * inputWidth)*0.75)));
+        jsl_animal.setMinimum((0));
+
+        if (inputHeight > 10 || inputWidth > 10) {
+            JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 10 x 10 ");
+        } else {
+            tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
             removeTiles();      //Method to remove the previously built tiles (reset UI)
             setupWorld();       //Creating the grid and calling render method within
         }
@@ -636,7 +635,7 @@ public class mainFrame extends javax.swing.JFrame {
             gridHeight = Integer.parseInt(jtf_height.getText());
             gridWidth = Integer.parseInt(jtf_width.getText());
             numAgents = jsl_animal.getValue();
-            
+
             //Setup the labels and organize them according to width and height
             jp_worldPanel.setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
@@ -698,7 +697,7 @@ public class mainFrame extends javax.swing.JFrame {
         }
         refreshTable();
         setupTable();
-        
+
         //place food 
         //this section follows the exact same logic as placing the animals 
         for (int i = 0; i <= 1 - 1; i++) {
@@ -828,7 +827,6 @@ public class mainFrame extends javax.swing.JFrame {
                     }
                 }
                 counter++;
-                
             }
         }
     }
@@ -856,7 +854,7 @@ public class mainFrame extends javax.swing.JFrame {
     }
 
     //method to get random 
-    private static int getRandom(int min, int max) { 
+    private static int getRandom(int min, int max) {
 
         if (min >= max) {
             throw new IllegalArgumentException("max must be greater than min");
