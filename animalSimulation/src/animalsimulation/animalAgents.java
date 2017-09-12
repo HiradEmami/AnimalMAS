@@ -17,7 +17,6 @@ public class animalAgents {
     public animalAgents(int argID, int argGroup) {
         this.id = argID;
         this.groupNumber = argGroup;
-
     }
 
     public animalAgents() {
@@ -39,7 +38,6 @@ public class animalAgents {
         if (min >= max) {
             throw new IllegalArgumentException("max must be greater than min");
         }
-
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
     }
