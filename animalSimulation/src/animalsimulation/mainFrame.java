@@ -7,10 +7,7 @@
 package animalsimulation;
 
 //required imports 
-import java.awt.Desktop;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
@@ -24,26 +21,15 @@ import javax.swing.table.DefaultTableModel;
 
 public class mainFrame extends javax.swing.JFrame {
 
-    private String imagePath;               //the path to the folder which contains the images
-    private int gridHeight;                 //height of the main grid(will be collected by user input)
-    private int gridWidth;                  //width if the grid (will be collected by user input)
-    private int numAgents;                  //total number of imput images (will be collected by user input)
-    private ArrayList<JLabel> tiles;        //list of Jlabels that are used to display images
-    private ArrayList<ImageIcon> icons;     //list of imported images for rendering
+    private int gridHeight;                 //Height of the main grid(will be collected by user input)
+    private int gridWidth;                  //Width if the grid (will be collected by user input)
+    private int numAgents;                  //Total number of input images (will be collected by user input)
     private ArrayList<animalAgents> agents; //List of all created agents
-    private int[][] grid;                   // 2D matrix that represents the world in format of [height] [width]
-    private DefaultTableModel table1;
 
     public mainFrame() {
-        System.out.println("Initializing Components:");
-        initComponents();                   //creating and managing the main components
-        System.out.println("Initializing Components Completed");
-        System.out.println("Initializing Variables:");
-        this.imagePath = System.getProperty("user.dir") + "\\images";
-        //setting the path to image folder
-        System.out.println("path:" + imagePath);
-        frameSetup();                       //handeling other (non-static) parameters 
-        table1 = (DefaultTableModel) jTable1.getModel();
+        initComponents();                   //Creating and managing the main components
+        //Setting the path to image folder
+        frameSetup();                       //Handeling other (non-static) parameters 
     }
 
     //This method will rebuild all the parameters and can be used to reset them
@@ -51,36 +37,8 @@ public class mainFrame extends javax.swing.JFrame {
         this.gridHeight = 0;
         this.gridWidth = 0;
         this.numAgents = 0;
-        this.tiles = new ArrayList<>();
-        this.icons = new ArrayList<>();
         this.agents = new ArrayList<>();
-        readIcons();                        //calling the method to read all the images
-
-        //set the guide icons
-        guid_empty.setIcon(icons.get(0));
-        guid_food.setIcon(icons.get(1));
-        guid_individual.setIcon(icons.get(2));
-        guid_group1.setIcon(icons.get(3));
-        guid_group2.setIcon(icons.get(4));
-        guid_group3.setIcon(icons.get(5));
-        guid_group4.setIcon(icons.get(6));
         this.pack();
-    }
-
-    private void setupTable() {
-        for (int i = 0; i <= agents.size() - 1; i++) {
-            String cord = agents.get(i).currentHeight + " x " + agents.get(i).currentWidth;
-            table1.addRow(new Object[]{(i + 1), agents.get(i).id, agents.get(i).groupNumber, cord});
-        }
-    }
-
-    private void refreshTable() {
-        table1 = (DefaultTableModel) jTable1.getModel();
-        int x = table1.getRowCount() - 1;
-        while (x >= 0) {
-            table1.removeRow(x);
-            x--;
-        }
     }
 
     private void topPanelManager(int argPanel) {
@@ -138,7 +96,8 @@ public class mainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jp_worldPanel = new javax.swing.JPanel();
+        jp_worldPanel = new animalsimulation.WorldPanel();
+        jp_worldPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         jp_infoPanel = new javax.swing.JPanel();
         jp_simulationControl = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -572,18 +531,9 @@ public class mainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void readIcons() {                                              //method to read images and add them to 
-        icons.add(new ImageIcon(imagePath + "\\EmptyTile.jpg"));            //Position 0 is the empty tile
-        icons.add(new ImageIcon(imagePath + "\\Food.jpg"));                 //Position 1 is the Food
-        icons.add(new ImageIcon(imagePath + "\\horse_individual.jpg"));     //Position 6 is the horse_individual
-        icons.add(new ImageIcon(imagePath + "\\horse_group1.jpg"));         //Position 2 is the horse_group1
-        icons.add(new ImageIcon(imagePath + "\\horse_group2.jpg"));         //Position 3 is the horse_group2
-        icons.add(new ImageIcon(imagePath + "\\horse_group3.jpg"));         //Position 4 is the horse_group3
-        icons.add(new ImageIcon(imagePath + "\\horse_group4.jpg"));         //Position 5 is the horse_group4
-    }
-
     //Action Event for the setup button that runs the simulation
     private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SetupButtonActionPerformed
+        /*
         //Reading the three main inputs from the user   
         int inputHeight = Integer.parseInt(jtf_height.getText());
         int inputWidth = Integer.parseInt(jtf_width.getText());
@@ -591,11 +541,11 @@ public class mainFrame extends javax.swing.JFrame {
         jsl_animal.setMinimum((0));
 
         if (inputHeight > 200 || inputWidth > 200) {
-            JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 10 x 10 ");
+            JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 200 x 200 ");
         } else {
-            removeTiles();      //Method to remove the previously built tiles (reset UI)
-            setupWorld();       //Creating the grid and calling render method within
-        }
+            Paint();         //Method to remove the previously built tiles (reset UI)
+            setupWorld();                       //Creating the grid and calling render method within
+        }*/
     }//GEN-LAST:event_jb_SetupButtonActionPerformed
 
     private void jb_setPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_setPanelButtonActionPerformed
@@ -630,7 +580,7 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jsl_animalStateChanged
 
     private void setupWorld() {
-        try {
+        /*try {
             //JOptionPane.showMessageDialog(null, "Rendering Images from:" + imagePath);
             gridHeight = Integer.parseInt(jtf_height.getText());
             gridWidth = Integer.parseInt(jtf_width.getText());
@@ -659,13 +609,13 @@ public class mainFrame extends javax.swing.JFrame {
 
         } catch (Exception e) {                                         //Display the error if it failed to create the simulation
             JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);
-        }
+        }*/
     }
 
     //place all empty tiles at the beginning in the grid 
     //at the end of this loop the 2d grid matrix will be all zeros (empty tiles)
     private void generateGridSetup() {
-        grid = new int[gridHeight][gridWidth];                          //creading the array (2d Matrix)
+        /*grid = new int[gridHeight][gridWidth];                          //creading the array (2d Matrix)
         for (int i = 0; i <= gridHeight - 1; i++) {
             for (int j = 0; j <= gridWidth - 1; j++) {
                 grid[i][j] = 0;
@@ -685,7 +635,7 @@ public class mainFrame extends javax.swing.JFrame {
                               if the coordination in the grid is zero (empty) the animal can occupy it 
                               if the grid is already occupied then it returns false which will 
                               result in going through the loop again until it finds an acceptable spot
-                 */
+                 
                 if (acceptableTile(argHeight, argWidth)) {
                     grid[argHeight][argWidth] = agents.get(i).id;
                     agents.get(i).setCoordination(argHeight, argWidth);
@@ -712,24 +662,25 @@ public class mainFrame extends javax.swing.JFrame {
                     counter = false;
                 }
             }
-        }
+        }*/
     }
 
     private boolean acceptableTile(int x, int y) {
-        //method that checks if the random coordination in the grid is
+        /*//method that checks if the random coordination in the grid is
         //empty (available) or occupied
         if (grid[x][y] == 0) { //if the spot was empty
             return true; //return true (available)
         } else { //if not 
             return false; //return false (occupied)
-        }
+        }*/
+        return false;
     }
 
     private void createAgents() {
-        //recreate the array list
+        /*//recreate the array list
         agents.retainAll(agents);
         agents = new ArrayList<>();
-        System.out.println(agents.size());
+        //System.out.println(agents.size());
 
         for (int i = 0; i <= numAgents - 1; i++) {
             animalAgents argAgent = new animalAgents();
@@ -744,21 +695,22 @@ public class mainFrame extends javax.swing.JFrame {
             }
             agents.add(argAgent);
             //System.out.println("Agent created with id: " + argAgent.id);
-        }
+        }*/
     }
 
     private boolean acceptableID(int argId) {
-        for (int j = 0; j <= agents.size() - 1; j++) {
+        /*for (int j = 0; j <= agents.size() - 1; j++) {
             if (argId == agents.get(j).id) {
                 return false;
             }
         }
-        return true;
+        return true;*/
+        return false;
     }
 
     //rendering method to display images
     private void render() {
-        int counter = 0;
+        /*int counter = 0;
         for (int i = 0; i <= gridHeight - 1; i++) {
             for (int j = 0; j <= gridWidth - 1; j++) {
                 //checking the value of the grid cells 
@@ -766,7 +718,7 @@ public class mainFrame extends javax.swing.JFrame {
                     /* in this swich every value represents specific thing based on
                     the values defined for the images, Look at the animal agents'
                     group value comment for more information
-                     */
+                     
 
                     case 0: //Empty tile 
                     {
@@ -828,7 +780,7 @@ public class mainFrame extends javax.swing.JFrame {
                 }
                 counter++;
             }
-        }
+        }*/
     }
 
     private int getAgentGroup(int argID) {
@@ -843,14 +795,14 @@ public class mainFrame extends javax.swing.JFrame {
     }
 
     private void removeTiles() {
-        for (int i = 0; i <= tiles.size() - 1; i++) {
+        /*for (int i = 0; i <= tiles.size() - 1; i++) {
             jp_worldPanel.remove(tiles.get(i));
         }
         jp_worldPanel.revalidate();
         jp_worldPanel.repaint();
         tiles.retainAll(tiles);
         tiles = new ArrayList<>();
-        System.out.println(tiles.size());
+        //System.out.println(tiles.size());*/
     }
 
     //method to get random 
@@ -934,10 +886,11 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jp_infoPanel;
     private javax.swing.JPanel jp_simulationControl;
     private javax.swing.JPanel jp_world;
-    private javax.swing.JPanel jp_worldPanel;
+    private animalsimulation.WorldPanel jp_worldPanel;
     private javax.swing.JSlider jsl_animal;
     private javax.swing.JTextField jtf_height;
     private javax.swing.JTextField jtf_width;
     private javax.swing.JLabel tlb_animal;
     // End of variables declaration//GEN-END:variables
+
 }
