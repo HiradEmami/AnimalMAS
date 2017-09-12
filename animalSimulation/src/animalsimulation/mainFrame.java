@@ -20,6 +20,7 @@ import java.net.URI;
 import javax.swing.UIManager;
 import javax.swing.*;
 import java.util.*;
+import javax.swing.table.DefaultTableModel;
 
 public class mainFrame extends javax.swing.JFrame {
 
@@ -31,7 +32,7 @@ public class mainFrame extends javax.swing.JFrame {
     private ArrayList<ImageIcon> icons;     //list of imported images for rendering
     private ArrayList<animalAgents> agents; //List of all created agents
     private int[][] grid;                   // 2D matrix that represents the world in format of [height] [width]
-
+    private  DefaultTableModel table1;
     public mainFrame() {
         System.out.println("Initializing Components:");
         initComponents();                   //creating and managing the main components
@@ -41,6 +42,7 @@ public class mainFrame extends javax.swing.JFrame {
         //setting the path to image folder
         System.out.println("path:" + imagePath);
         frameSetup();                       //handeling other (non-static) parameters 
+        table1= (DefaultTableModel) jTable1.getModel();
     }
 
     //This method will rebuild all the parameters and can be used to reset them
@@ -61,8 +63,26 @@ public class mainFrame extends javax.swing.JFrame {
         guid_group2.setIcon(icons.get(4));
         guid_group3.setIcon(icons.get(5));
         guid_group4.setIcon(icons.get(6));
+        this.pack();
 
     }
+   private void setupTable(){
+        for(int i=0;i<=agents.size()-1;i++)
+           {String cord=agents.get(i).currentHeight+" x "+agents.get(i).currentWidth;
+                table1.addRow(new Object[]{(i+1),agents.get(i).id,agents.get(i).groupNumber,cord});
+           }
+        
+   }
+   private void refreshTable(){
+         table1 = (DefaultTableModel) jTable1.getModel(); 
+          int x= table1.getRowCount()-1;
+           while(x>=0)
+        {
+            table1.removeRow(x);
+            x--;
+        }
+            
+   }
 
     private void topPanelManager(int argPanel) {
         //Simulation Control =0
@@ -175,7 +195,7 @@ public class mainFrame extends javax.swing.JFrame {
         );
         jp_worldPanelLayout.setVerticalGroup(
             jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 421, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jp_infoPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
@@ -202,7 +222,7 @@ public class mainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jp_simulationControlLayout.setVerticalGroup(
             jp_simulationControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +233,7 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jp_infoPanel.add(jp_simulationControl, "card6");
@@ -252,7 +272,7 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel9)
                     .addComponent(jLabel12))
-                .addContainerGap(421, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jp_individualAgentLayout.setVerticalGroup(
             jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,23 +291,39 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel12)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jp_infoPanel.add(jp_individualAgent, "card5");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Number", "ID", "Group", "Cord"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         javax.swing.GroupLayout jp_AgentsLayout = new javax.swing.GroupLayout(jp_Agents);
         jp_Agents.setLayout(jp_AgentsLayout);
@@ -295,14 +331,14 @@ public class mainFrame extends javax.swing.JFrame {
             jp_AgentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_AgentsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jp_AgentsLayout.setVerticalGroup(
             jp_AgentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_AgentsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
@@ -335,28 +371,29 @@ public class mainFrame extends javax.swing.JFrame {
         jp_guide.setLayout(jp_guideLayout);
         jp_guideLayout.setHorizontalGroup(
             jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_guideLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel13)
-                .addGap(80, 80, 80)
-                .addComponent(jb_githubButton)
-                .addContainerGap())
             .addGroup(jp_guideLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(guid_food)
-                .addGap(80, 80, 80)
-                .addComponent(guid_individual)
-                .addGap(80, 80, 80)
-                .addComponent(guid_group1)
-                .addGap(80, 80, 80)
-                .addComponent(guid_group2)
-                .addGap(80, 80, 80)
-                .addComponent(guid_group3)
-                .addGap(80, 80, 80)
-                .addComponent(guid_group4)
-                .addGap(80, 80, 80)
-                .addComponent(guid_empty)
-                .addGap(24, 24, 24))
+                .addGroup(jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jp_guideLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel13)
+                        .addGap(30, 30, 30)
+                        .addComponent(jb_githubButton))
+                    .addGroup(jp_guideLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(guid_food)
+                        .addGap(66, 66, 66)
+                        .addComponent(guid_individual)
+                        .addGap(62, 62, 62)
+                        .addComponent(guid_group1)
+                        .addGap(70, 70, 70)
+                        .addComponent(guid_group2)
+                        .addGap(69, 69, 69)
+                        .addComponent(guid_group3)
+                        .addGap(60, 60, 60)
+                        .addComponent(guid_group4)
+                        .addGap(63, 63, 63)
+                        .addComponent(guid_empty)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jp_guideLayout.setVerticalGroup(
             jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,7 +411,7 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(guid_group2)
                     .addComponent(guid_group3)
                     .addComponent(guid_empty))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jp_infoPanel.add(jp_guide, "card3");
@@ -383,11 +420,11 @@ public class mainFrame extends javax.swing.JFrame {
         jp_world.setLayout(jp_worldLayout);
         jp_worldLayout.setHorizontalGroup(
             jp_worldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 836, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jp_worldLayout.setVerticalGroup(
             jp_worldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 154, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jp_infoPanel.add(jp_world, "card2");
@@ -468,7 +505,7 @@ public class mainFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(combo_Control, 0, 150, Short.MAX_VALUE)
+                        .addComponent(combo_Control, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -496,7 +533,7 @@ public class mainFrame extends javax.swing.JFrame {
                 .addComponent(tlb_animal)
                 .addGap(28, 28, 28)
                 .addComponent(jb_SetupButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combo_Control, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
@@ -513,12 +550,12 @@ public class mainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jp_infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 840, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jp_infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jp_worldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jp_SetupPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,9 +585,18 @@ public class mainFrame extends javax.swing.JFrame {
 
     //Action Event for the setup button that runs the simulation
     private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SetupButtonActionPerformed
-
-        removeTiles();      //Method to remove the previously built tiles (reset UI)
-        setupWorld();       //Creating the grid and calling render method within
+        //Reading the three main inputs from the user   
+           int inputHeight = Integer.parseInt(jtf_height.getText());
+            int inputWidth = Integer.parseInt(jtf_width.getText());
+            jsl_animal.setMaximum((inputHeight*inputWidth)-1);
+            jsl_animal.setMinimum((0));
+        
+        if(inputHeight>10 || inputHeight>10){
+          JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 10 x 10 ");
+        }else{
+            removeTiles();      //Method to remove the previously built tiles (reset UI)
+            setupWorld();       //Creating the grid and calling render method within
+        }
 
     }//GEN-LAST:event_jb_SetupButtonActionPerformed
 
@@ -577,10 +623,10 @@ public class mainFrame extends javax.swing.JFrame {
     private void setupWorld() {
         try {
             //JOptionPane.showMessageDialog(null, "Rendering Images from:" + imagePath);
-            //Reading the three main inputs from the user   
             gridHeight = Integer.parseInt(jtf_height.getText());
             gridWidth = Integer.parseInt(jtf_width.getText());
             numAgents = jsl_animal.getValue();
+            
             //Setup the labels and organize them according to width and height
             jp_worldPanel.setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
@@ -640,6 +686,9 @@ public class mainFrame extends javax.swing.JFrame {
                 }
             }
         }
+        refreshTable();
+        setupTable();
+        
         //place food 
         //this section follows the exact same logic as placing the animals 
         for (int i = 0; i <= 1 - 1; i++) {
@@ -714,12 +763,16 @@ public class mainFrame extends javax.swing.JFrame {
                     {
                         tiles.get(counter).setIcon(icons.get(0)); //display the image 
                         tiles.get(counter).setText(""); //remove the testing text 
+                        tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
+                        tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
                         break;
                     }
                     case 1: //Food tile 
                     {
                         tiles.get(counter).setIcon(icons.get(1));
                         tiles.get(counter).setText("");
+                        tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
+                        tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
                         break;
                     }
 
@@ -728,26 +781,36 @@ public class mainFrame extends javax.swing.JFrame {
                             case 2: { //Individual
                                 tiles.get(counter).setIcon(icons.get(2));
                                 tiles.get(counter).setText("");
+                                tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
+                                tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
                                 break;
                             }
                             case 3: { //Group 1
                                 tiles.get(counter).setIcon(icons.get(3));
                                 tiles.get(counter).setText("");
+                                tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
+                                tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
                                 break;
                             }
                             case 4: { //Group 2
                                 tiles.get(counter).setIcon(icons.get(4));
                                 tiles.get(counter).setText("");
+                                tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
+                                tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
                                 break;
                             }
                             case 5: { //Group 3
                                 tiles.get(counter).setIcon(icons.get(5));
                                 tiles.get(counter).setText("");
+                                tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
+                                tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
                                 break;
                             }
                             case 6: { //Group 4
                                 tiles.get(counter).setIcon(icons.get(6));
                                 tiles.get(counter).setText("");
+                                tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
+                                tiles.get(counter).setVerticalTextPosition(JLabel.TOP);
                                 break;
                             }
                         }
@@ -755,6 +818,7 @@ public class mainFrame extends javax.swing.JFrame {
                     }
                 }
                 counter++;
+                
             }
         }
     }
