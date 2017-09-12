@@ -95,7 +95,7 @@ public class mainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jp_worldPanel = new animalsimulation.WorldPanel();
+        jp_worldPanel = new javax.swing.JPanel();
         jp_infoPanel = new javax.swing.JPanel();
         jp_simulationControl = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -122,7 +122,6 @@ public class mainFrame extends javax.swing.JFrame {
         guid_individual = new javax.swing.JLabel();
         guid_empty = new javax.swing.JLabel();
         guid_food = new javax.swing.JLabel();
-        jb_githubButton = new javax.swing.JButton();
         jp_world = new javax.swing.JPanel();
         jp_SetupPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -316,13 +315,6 @@ public class mainFrame extends javax.swing.JFrame {
 
         guid_food.setText("Food");
 
-        jb_githubButton.setText("Github");
-        jb_githubButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_githubButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jp_guideLayout = new javax.swing.GroupLayout(jp_guide);
         jp_guide.setLayout(jp_guideLayout);
         jp_guideLayout.setHorizontalGroup(
@@ -331,9 +323,7 @@ public class mainFrame extends javax.swing.JFrame {
                 .addGroup(jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jp_guideLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jLabel13)
-                        .addGap(30, 30, 30)
-                        .addComponent(jb_githubButton))
+                        .addComponent(jLabel13))
                     .addGroup(jp_guideLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(guid_food)
@@ -354,11 +344,9 @@ public class mainFrame extends javax.swing.JFrame {
         jp_guideLayout.setVerticalGroup(
             jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_guideLayout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addGroup(jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jb_githubButton))
-                .addGap(35, 35, 35)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel13)
+                .addGap(40, 40, 40)
                 .addGroup(jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guid_group4)
                     .addComponent(guid_individual)
@@ -367,7 +355,7 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(guid_group2)
                     .addComponent(guid_group3)
                     .addComponent(guid_empty))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         jp_infoPanel.add(jp_guide, "card3");
@@ -542,16 +530,6 @@ public class mainFrame extends javax.swing.JFrame {
         topPanelManager(combo_Control.getSelectedIndex());
     }//GEN-LAST:event_jb_setPanelButtonActionPerformed
 
-    private void jb_githubButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_githubButtonActionPerformed
-        try {
-            Desktop desktop = java.awt.Desktop.getDesktop();
-            URI oURL = new URI("https://github.com/HiradEmami/AnimalMAS");
-            desktop.browse(oURL);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jb_githubButtonActionPerformed
-
     private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsl_animalStateChanged
 
         //Reading the three main inputs from the user   
@@ -592,7 +570,6 @@ public class mainFrame extends javax.swing.JFrame {
                 }
             }
             agents.add(argAgent);
-            //System.out.println("Agent created with id: " + argAgent.id);
         }
     }// INTERESSANT
 
@@ -676,7 +653,6 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_SetupButton;
-    private javax.swing.JButton jb_githubButton;
     private javax.swing.JButton jb_setPanelButton;
     private javax.swing.JPanel jp_Agents;
     private javax.swing.JPanel jp_SetupPanel;
