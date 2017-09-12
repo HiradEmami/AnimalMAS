@@ -533,7 +533,7 @@ public class mainFrame extends javax.swing.JFrame {
                 .addComponent(tlb_animal)
                 .addGap(28, 28, 28)
                 .addComponent(jb_SetupButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
                 .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combo_Control, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
@@ -591,7 +591,7 @@ public class mainFrame extends javax.swing.JFrame {
             jsl_animal.setMaximum((inputHeight*inputWidth)-1);
             jsl_animal.setMinimum((0));
         
-        if(inputHeight>10 || inputHeight>10){
+        if(inputHeight>10 || inputWidth>10){
           JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 10 x 10 ");
         }else{
             removeTiles();      //Method to remove the previously built tiles (reset UI)
@@ -615,9 +615,19 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_githubButtonActionPerformed
 
     private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsl_animalStateChanged
-        tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
-        removeTiles();      //Method to remove the previously built tiles (reset UI)
-        setupWorld();
+    
+        //Reading the three main inputs from the user   
+           int inputHeight = Integer.parseInt(jtf_height.getText());
+            int inputWidth = Integer.parseInt(jtf_width.getText());
+            jsl_animal.setMaximum((inputHeight*inputWidth)-1);
+            jsl_animal.setMinimum((0));
+        
+        if(inputHeight>10 || inputWidth>10){
+          JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 10 x 10 ");
+        }else{
+            removeTiles();      //Method to remove the previously built tiles (reset UI)
+            setupWorld();       //Creating the grid and calling render method within
+        }
     }//GEN-LAST:event_jsl_animalStateChanged
 
     private void setupWorld() {
