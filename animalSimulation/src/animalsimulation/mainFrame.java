@@ -28,14 +28,13 @@ public class mainFrame extends javax.swing.JFrame {
 
     public mainFrame() {
         initComponents();                   //Creating and managing the main components
-        //Setting the path to image folder
         frameSetup();                       //Handeling other (non-static) parameters 
     }
 
     //This method will rebuild all the parameters and can be used to reset them
     public void frameSetup() {
-        this.gridHeight = 0;
-        this.gridWidth = 0;
+        this.gridHeight = 300;
+        this.gridWidth = 400;
         this.numAgents = 0;
         this.agents = new ArrayList<>();
         this.pack();
@@ -97,7 +96,6 @@ public class mainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jp_worldPanel = new animalsimulation.WorldPanel();
-        jp_worldPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         jp_infoPanel = new javax.swing.JPanel();
         jp_simulationControl = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -533,19 +531,11 @@ public class mainFrame extends javax.swing.JFrame {
 
     //Action Event for the setup button that runs the simulation
     private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SetupButtonActionPerformed
-        /*
         //Reading the three main inputs from the user   
         int inputHeight = Integer.parseInt(jtf_height.getText());
         int inputWidth = Integer.parseInt(jtf_width.getText());
-        jsl_animal.setMaximum((int)(Math.round((inputHeight * inputWidth)*0.75)));
-        jsl_animal.setMinimum((0));
 
-        if (inputHeight > 200 || inputWidth > 200) {
-            JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 200 x 200 ");
-        } else {
-            Paint();         //Method to remove the previously built tiles (reset UI)
-            setupWorld();                       //Creating the grid and calling render method within
-        }*/
+        setupWorld();                       //Creating the grid and calling render method within
     }//GEN-LAST:event_jb_SetupButtonActionPerformed
 
     private void jb_setPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_setPanelButtonActionPerformed
@@ -567,120 +557,28 @@ public class mainFrame extends javax.swing.JFrame {
         //Reading the three main inputs from the user   
         int inputHeight = Integer.parseInt(jtf_height.getText());
         int inputWidth = Integer.parseInt(jtf_width.getText());
-        jsl_animal.setMaximum((int)(Math.round((inputHeight * inputWidth)*0.75)));
-        jsl_animal.setMinimum((0));
-
-        if (inputHeight > 200 || inputWidth > 200) {
-            JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 10 x 10 ");
-        } else {
-            tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
-            removeTiles();      //Method to remove the previously built tiles (reset UI)
-            setupWorld();       //Creating the grid and calling render method within
-        }
+        
+        tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
+        setupWorld();       //Creating the grid and calling render method within
     }//GEN-LAST:event_jsl_animalStateChanged
 
     private void setupWorld() {
-        /*try {
-            //JOptionPane.showMessageDialog(null, "Rendering Images from:" + imagePath);
+        try {
             gridHeight = Integer.parseInt(jtf_height.getText());
             gridWidth = Integer.parseInt(jtf_width.getText());
             numAgents = jsl_animal.getValue();
 
-            //Setup the labels and organize them according to width and height
-            jp_worldPanel.setLayout(new GridBagLayout());
-            GridBagConstraints c = new GridBagConstraints();
-            for (int i = 0; i <= gridHeight - 1; i++) {
-                for (int j = 0; j <= gridWidth - 1; j++) {
-                    c.fill = GridBagConstraints.HORIZONTAL;
-                    c.gridx = j;
-                    c.gridy = i;
-                    JLabel newTile = new JLabel();
-                    newTile.setText("SETUP");
-                    tiles.add(newTile);
-
-                    jp_worldPanel.add(tiles.get(tiles.size() - 1), c);
-                }
-            }
-            generateGridSetup();                                        //create the 2d Grid representing the world
-            render();                                                   //render the labels with the designed texture images accoording to grid 
-
-            // this.pack();                                             //pack the window to look organized 
             this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);   //to make it full screen
 
         } catch (Exception e) {                                         //Display the error if it failed to create the simulation
             JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);
-        }*/
-    }
-
-    //place all empty tiles at the beginning in the grid 
-    //at the end of this loop the 2d grid matrix will be all zeros (empty tiles)
-    private void generateGridSetup() {
-        /*grid = new int[gridHeight][gridWidth];                          //creading the array (2d Matrix)
-        for (int i = 0; i <= gridHeight - 1; i++) {
-            for (int j = 0; j <= gridWidth - 1; j++) {
-                grid[i][j] = 0;
-            }
         }
-
-        //place animals
-        createAgents();
-        //for the number of agents assign a random position in the grid
-        for (int i = 0; i <= numAgents - 1; i++) {
-            boolean counter = false;
-            while (!counter) {
-                int argHeight = getRandom(0, gridHeight - 1);           //getting random height 
-                int argWidth = getRandom(0, gridWidth - 1);             //getting a random width
-                /*the following method (acceptableTile) returns boolean 
-                              based on the current state of the grid,
-                              if the coordination in the grid is zero (empty) the animal can occupy it 
-                              if the grid is already occupied then it returns false which will 
-                              result in going through the loop again until it finds an acceptable spot
-                 
-                if (acceptableTile(argHeight, argWidth)) {
-                    grid[argHeight][argWidth] = agents.get(i).id;
-                    agents.get(i).setCoordination(argHeight, argWidth);
-                    counter = true;
-                } else {
-                    counter = false;
-                }
-            }
-        }
-        refreshTable();
-        setupTable();
-
-        //place food 
-        //this section follows the exact same logic as placing the animals 
-        for (int i = 0; i <= 1 - 1; i++) {
-            boolean counter = false;
-            while (!counter) {
-                int argHeight = getRandom(0, gridHeight - 1);
-                int argWidth = getRandom(0, gridWidth - 1);
-                if (acceptableTile(argHeight, argWidth)) {
-                    grid[argHeight][argWidth] = 1;
-                    counter = true;
-                } else {
-                    counter = false;
-                }
-            }
-        }*/
-    }
-
-    private boolean acceptableTile(int x, int y) {
-        /*//method that checks if the random coordination in the grid is
-        //empty (available) or occupied
-        if (grid[x][y] == 0) { //if the spot was empty
-            return true; //return true (available)
-        } else { //if not 
-            return false; //return false (occupied)
-        }*/
-        return false;
     }
 
     private void createAgents() {
-        /*//recreate the array list
+        //recreate the array list
         agents.retainAll(agents);
         agents = new ArrayList<>();
-        //System.out.println(agents.size());
 
         for (int i = 0; i <= numAgents - 1; i++) {
             animalAgents argAgent = new animalAgents();
@@ -695,119 +593,20 @@ public class mainFrame extends javax.swing.JFrame {
             }
             agents.add(argAgent);
             //System.out.println("Agent created with id: " + argAgent.id);
-        }*/
-    }
+        }
+    }// INTERESSANT
 
     private boolean acceptableID(int argId) {
-        /*for (int j = 0; j <= agents.size() - 1; j++) {
+        for (int j = 0; j <= agents.size() - 1; j++) {
             if (argId == agents.get(j).id) {
                 return false;
             }
         }
-        return true;*/
-        return false;
-    }
-
-    //rendering method to display images
-    private void render() {
-        /*int counter = 0;
-        for (int i = 0; i <= gridHeight - 1; i++) {
-            for (int j = 0; j <= gridWidth - 1; j++) {
-                //checking the value of the grid cells 
-                switch (grid[i][j]) {
-                    /* in this swich every value represents specific thing based on
-                    the values defined for the images, Look at the animal agents'
-                    group value comment for more information
-                     
-
-                    case 0: //Empty tile 
-                    {
-                        tiles.get(counter).setIcon(icons.get(0)); //display the image 
-                        tiles.get(counter).setText(""); //remove the testing text 
-                        tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
-                        tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
-                        break;
-                    }
-                    case 1: //Food tile 
-                    {
-                        tiles.get(counter).setIcon(icons.get(1));
-                        tiles.get(counter).setText("");
-                        tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
-                        tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
-                        break;
-                    }
-
-                    default: {
-                        switch (getAgentGroup(grid[i][j])) {
-                            case 2: { //Individual
-                                tiles.get(counter).setIcon(icons.get(2));
-                                tiles.get(counter).setText("");
-                                tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
-                                tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
-                                break;
-                            }
-                            case 3: { //Group 1
-                                tiles.get(counter).setIcon(icons.get(3));
-                                tiles.get(counter).setText("");
-                                tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
-                                tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
-                                break;
-                            }
-                            case 4: { //Group 2
-                                tiles.get(counter).setIcon(icons.get(4));
-                                tiles.get(counter).setText("");
-                                tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
-                                tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
-                                break;
-                            }
-                            case 5: { //Group 3
-                                tiles.get(counter).setIcon(icons.get(5));
-                                tiles.get(counter).setText("");
-                                tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
-                                tiles.get(counter).setVerticalTextPosition(JLabel.BOTTOM);
-                                break;
-                            }
-                            case 6: { //Group 4
-                                tiles.get(counter).setIcon(icons.get(6));
-                                tiles.get(counter).setText("");
-                                tiles.get(counter).setHorizontalTextPosition(JLabel.CENTER);
-                                tiles.get(counter).setVerticalTextPosition(JLabel.TOP);
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
-                counter++;
-            }
-        }*/
-    }
-
-    private int getAgentGroup(int argID) {
-        int agentPosition = 0;
-        for (int i = 0; i <= agents.size() - 1; i++) {
-            if (argID == agents.get(i).id) {
-                agentPosition = agents.get(i).groupNumber;
-                return agentPosition;
-            }
-        }
-        return agentPosition;
-    }
-
-    private void removeTiles() {
-        /*for (int i = 0; i <= tiles.size() - 1; i++) {
-            jp_worldPanel.remove(tiles.get(i));
-        }
-        jp_worldPanel.revalidate();
-        jp_worldPanel.repaint();
-        tiles.retainAll(tiles);
-        tiles = new ArrayList<>();
-        //System.out.println(tiles.size());*/
+        return true;
     }
 
     //method to get random 
     private static int getRandom(int min, int max) {
-
         if (min >= max) {
             throw new IllegalArgumentException("max must be greater than min");
         }
@@ -886,7 +685,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jp_infoPanel;
     private javax.swing.JPanel jp_simulationControl;
     private javax.swing.JPanel jp_world;
-    private animalsimulation.WorldPanel jp_worldPanel;
+    private javax.swing.JPanel jp_worldPanel;
     private javax.swing.JSlider jsl_animal;
     private javax.swing.JTextField jtf_height;
     private javax.swing.JTextField jtf_width;

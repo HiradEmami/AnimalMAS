@@ -14,14 +14,8 @@ import javax.swing.BorderFactory;
  * @author Ebombo2
  */
 public class WorldPanel extends javax.swing.JPanel{
-    
-    WorldPanel()
-    {
-        this.setBorder(BorderFactory.createLineBorder(Color.black, 10));
-    }
-    
     @Override
-    public void paint(Graphics g) {
+    public void paintComponent(Graphics g) {
         super.paintComponents(g);
         for(int i=0;i<10;i++)
         {
