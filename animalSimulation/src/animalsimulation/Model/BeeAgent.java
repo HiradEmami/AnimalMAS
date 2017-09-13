@@ -1,27 +1,26 @@
+package animalsimulation.Model;
+
 /**
  *
- * @author Hirad Gorgoroth
+ * @author Ebombo2
  */
-package animalsimulation;
-
 import java.util.Random;
 
-public class animalAgents {
+public class BeeAgent {
 
-    public int energy;          //total available energy
+    //public int energy;          //total available energy
     public int groupNumber;     //the group identifier (1:food 2:individual, 3:group 1, etc...) 
     public int id;              //unique id for the agent
     public int currentHeight;
     public int currentWidth;
 
-    public animalAgents(int argID, int argGroup) {
-        this.id = argID;
-        this.groupNumber = argGroup;
-    }
-
-    public animalAgents() {
+    public BeeAgent() {
         this.groupNumber = 2;
         //this.groupNumber = getRandom(2, 6); //just a temporarily group id static for all GROUP ONLY
+    }
+
+    public BeeAgent(int groupNumber) {
+        this.groupNumber = groupNumber;
     }
 
     public void setId(int id) {
