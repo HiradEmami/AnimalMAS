@@ -6,7 +6,7 @@ package animalsimulation;
 
 import java.util.Random;
 
-public class AnimalAgent {
+public class animalAgents {
 
     public int energy;          //total available energy
     public int groupNumber;     //the group identifier (1:food 2:individual, 3:group 1, etc...) 
@@ -14,12 +14,12 @@ public class AnimalAgent {
     public int currentHeight;
     public int currentWidth;
 
-//    public AnimalAgent(int argID, int argGroup) {
-//        this.id = argID;
-//        this.groupNumber = argGroup;
-//    }
+    public animalAgents(int argID, int argGroup) {
+        this.id = argID;
+        this.groupNumber = argGroup;
+    }
 
-    public AnimalAgent() {
+    public animalAgents() {
         this.groupNumber = 2;
         //this.groupNumber = getRandom(2, 6); //just a temporarily group id static for all GROUP ONLY
     }

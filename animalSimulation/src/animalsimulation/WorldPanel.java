@@ -1,6 +1,6 @@
-package animalsimulation.View;
+package animalsimulation;
 
-import animalsimulation.AnimalAgent;
+import animalsimulation.animalAgents;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -11,11 +11,11 @@ import java.util.ArrayList;
 public class WorldPanel extends javax.swing.JPanel{
     private int amount;
     private int origin;
-    private ArrayList<AnimalAgent> agents;
-    private AnimalAgent agent;
+    private ArrayList<animalAgents> agents;
+    private animalAgents agent;
     
     //DIRTY CODE IN VIEW
-    public void upDate(int amount, int origin, ArrayList<AnimalAgent> agents)
+    public void upDate(int amount, int origin, ArrayList<animalAgents> agents)
     {
         this.amount = amount;
         this.origin = origin;
