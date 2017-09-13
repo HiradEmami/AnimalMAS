@@ -6,7 +6,7 @@ package animalsimulation.Model;
  */
 import java.util.Random;
 
-public class BeeAgent {
+public class BeeScout {
 
     //public int energy;          //total available energy
     public int groupNumber;     //the group identifier (1:food 2:individual, 3:group 1, etc...) 
@@ -14,13 +14,9 @@ public class BeeAgent {
     public int currentHeight;
     public int currentWidth;
 
-    public BeeAgent() {
-        this.groupNumber = 2;
+    public BeeScout() {
+        //this.groupNumber = 1;
         //this.groupNumber = getRandom(2, 6); //just a temporarily group id static for all GROUP ONLY
-    }
-
-    public BeeAgent(int groupNumber) {
-        this.groupNumber = groupNumber;
     }
 
     public void setId(int id) {

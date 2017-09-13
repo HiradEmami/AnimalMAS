@@ -16,17 +16,18 @@ import javax.swing.border.Border;
 public class MainFrame extends javax.swing.JFrame {
 
     private String imagePath;                                   //The path to the folder which contains the images
-    private int gridHeight,gridWidth,numAgents = 0;             //Height of the main grid(will be collected by user input), Width if the grid (will be collected by user input)
-    private int origin = 0;
+    private int spread, gridHeight, gridWidth, numWorkers, origin = 0;      //Height of the main grid(will be collected by user input), Width if the grid (will be collected by user input)
+    private double amountScouts;
 
     private ArrayList<ImageIcon> icons = new ArrayList<>();     //List of imported images for rendering
-    private ArrayList<BeeAgent> agents = new ArrayList<>();  //List of all created agents
-    private ArrayList<BeeHive> hives = new ArrayList<>();  //List of all created agents
+    private ArrayList<BeeScout> scouts = new ArrayList<>();     //List of all created scouts
+    private ArrayList<BeeHive> hives = new ArrayList<>();       //List of all created hives
+    private ArrayList<BeeFood> foods = new ArrayList<>();       //List of all created foods
+    private ArrayList<BeeWorker> workers = new ArrayList<>();   //List of all created workers
 
     public MainFrame() {
         System.out.println("Initializing Components:");
         initComponents();                                       //Creating and managing the main components
-        
         System.out.println("Initializing Components Completed");
         System.out.println("Initializing Variables:");
         this.imagePath = System.getProperty("user.dir") + "\\images";
@@ -40,13 +41,10 @@ public class MainFrame extends javax.swing.JFrame {
         readIcons();                                            //Calling the method to read all the images
 
         //set the guide icons
-        guid_empty.setIcon(icons.get(0));
+        guid_hive.setIcon(icons.get(0));
         guid_food.setIcon(icons.get(1));
-        guid_individual.setIcon(icons.get(2));
-//        guid_group1.setIcon(icons.get(3));
-//        guid_group2.setIcon(icons.get(4));
-//        guid_group3.setIcon(icons.get(5));
-//        guid_group4.setIcon(icons.get(6));
+        guid_beeScout.setIcon(icons.get(2));
+        guid_beeWorker.setIcon(icons.get(3));
         this.pack();
     }
 
@@ -126,13 +124,10 @@ public class MainFrame extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jp_guide = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        guid_group3 = new javax.swing.JLabel();
-        guid_group2 = new javax.swing.JLabel();
-        guid_group4 = new javax.swing.JLabel();
-        guid_group1 = new javax.swing.JLabel();
-        guid_individual = new javax.swing.JLabel();
-        guid_empty = new javax.swing.JLabel();
         guid_food = new javax.swing.JLabel();
+        guid_hive = new javax.swing.JLabel();
+        guid_beeScout = new javax.swing.JLabel();
+        guid_beeWorker = new javax.swing.JLabel();
         jp_world = new javax.swing.JPanel();
         jp_SetupPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -168,7 +163,7 @@ public class MainFrame extends javax.swing.JFrame {
         jp_worldPanel.setLayout(jp_worldPanelLayout);
         jp_worldPanelLayout.setHorizontalGroup(
             jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(worldPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(worldPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jp_worldPanelLayout.setVerticalGroup(
             jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,15 +185,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel7.setText("Simulate the Entire round:");
 
         jButton3.setText("Simulate");
-        jButton3.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jButton3AncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -342,19 +328,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel13.setText("Icons:");
 
-        guid_group3.setText("Group 3");
-
-        guid_group2.setText("Group2");
-
-        guid_group4.setText("Group 4");
-
-        guid_group1.setText("Group 1");
-
-        guid_individual.setText("Individual");
-
-        guid_empty.setText("Empty Tile");
-
         guid_food.setText("Food");
+
+        guid_hive.setText("Hive");
+
+        guid_beeScout.setText("Scout");
+
+        guid_beeWorker.setText("Worker");
 
         javax.swing.GroupLayout jp_guideLayout = new javax.swing.GroupLayout(jp_guide);
         jp_guide.setLayout(jp_guideLayout);
@@ -369,18 +349,12 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(80, 80, 80)
                         .addComponent(guid_food)
                         .addGap(66, 66, 66)
-                        .addComponent(guid_individual)
+                        .addComponent(guid_hive)
                         .addGap(62, 62, 62)
-                        .addComponent(guid_group1)
+                        .addComponent(guid_beeScout)
                         .addGap(70, 70, 70)
-                        .addComponent(guid_group2)
-                        .addGap(69, 69, 69)
-                        .addComponent(guid_group3)
-                        .addGap(60, 60, 60)
-                        .addComponent(guid_group4)
-                        .addGap(63, 63, 63)
-                        .addComponent(guid_empty)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(guid_beeWorker)))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
         jp_guideLayout.setVerticalGroup(
             jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,13 +363,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addGap(40, 40, 40)
                 .addGroup(jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guid_group4)
-                    .addComponent(guid_individual)
+                    .addComponent(guid_hive)
                     .addComponent(guid_food)
-                    .addComponent(guid_group1)
-                    .addComponent(guid_group2)
-                    .addComponent(guid_group3)
-                    .addComponent(guid_empty))
+                    .addComponent(guid_beeScout)
+                    .addComponent(guid_beeWorker))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
 
@@ -555,10 +526,10 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void readIcons() {                                              //method to read images and add them to 
-        icons.add(new ImageIcon(imagePath + "\\EmptyTile.jpg"));            //Position 0 is the empty tile
-        icons.add(new ImageIcon(imagePath + "\\Food.jpg"));                 //Position 1 is the Food
-        icons.add(new ImageIcon(imagePath + "\\horse_individual.jpg"));     //Position 2 is the horse_individual
-      
+        icons.add(new ImageIcon(imagePath + "\\hive.jpg"));                 //Position 0 is the hive
+        icons.add(new ImageIcon(imagePath + "\\food.jpg"));                 //Position 1 is the food
+        icons.add(new ImageIcon(imagePath + "\\bee_scout.jpg"));            //Position 2 is the bee_scout
+        icons.add(new ImageIcon(imagePath + "\\bee_worker.jpg"));           //Position 3 is the bee_worker
     }
 
     //Action Event for the setup button that runs the simulation
@@ -599,88 +570,116 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jButton3AncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3AncestorAdded
-
     private void setupWorld() {
         try {
-           // gridHeight = Integer.parseInt(jtf_height.getText());
-            gridHeight = jp_worldPanel.getHeight()-20;
+            // gridHeight = Integer.parseInt(jtf_height.getText());
+            gridHeight = jp_worldPanel.getHeight() - 20;
             //gridWidth = Integer.parseInt(jtf_width.getText());
-            gridWidth = jp_worldPanel.getWidth()-20;
-            jsl_animal.setMaximum(800);
-            numAgents = jsl_animal.getValue();
-            createAgents();
-            createFood();
-            createHive();
+            gridWidth = jp_worldPanel.getWidth() - 20;
+            jsl_animal.setMaximum(100);
+            numWorkers = jsl_animal.getValue();
+            spread = 100;
+            createHive(50, 50);
+            createFoods();
+            createWorkers();
+            createScouts();
             this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);   //to make it full screen
         } catch (Exception e) {                                         //Display the error if it failed to create the simulation
             JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);
         }
     }
 
-    private void createHive() {
+    private void createHive(double percentX, double percentY) {
+        hives.retainAll(hives);
         hives = new ArrayList<>();
         BeeHive b = new BeeHive();
-        b.currentHeight = (int) Math.round(0.90*gridHeight);
-        b.currentWidth = (int) Math.round(0.5*gridWidth);
+        b.currentHeight = (int) Math.round((percentY / 100) * gridHeight);
+        b.currentWidth = (int) Math.round((percentX / 100) * gridWidth);
         hives.add(b);
     }
-    
-    private void createFood() {
-        BeeAgent a = createAgent(1);
-        agents.add(a);
-    }
-    
-    private BeeAgent createAgent() //SHOULD BE IN ANIMALAGENT.JAVA
-    {
-        return createAgent(0);
+
+    private void createFood(double percentX, double percentY) {
+        BeeFood argFood = new BeeFood();
+        argFood.currentHeight = (int) Math.round((percentY / 100) * gridHeight);
+        argFood.currentWidth = (int) Math.round((percentX / 100) * gridWidth);
+        foods.add(argFood);
     }
 
-    private BeeAgent createAgent(int groupnr) //SHOULD BE IN ANIMALAGENT.JAVA
-    {
-        BeeAgent argAgent = new BeeAgent();
+    private void createScout() {
+        BeeScout argScout = new BeeScout();
         int randomId, argHeight, argWidth;
         boolean counter = false;
         while (!counter) {
             randomId = getRandom(100, 999);
             if (acceptableID(randomId)) {
-                argAgent.setId(randomId);
+                argScout.setId(randomId);
                 counter = true;
             }
         }
-        if(hives.size() > 0) {
-            argHeight = getRandom(hives.get(0).currentHeight-40, hives.get(0).currentHeight+40);      //getting random height 
-            argWidth = getRandom(hives.get(0).currentWidth-40, hives.get(0).currentWidth+40);        //getting a random width
-        }else{
+        if (hives.size() > 0) {
+            int i = getRandom(0, hives.size() - 1);
+            argHeight = getRandom(hives.get(i).currentHeight - spread, hives.get(i).currentHeight + spread);      //getting random height 
+            argWidth = getRandom(hives.get(i).currentWidth - spread, hives.get(i).currentWidth + spread);        //getting a random width
+        } else {
             argHeight = getRandom(20, gridHeight - 1);      //getting random height 
             argWidth = getRandom(20, gridWidth - 1);        //getting a random width
         }
-        if (groupnr != 0) {
-            argHeight = (int)Math.round(gridHeight*0.5);      //getting random height 
-            argWidth = (int)Math.round(gridWidth*0.5);        //getting a random width
-            argAgent.groupNumber = groupnr;
-        }
-        argAgent.setCoordination(argHeight, argWidth);
-        return argAgent;
+        argScout.setCoordination(argHeight, argWidth);
+        scouts.add(argScout);
     }
 
-    private void createAgents() {
-        agents.retainAll(agents);
-        agents = new ArrayList<>();
-        System.out.println(agents.size());
+    private void createWorker() {
+        BeeWorker argWorker = new BeeWorker();
+        int randomId, argHeight, argWidth;
+        boolean counter = false;
+        while (!counter) {
+            randomId = getRandom(100, 999);
+            if (acceptableID(randomId)) {
+                argWorker.setId(randomId);
+                counter = true;
+            }
+        }
+        if (hives.size() > 0) {
+            int i = getRandom(0, hives.size() - 1);
+            argHeight = getRandom(hives.get(i).currentHeight - spread, hives.get(i).currentHeight + spread);      //getting random height 
+            argWidth = getRandom(hives.get(i).currentWidth - spread, hives.get(i).currentWidth + spread);        //getting a random width
+        } else {
+            argHeight = getRandom(20, gridHeight - 1);      //getting random height 
+            argWidth = getRandom(20, gridWidth - 1);        //getting a random width
+        }
+        argWorker.setCoordination(argHeight, argWidth);
+        workers.add(argWorker);
+    }
+    
+    private void createFoods() {
+        foods.retainAll(foods);
+        foods = new ArrayList<>();
+        for (int i = 0; i < 3; i += 2) {
+            createFood(25 + 25 * i, 25 + 25 * i);           //25-25 75-25
+            createFood(75 - 25 * i, 25 + 25 * i);               //75-25 25-75
+        }
+    }
+    
+    private void createScouts() {
+        scouts.retainAll(scouts);
+        scouts = new ArrayList<>();
+        for (int i = 0; i<amountScouts; i++) {
+            createScout();
+        }
+    }
 
-        for (int i = 0; i <= numAgents - 1; i++) {
-            BeeAgent a = createAgent();
-            agents.add(a);
-            System.out.println("Agent created with id: " + a.id);
+    private void createWorkers() {
+        amountScouts = (int)Math.round((numWorkers)/3);
+        workers.retainAll(workers);
+        workers = new ArrayList<>();
+        for (int i = 0; i < numWorkers-amountScouts; i++) {
+            createWorker();
         }
     }
 
     private boolean acceptableID(int argId) {
-        for (int j = 0; j <= agents.size() - 1; j++) {
-            if (argId == agents.get(j).id) {
+        for (int j = 0; j <= scouts.size() - 1; j++) {
+            if (argId == scouts.get(j).id) {
                 return false;
             }
         }
@@ -689,30 +688,23 @@ public class MainFrame extends javax.swing.JFrame {
 
 //    private int getAgentGroup(int argID) {
 //        int agentPosition = 0;
-//        for (int i = 0; i <= agents.size() - 1; i++) {
-//            if (argID == agents.get(i).id) {
-//                agentPosition = agents.get(i).groupNumber;
+//        for (int i = 0; i <= scouts.size() - 1; i++) {
+//            if (argID == scouts.get(i).id) {
+//                agentPosition = scouts.get(i).groupNumber;
 //                return agentPosition;
 //            }
 //        }
 //        return agentPosition;
 //    }
-
     private void repaintScreen() {
         jp_worldPanel.revalidate();
-        
-        
-        
-        worldPanel1.upDate(numAgents, origin, agents, hives);
-        
+        worldPanel1.upDate(numWorkers, origin, scouts, hives, foods, workers);
         this.repaint();
-       
-        
     }
 
     //method to get random 
     private static int getRandom(int min, int max) {
-        if (min >= max) {
+        if (min > max) {
             throw new IllegalArgumentException("max must be greater than min");
         }
         Random r = new Random();
@@ -761,13 +753,10 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> combo_Control;
     private javax.swing.JComboBox<String> combo_agnet;
-    private javax.swing.JLabel guid_empty;
+    private javax.swing.JLabel guid_beeScout;
+    private javax.swing.JLabel guid_beeWorker;
     private javax.swing.JLabel guid_food;
-    private javax.swing.JLabel guid_group1;
-    private javax.swing.JLabel guid_group2;
-    private javax.swing.JLabel guid_group3;
-    private javax.swing.JLabel guid_group4;
-    private javax.swing.JLabel guid_individual;
+    private javax.swing.JLabel guid_hive;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -802,5 +791,4 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel tlb_animal;
     private animalsimulation.View.WorldPanel worldPanel1;
     // End of variables declaration//GEN-END:variables
-     
 }

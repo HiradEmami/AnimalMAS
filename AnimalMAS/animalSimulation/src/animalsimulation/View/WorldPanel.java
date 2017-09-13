@@ -11,50 +11,62 @@ import java.util.ArrayList;
 public class WorldPanel extends javax.swing.JPanel{
     private int amount;
     private int origin;
-    private ArrayList<BeeAgent> agents = new ArrayList<>();
+    private ArrayList<BeeScout> scouts = new ArrayList<>();
+    private ArrayList<BeeWorker> workers = new ArrayList<>();
     private ArrayList<BeeHive> hives = new ArrayList<>();
-    private BeeAgent agent;
+    private ArrayList<BeeFood> foods = new ArrayList<>();
+    private BeeFood food;
     private BeeHive hive;
+    private BeeScout scout;
+    private BeeWorker worker;
     
     //DIRTY CODE IN VIEW @LOL
-    public void upDate(int argAmount, int argOrigin, ArrayList<BeeAgent> argAgents, ArrayList<BeeHive> argHives)
+    public void upDate(int argAmount, int argOrigin, ArrayList<BeeScout> argScouts, ArrayList<BeeHive> argHives, ArrayList<BeeFood> argFoods, ArrayList<BeeWorker> argWorkers)
     {
         this.amount = argAmount;
         this.origin = argOrigin;
-        this.agents = argAgents;
+        this.scouts = argScouts;
         this.hives = argHives;
+        this.foods = argFoods;
+        this.workers = argWorkers;
     }
     //
     
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
-        //g.setColor(Color.red);
-        //g.fillOval(20-10,20-10,20,20);
-        
-        for(int i=0;i<=agents.size();i++)
+        for(int i=0;i<=scouts.size();i++)
         {
             try
             {
-                agent = agents.get(i);
-                switch(agent.groupNumber)
-                {
-                    case 1: //food
-                    {
-                        g.setColor(Color.red);
-                        g.fillOval(agents.get(i).currentWidth - 10,agents.get(i).currentHeight - 10,20,20);
-                        break;
-                    }
-                    default: //bees
-                    {
-                        g.setColor(Color.black);
-                        g.fillOval(agents.get(i).currentWidth - 5,agents.get(i).currentHeight - 5,10,10);
-                    }
-                }
+                scout = scouts.get(i);
+                g.setColor(Color.black);
+                g.fillOval(scout.currentWidth - 5,scout.currentHeight - 5,10,10);
             }
             catch(Exception e)
+            {}
+        }
+        for(int i=0;i<=workers.size();i++)
+        {
+            try
             {
+                worker = workers.get(i);
+                g.setColor(Color.blue);
+                g.fillOval(worker.currentWidth - 5,worker.currentHeight - 5,10,10);
             }
+            catch(Exception e)
+            {}
+        }
+        for(int i=0;i<=foods.size();i++)
+        {
+            try
+            {
+                food = foods.get(i);
+                g.setColor(Color.red);
+                g.fillOval(food.currentWidth - 10,food.currentHeight - 10,20,20);
+            }
+            catch(Exception e)
+            {}
         }
         for(int i=0;i<=hives.size();i++)
         {
@@ -63,7 +75,6 @@ public class WorldPanel extends javax.swing.JPanel{
                 hive = hives.get(i);
                 g.setColor(Color.green);
                 g.fillOval(hive.currentWidth - 10,hive.currentHeight - 10,20,20);
-                break;
             }
             catch(Exception e)
             {}
