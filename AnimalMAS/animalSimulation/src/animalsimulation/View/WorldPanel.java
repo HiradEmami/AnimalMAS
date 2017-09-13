@@ -39,13 +39,13 @@ public class WorldPanel extends javax.swing.JPanel{
                 agent = agents.get(i);
                 switch(agent.groupNumber)
                 {
-                    case 1:
+                    case 1: //food
                     {
                         g.setColor(Color.red);
                         g.fillOval(agents.get(i).currentWidth - 10,agents.get(i).currentHeight - 10,20,20);
                         break;
                     }
-                    default:
+                    default: //bees
                     {
                         g.setColor(Color.black);
                         g.fillOval(agents.get(i).currentWidth - 5,agents.get(i).currentHeight - 5,10,10);
@@ -53,7 +53,8 @@ public class WorldPanel extends javax.swing.JPanel{
                 }
             }
             catch(Exception e)
-            {}
+            {
+            }
         }
         for(int i=0;i<=hives.size();i++)
         {

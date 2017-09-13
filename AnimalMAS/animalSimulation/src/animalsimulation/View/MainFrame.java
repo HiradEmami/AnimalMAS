@@ -8,8 +8,10 @@ package animalsimulation.View;
 //required imports 
 import animalsimulation.Model.*;
 import animalsimulation.View.*;
+import java.awt.Dimension;
 import javax.swing.*;
 import java.util.*;
+import javax.swing.border.Border;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -24,6 +26,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         System.out.println("Initializing Components:");
         initComponents();                                       //Creating and managing the main components
+        
         System.out.println("Initializing Components Completed");
         System.out.println("Initializing Variables:");
         this.imagePath = System.getProperty("user.dir") + "\\images";
@@ -102,7 +105,8 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jp_worldPanel = new WorldPanel();
+        jp_worldPanel = new javax.swing.JPanel();
+        worldPanel1 = new animalsimulation.View.WorldPanel();
         jp_infoPanel = new javax.swing.JPanel();
         jp_simulationControl = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -149,15 +153,26 @@ public class MainFrame extends javax.swing.JFrame {
 
         jp_worldPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray));
 
+        javax.swing.GroupLayout worldPanel1Layout = new javax.swing.GroupLayout(worldPanel1);
+        worldPanel1.setLayout(worldPanel1Layout);
+        worldPanel1Layout.setHorizontalGroup(
+            worldPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        worldPanel1Layout.setVerticalGroup(
+            worldPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jp_worldPanelLayout = new javax.swing.GroupLayout(jp_worldPanel);
         jp_worldPanel.setLayout(jp_worldPanelLayout);
         jp_worldPanelLayout.setHorizontalGroup(
             jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(worldPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jp_worldPanelLayout.setVerticalGroup(
             jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(worldPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jp_infoPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
@@ -175,6 +190,15 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel7.setText("Simulate the Entire round:");
 
         jButton3.setText("Simulate");
+        jButton3.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jButton3AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -534,10 +558,7 @@ public class MainFrame extends javax.swing.JFrame {
         icons.add(new ImageIcon(imagePath + "\\EmptyTile.jpg"));            //Position 0 is the empty tile
         icons.add(new ImageIcon(imagePath + "\\Food.jpg"));                 //Position 1 is the Food
         icons.add(new ImageIcon(imagePath + "\\horse_individual.jpg"));     //Position 2 is the horse_individual
-//        icons.add(new ImageIcon(imagePath + "\\horse_group1.jpg"));         //Position 3 is the horse_group1
-//        icons.add(new ImageIcon(imagePath + "\\horse_group2.jpg"));         //Position 4 is the horse_group2
-//        icons.add(new ImageIcon(imagePath + "\\horse_group3.jpg"));         //Position 5 is the horse_group3
-//        icons.add(new ImageIcon(imagePath + "\\horse_group4.jpg"));         //Position 6 is the horse_group4
+      
     }
 
     //Action Event for the setup button that runs the simulation
@@ -578,9 +599,13 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jButton3AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3AncestorAdded
+
     private void setupWorld() {
         try {
-            //gridHeight = Integer.parseInt(jtf_height.getText());
+           // gridHeight = Integer.parseInt(jtf_height.getText());
             gridHeight = jp_worldPanel.getHeight()-20;
             //gridWidth = Integer.parseInt(jtf_width.getText());
             gridWidth = jp_worldPanel.getWidth()-20;
@@ -675,8 +700,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void repaintScreen() {
         jp_worldPanel.revalidate();
-        jp_worldPanel.upDate(numAgents, origin, agents, hives);
+        
+        
+        
+        worldPanel1.upDate(numAgents, origin, agents, hives);
+        
         this.repaint();
+       
+        
     }
 
     //method to get random 
@@ -764,10 +795,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jp_infoPanel;
     private javax.swing.JPanel jp_simulationControl;
     private javax.swing.JPanel jp_world;
-    private WorldPanel jp_worldPanel;
+    private javax.swing.JPanel jp_worldPanel;
     private javax.swing.JSlider jsl_animal;
     private javax.swing.JTextField jtf_height;
     private javax.swing.JTextField jtf_width;
     private javax.swing.JLabel tlb_animal;
+    private animalsimulation.View.WorldPanel worldPanel1;
     // End of variables declaration//GEN-END:variables
+     
 }
