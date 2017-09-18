@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import javax.swing.*;
 import java.util.*;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -24,6 +25,7 @@ public class MainFrame extends javax.swing.JFrame {
     private ArrayList<BeeHive> hives = new ArrayList<>();       //List of all created hives
     private ArrayList<BeeFood> foods = new ArrayList<>();       //List of all created foods
     private ArrayList<BeeWorker> workers = new ArrayList<>();   //List of all created workers
+    private DefaultTableModel table1;
 
     public MainFrame() {
         System.out.println("Initializing Components:");
@@ -31,7 +33,8 @@ public class MainFrame extends javax.swing.JFrame {
         System.out.println("Initializing Components Completed");
         System.out.println("Initializing Variables:");
         this.imagePath = System.getProperty("user.dir") + "\\images";
-        frameSetup();                                           //Handeling other (non-static) parameters 
+        frameSetup();               
+         table1 = (DefaultTableModel) jTable1.getModel();//Handeling other (non-static) parameters 
     }
 
     //This method will rebuild all the parameters and can be used to reset them
@@ -542,6 +545,7 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             setupWorld();           //Creating the grid and calling render method within
             repaintScreen();        //Method to remove the previously built tiles (reset UI)
+            setupTable();
         }
     }//GEN-LAST:event_jb_SetupButtonActionPerformed
 
@@ -556,6 +560,7 @@ public class MainFrame extends javax.swing.JFrame {
         tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
         setupWorld();           //Creating the grid and calling render method within
         repaintScreen();        //Method to remove the previously built tiles (reset UI)
+        refreshTable();
     }//GEN-LAST:event_jsl_animalStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -700,6 +705,20 @@ public class MainFrame extends javax.swing.JFrame {
         jp_worldPanel.revalidate();
         worldPanel1.upDate(numWorkers, origin, scouts, hives, foods, workers);
         this.repaint();
+    }
+       private void refreshTable() {
+        table1 = (DefaultTableModel) jTable1.getModel();
+        int x = table1.getRowCount() - 1;
+        while (x >= 0) {
+            table1.removeRow(x);
+            x--;
+        }
+    }
+          private void setupTable() {
+        for (int i = 0; i <= scouts.size() - 1; i++) {
+            String cord = scouts.get(i).currentHeight + " x " + scouts.get(i).currentWidth;
+            table1.addRow(new Object[]{(i + 1), scouts.get(i).id, scouts.get(i).groupNumber, cord});
+        }
     }
 
     //method to get random 
