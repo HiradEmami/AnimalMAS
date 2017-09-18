@@ -499,16 +499,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     //Action Event for the setup button that runs the simulation
     private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SetupButtonActionPerformed
-        int inputHeight = Integer.parseInt(jtf_height.getText());
-        int inputWidth = Integer.parseInt(jtf_width.getText());
-
-        if (inputHeight > 1000 || inputWidth > 1000) {
-            JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 300 x 400 ");
-        } else {
-            setupWorld();           //Creating the grid and calling render method within
-            repaintScreen();        //Method to remove the previously built tiles (reset UI)
-            setupTable();
-        }
+        setupWorld();           //Creating the grid and calling render method within
+        repaintScreen();        //Method to remove the previously built tiles (reset UI)
+        setupTable();
     }//GEN-LAST:event_jb_SetupButtonActionPerformed
 
     private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsl_animalStateChanged
