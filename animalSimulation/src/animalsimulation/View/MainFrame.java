@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
 
-    private String imagePath;                                               //The path to the folder which contains the images
+    private String imagePath;                                   //The path to the folder which contains the images
     private int spread, gridHeight, gridWidth, numWorkers, origin = 0;      //Height of the main grid(will be collected by user input), Width if the grid (will be collected by user input)
     private double amountScouts;
 
@@ -29,7 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
         System.out.println("Initializing Components:");
-        initComponents();                                                   //Creating and managing the main components
+        initComponents();                                       //Creating and managing the main components
         System.out.println("Initializing Components Completed");
         System.out.println("Initializing Variables:");
         this.imagePath = System.getProperty("user.dir") + "\\images";
@@ -37,16 +37,11 @@ public class MainFrame extends javax.swing.JFrame {
          table1 = (DefaultTableModel) jTable1.getModel();//Handeling other (non-static) parameters 
     }
 
-    private void readIcons() {                                              //method to read images and add them to 
-        icons.add(new ImageIcon(imagePath + "\\hive.jpg"));                 //Position 0 is the hive
-        icons.add(new ImageIcon(imagePath + "\\food.jpg"));                 //Position 1 is the food
-        icons.add(new ImageIcon(imagePath + "\\bee_scout.jpg"));            //Position 2 is the bee_scout
-        icons.add(new ImageIcon(imagePath + "\\bee_worker.jpg"));           //Position 3 is the bee_worker
-    }
-    
     //This method will rebuild all the parameters and can be used to reset them
     public void frameSetup() {
-        readIcons();                                                        //Calling the method to read all the images
+        jtf_height.setText("300");
+        jtf_width.setText("400");
+        readIcons();                                            //Calling the method to read all the images
 
         //set the guide icons
         guid_hive.setIcon(icons.get(0));
@@ -139,10 +134,15 @@ public class MainFrame extends javax.swing.JFrame {
         jp_world = new javax.swing.JPanel();
         jp_SetupPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jtf_height = new javax.swing.JTextField();
+        jtf_width = new javax.swing.JTextField();
         jb_SetupButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         combo_Control = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        jb_setPanelButton = new javax.swing.JButton();
         jsl_animal = new javax.swing.JSlider();
         tlb_animal = new javax.swing.JLabel();
 
@@ -392,6 +392,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel1.setText("World Setup: ");
 
+        jLabel2.setText("Width:");
+
+        jLabel3.setText("Height:");
+
         jb_SetupButton.setText("Setup");
         jb_SetupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,13 +406,15 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel4.setText("Animal:");
 
         combo_Control.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simulation Control", "World Information", "Agent Information", "Individual Agent", "Guide" }));
-        combo_Control.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo_ControlActionPerformed(evt);
-            }
-        });
 
         jLabel5.setText("Information Panel");
+
+        jb_setPanelButton.setText("Set");
+        jb_setPanelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_setPanelButtonActionPerformed(evt);
+            }
+        });
 
         jsl_animal.setValue(10);
         jsl_animal.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -428,14 +434,25 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jp_SetupPanelLayout.createSequentialGroup()
                         .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addGroup(jp_SetupPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(jLabel2)
+                                .addGap(7, 7, 7)
+                                .addComponent(jtf_width))
+                            .addGroup(jp_SetupPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtf_height))
+                            .addGroup(jp_SetupPanelLayout.createSequentialGroup()
                                 .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tlb_animal)
-                                    .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel1)
+                                    .addGroup(jp_SetupPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tlb_animal)
+                                            .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jb_SetupButton)
@@ -445,13 +462,25 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(combo_Control, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jb_setPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
         );
         jp_SetupPanelLayout.setVerticalGroup(
             jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_SetupPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(92, 92, 92)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jtf_width, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jtf_height, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -459,11 +488,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(tlb_animal)
                 .addGap(28, 28, 28)
                 .addComponent(jb_SetupButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
                 .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combo_Control, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(69, 69, 69))
+                .addGap(18, 18, 18)
+                .addComponent(jb_setPanelButton)
+                .addGap(26, 26, 26))
         );
 
         jsl_animal.getAccessibleContext().setAccessibleName("");
@@ -497,15 +528,35 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void readIcons() {                                              //method to read images and add them to 
+        icons.add(new ImageIcon(imagePath + "\\hive.jpg"));                 //Position 0 is the hive
+        icons.add(new ImageIcon(imagePath + "\\food.jpg"));                 //Position 1 is the food
+        icons.add(new ImageIcon(imagePath + "\\bee_scout.jpg"));            //Position 2 is the bee_scout
+        icons.add(new ImageIcon(imagePath + "\\bee_worker.jpg"));           //Position 3 is the bee_worker
+    }
+
     //Action Event for the setup button that runs the simulation
     private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SetupButtonActionPerformed
-        setupWorld();           //Creating the grid and calling render method within
-        repaintScreen();        //Method to remove the previously built tiles (reset UI)
-        setupTable();
+        int inputHeight = Integer.parseInt(jtf_height.getText());
+        int inputWidth = Integer.parseInt(jtf_width.getText());
+
+        if (inputHeight > 1000 || inputWidth > 1000) {
+            JOptionPane.showMessageDialog(null, "The Grid size is too big , maximum 300 x 400 ");
+        } else {
+            setupWorld();           //Creating the grid and calling render method within
+            repaintScreen();        //Method to remove the previously built tiles (reset UI)
+            setupTable();
+        }
     }//GEN-LAST:event_jb_SetupButtonActionPerformed
+
+    private void jb_setPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_setPanelButtonActionPerformed
+        topPanelManager(combo_Control.getSelectedIndex());
+    }//GEN-LAST:event_jb_setPanelButtonActionPerformed
 
     private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsl_animalStateChanged
         //Reading the three main inputs from the user   
+        int inputHeight = Integer.parseInt(jtf_height.getText());
+        int inputWidth = Integer.parseInt(jtf_width.getText());
         tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
         setupWorld();           //Creating the grid and calling render method within
         repaintScreen();        //Method to remove the previously built tiles (reset UI)
@@ -524,13 +575,11 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void combo_ControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_ControlActionPerformed
-        topPanelManager(combo_Control.getSelectedIndex());
-    }//GEN-LAST:event_combo_ControlActionPerformed
-
     private void setupWorld() {
         try {
+            // gridHeight = Integer.parseInt(jtf_height.getText());
             gridHeight = jp_worldPanel.getHeight() - 20;
+            //gridWidth = Integer.parseInt(jtf_width.getText());
             gridWidth = jp_worldPanel.getWidth() - 20;
             jsl_animal.setMaximum(100);
             numWorkers = jsl_animal.getValue();
@@ -735,6 +784,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -744,6 +795,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_SetupButton;
+    private javax.swing.JButton jb_setPanelButton;
     private javax.swing.JPanel jp_Agents;
     private javax.swing.JPanel jp_SetupPanel;
     private javax.swing.JPanel jp_guide;
@@ -753,6 +805,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jp_world;
     private javax.swing.JPanel jp_worldPanel;
     private javax.swing.JSlider jsl_animal;
+    private javax.swing.JTextField jtf_height;
+    private javax.swing.JTextField jtf_width;
     private javax.swing.JLabel tlb_animal;
     private animalsimulation.View.WorldPanel worldPanel1;
     // End of variables declaration//GEN-END:variables
