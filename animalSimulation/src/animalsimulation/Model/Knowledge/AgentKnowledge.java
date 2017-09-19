@@ -1,6 +1,18 @@
 
 package animalsimulation.Model.Knowledge;
 
+/*to add new obsticle knowledge to the agent, use addnewObstacleKnowledge and to 
+add new food knowledge to the agent, use addnewFoodKnowledge.
+These two methods, would either add the new information and return True or they
+would return false if the knowledge already exists, Use only single knowledge 
+instance to pass 
+
+in case of sharing knowledge , you can use the update methods that automatically
+adds the information that are not already known to the agent (pass arraylist of 
+knowledge) for example, use the gitFoodknowledge of an agent to pass to another 
+agent and updete the knowledge 
+*/
+
 import animalsimulation.Model.*;
 import java.util.ArrayList;
 
