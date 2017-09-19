@@ -1,6 +1,7 @@
 package animalsimulation.Controller;
 
 import animalsimulation.View.MainFrame;
+import animalsimulation.Model.Knowledge.*;
 
 /**
  *
@@ -16,5 +17,8 @@ public class AnimalSimulation {
         mf.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);   //setting the close function to completely exit the app
         mf.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);          //to make it full screen
         mf.setVisible(true);                                             //displaying the frame
+
+    
+    
     }
 }
