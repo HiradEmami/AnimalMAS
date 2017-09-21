@@ -5,7 +5,7 @@ package animalsimulation.Model;
  * @author Ebombo2
  */
 import java.util.Random;
-
+import animalsimulation.Model.Knowledge.*;
 public class BeeScout {
 
     //public int energy;          //total available energy
@@ -13,6 +13,7 @@ public class BeeScout {
     public int id;              //unique id for the agent
     public int currentHeight;
     public int currentWidth;
+    public AgentKnowledge knowledge;
 
     public BeeScout() {
         //this.groupNumber = 1;
@@ -28,6 +29,9 @@ public class BeeScout {
         this.currentWidth = argWidth;
     }
 
+    public void initKnowledge(Location argHive){
+        this.knowledge =new AgentKnowledge(argHive);
+    }
     //method to get random ///NOT USED
 //    private static int getRandom(int min, int max) {
 //        if (min >= max) {

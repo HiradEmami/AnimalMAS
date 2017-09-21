@@ -5,6 +5,8 @@
  */
 package animalsimulation.Model;
 
+import animalsimulation.Model.Knowledge.AgentKnowledge;
+
 /**
  *
  * @author Ebombo2
@@ -15,7 +17,8 @@ public class BeeWorker {
     public int id;              //unique id for the agent
     public int currentHeight;
     public int currentWidth;
-
+    public AgentKnowledge knowledge;
+    
     public BeeWorker() {
         //this.groupNumber = 1;
         //this.groupNumber = getRandom(2, 6); //just a temporarily group id static for all GROUP ONLY
@@ -28,5 +31,8 @@ public class BeeWorker {
     public void setCoordination(int argHeight, int argWidth) {
         this.currentHeight = argHeight;
         this.currentWidth = argWidth;
+    }
+    public void initKnowledge(Location argHive){
+        this.knowledge =new AgentKnowledge(argHive);
     }
 }
