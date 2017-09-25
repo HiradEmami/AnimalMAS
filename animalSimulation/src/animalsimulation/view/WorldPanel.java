@@ -1,8 +1,8 @@
 package animalsimulation.view;
 
 import animalsimulation.model.BeeFood;
-import animalsimulation.model.BeeScout;
-import animalsimulation.model.BeeWorker;
+import animalsimulation.model.bee.BeeScout;
+import animalsimulation.model.bee.BeeWorker;
 import animalsimulation.model.BeeHive;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -44,7 +44,7 @@ public class WorldPanel extends javax.swing.JPanel{
             {
                 scout = scouts.get(i);
                 g.setColor(Color.black);
-                g.fillOval(scout.currentWidth - 5,scout.currentHeight - 5,10,10);
+                //g.fillOval(scout.currentWidth - 5,scout.currentHeight - 5,10,10);
             }
             catch(Exception e)
             {}
@@ -55,7 +55,7 @@ public class WorldPanel extends javax.swing.JPanel{
             {
                 worker = workers.get(i);
                 g.setColor(Color.blue);
-                g.fillOval(worker.currentWidth - 5,worker.currentHeight - 5,10,10);
+                //g.fillOval(worker.currentWidth - 5,worker.currentHeight - 5,10,10);
             }
             catch(Exception e)
             {}

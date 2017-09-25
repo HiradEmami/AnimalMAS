@@ -7,8 +7,8 @@ package animalsimulation.view;
 
 //required imports 
 import animalsimulation.model.BeeFood;
-import animalsimulation.model.BeeScout;
-import animalsimulation.model.BeeWorker;
+import animalsimulation.model.bee.BeeScout;
+import animalsimulation.model.bee.BeeWorker;
 import animalsimulation.model.BeeHive;
 import java.awt.Dimension;
 import javax.swing.*;
@@ -563,16 +563,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void createScout() {
-        BeeScout argScout = new BeeScout();
+        BeeScout argScout = new BeeScout(null);
         int randomId, argHeight, argWidth;
-        boolean counter = false;
-        while (!counter) {
-            randomId = getRandom(100, 999);
-            if (acceptableID(randomId)) {
-                argScout.setId(randomId);
-                counter = true;
-            }
-        }
+        randomId = getRandom(100, 999);
+        
         if (hives.size() > 0) {
             int i = getRandom(0, hives.size() - 1);
             argHeight = getRandom(hives.get(i).currentHeight - spread, hives.get(i).currentHeight + spread);      //getting random height 
@@ -581,21 +575,14 @@ public class MainFrame extends javax.swing.JFrame {
             argHeight = getRandom(20, gridHeight - 1);      //getting random height 
             argWidth = getRandom(20, gridWidth - 1);        //getting a random width
         }
-        argScout.setCoordination(argHeight, argWidth);
         scouts.add(argScout);
     }
 
     private void createWorker() {
-        BeeWorker argWorker = new BeeWorker();
+        BeeWorker argWorker = new BeeWorker(null);
         int randomId, argHeight, argWidth;
-        boolean counter = false;
-        while (!counter) {
-            randomId = getRandom(100, 999);
-            if (acceptableID(randomId)) {
-                argWorker.setId(randomId);
-                counter = true;
-            }
-        }
+        randomId = getRandom(100, 999);
+        
         if (hives.size() > 0) {
             int i = getRandom(0, hives.size() - 1);
             argHeight = getRandom(hives.get(i).currentHeight - spread, hives.get(i).currentHeight + spread);      //getting random height 
@@ -604,7 +591,6 @@ public class MainFrame extends javax.swing.JFrame {
             argHeight = getRandom(20, gridHeight - 1);      //getting random height 
             argWidth = getRandom(20, gridWidth - 1);        //getting a random width
         }
-        argWorker.setCoordination(argHeight, argWidth);
         workers.add(argWorker);
     }
     
@@ -634,15 +620,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
-    private boolean acceptableID(int argId) {
-        for (int j = 0; j <= scouts.size() - 1; j++) {
-            if (argId == scouts.get(j).id) {
-                return false;
-            }
-        }
-        return true;
-    }
-
 //    private int getAgentGroup(int argID) {
 //        int agentPosition = 0;
 //        for (int i = 0; i <= scouts.size() - 1; i++) {
@@ -666,10 +643,11 @@ public class MainFrame extends javax.swing.JFrame {
             x--;
         }
     }
-          private void setupTable() {
+    
+    private void setupTable() {
         for (int i = 0; i <= scouts.size() - 1; i++) {
-            String cord = scouts.get(i).currentHeight + " x " + scouts.get(i).currentWidth;
-            table1.addRow(new Object[]{(i + 1), scouts.get(i).id, scouts.get(i).groupNumber, cord});
+            String cord = "? x ?";
+            table1.addRow(new Object[]{(i + 1), -1, -1, cord});
         }
     }
 

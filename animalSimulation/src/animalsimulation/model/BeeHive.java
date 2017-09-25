@@ -1,5 +1,6 @@
 package animalsimulation.model;
 
+import animalsimulation.model.bee.BeeScout;
 import java.util.ArrayList;
 
 /**
