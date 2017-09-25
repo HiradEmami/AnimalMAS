@@ -66,7 +66,7 @@ public class WorldPanel extends javax.swing.JPanel{
             {
                 food = foods.get(i);
                 g.setColor(Color.red);
-                g.fillOval(food.currentWidth - 10,food.currentHeight - 10,20,20);
+                g.fillOval(food.getCoordinates()[0] - 10,food.getCoordinates()[1] - 10,20,20);
             }
             catch(Exception e)
             {}
@@ -77,7 +77,7 @@ public class WorldPanel extends javax.swing.JPanel{
             {
                 hive = hives.get(i);
                 g.setColor(Color.green);
-                g.fillOval(hive.currentWidth - 10,hive.currentHeight - 10,20,20);
+                g.fillOval(hive.getCoordinates()[0] - 10,hive.getCoordinates()[1] - 10,20,20);
             }
             catch(Exception e)
             {}

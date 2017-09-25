@@ -5,45 +5,41 @@
  */
 package animalsimulation.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jeroen
  */
 public class World {
-    private Location[][] world;
+    private int width, height;
+    private ArrayList<WorldObject> objects;
+    private ArrayList<Agent> agents;
     
-    public World(int gridWidth, int gridHeight) {
-        initializeWorld(gridWidth, gridHeight);
+    public World(int width, int height) {
+        this.width = width;
+        this.height = height;
+        objects = new ArrayList<>();
     }
     
-    public Object[] getObjectsAt(int x, int y) {
-        return new Object[] {};
-    }
-    
-    public void addObjectAt(int x, int y, WorldObject object) {
-        getLocationAt(x, y).addObject(object);
-    }
-    
-    public int getPheromoneLevelAt(int x, int y) {
-        return getLocationAt(x, y).getPheromoneLevel();
-    }
-    
-    synchronized public void increasePhermoneLevelAt(int x, int y, int value) {
-        getLocationAt(x, y).increasePheromoneLevelBy(value);
-    }
-    
-    public Location getLocationAt(int x, int y) {
-        return world[x][y];
-    }
-    
-    /* Private functions */
-    
-    private void initializeWorld(int gridWidth, int gridHeight) {
-        world = new Location[gridWidth][gridHeight];
-        for(int i = 0; i < gridWidth; i++) {
-            for(int j = 0; j < gridHeight; j++) {
-                world[i][j] = new Location(i, j);
-            }
+    public void addObject(WorldObject object) {
+        objects.add(object);
+        
+        // For performance keep track of all agents.
+        if(object instanceof Agent) {
+            agents.add((Agent) object);
         }
+    }
+    
+    // Usefull for running the simulation.
+    public Agent[] getAgents() {
+        Agent[] type = new Agent[agents.size()];
+        return agents.toArray(type);
+    }
+    
+    // Usefull for drawing all the worldly objects.
+    public WorldObject[] getWorldObjects() {
+        WorldObject[] type = new WorldObject[objects.size()];
+        return objects.toArray(type);
     }
 }

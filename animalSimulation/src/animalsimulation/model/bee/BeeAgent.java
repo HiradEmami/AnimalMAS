@@ -6,7 +6,7 @@
 package animalsimulation.model.bee;
 
 import animalsimulation.model.Agent;
-import animalsimulation.model.Location;
+import animalsimulation.model.BeeHive;
 import animalsimulation.model.knowledge.AgentKnowledge;
 
 /**
@@ -18,12 +18,16 @@ import animalsimulation.model.knowledge.AgentKnowledge;
  */
 public abstract class BeeAgent extends Agent {
 
-    public BeeAgent(Location hiveLocation) {
-        initKnowledge(hiveLocation);
+    public BeeAgent(BeeHive hive) {
+        this(hive.getCoordinates()[0], hive.getCoordinates()[1], hive);
     }
     
-    @Override
-    public void initKnowledge(Location hiveLocation){
-        this.knowledge = new AgentKnowledge(hiveLocation);
+    public BeeAgent(int x, int y, BeeHive hive) {
+        super(x, y);
+        initKnowledge(hive);
+    }
+    
+    public void initKnowledge(BeeHive hive){
+        this.knowledge = new AgentKnowledge(hive);
     }
 }

@@ -1,25 +1,42 @@
 package animalsimulation.model;
 
-import animalsimulation.model.bee.BeeScout;
-import java.util.ArrayList;
+import animalsimulation.model.bee.BeeAgent;
 
 /**
  *
  * @author Ebombo2
  */
-public class BeeHive {
-
-    public int id;              //unique id for the agent
-    public int currentHeight;
-    public int currentWidth;
-    public ArrayList<BeeScout> scoutBees;    
+public class BeeHive extends WorldObject {
+    private Group group;
     
-    public void setId(int id) {
-        this.id = id;
+    public BeeHive(int x, int y) {
+        this(x, y, null);
     }
-
-    public void setCoordination(int argHeight, int argWidth) {
-        this.currentHeight = argHeight;
-        this.currentWidth = argWidth;
+    
+    public BeeHive(int x, int y, Group group) {
+        super(x, y);
+        
+        this.group = group;
+        if(group == null) {
+            this.group = new Group(this.toString());
+        }
+    }
+    
+    public WorldObject[] getAffiliatedBees() {
+        return group.getMembers();
+    }
+    
+    public void addBee(BeeAgent bee) {
+        group.addMember(bee);
+    }
+    
+    public void addBees(BeeAgent[] bees) {
+        for(BeeAgent bee : bees) {
+            group.addMember(bee);
+        }
+    }
+    
+    public int hiveSize() {
+        return group.getGroupSize();
     }
 }

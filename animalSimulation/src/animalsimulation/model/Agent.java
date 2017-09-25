@@ -15,10 +15,49 @@ import animalsimulation.model.knowledge.AgentKnowledge;
  * @author jeroen
  */
 public abstract class Agent extends WorldObject {
+    private static final Group individuals = new Group("Individuals");
+    
     private Group group;
     protected AgentKnowledge knowledge;
     //private int energy;          // total available energy
-        
-    public abstract void initKnowledge(Location hiveLocation);
+
+    public Agent(int x, int y) {
+        this(x, y, null);
+    }
+    
+    public Agent(int x, int y, Group group) {
+        super(x, y);
+        setGroup(group);
+    }
+    
+    // Abstract methods.
+    // Specific implementation may be found in the subclasses.
+    
+    public void initKnowledge() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     public abstract void act();
+
+    // Group methods.
+    
+    public Group getGroup() {
+        return group;
+    }
+    
+    // An agent may only be a member of one group at any given time.
+    // If the group parameter is null, the agent is added to the
+    // Individuals group.
+    public void setGroup(Group group) {
+        if(group == null) {
+            setGroup(individuals);
+        }
+        else {
+            this.group = group;
+            group.addMember(this);
+
+            if(this.group != null) {
+                this.group.removeMember(this);
+            }
+        }
+    }
 }

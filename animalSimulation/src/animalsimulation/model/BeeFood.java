@@ -4,19 +4,10 @@ package animalsimulation.model;
  *
  * @author Ebombo2
  */
-public class BeeFood {
-
+public class BeeFood extends WorldObject {
     //public int amount;          //total amount food LATER
-    public int id;              //unique id for the agent
-    public int currentHeight;
-    public int currentWidth;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setCoordination(int argHeight, int argWidth) {
-        this.currentHeight = argHeight;
-        this.currentWidth = argWidth;
+    public BeeFood(int x, int y) {
+        super(x, y);
     }
 }

@@ -10,10 +10,8 @@ import animalsimulation.model.BeeFood;
 import animalsimulation.model.bee.BeeScout;
 import animalsimulation.model.bee.BeeWorker;
 import animalsimulation.model.BeeHive;
-import java.awt.Dimension;
 import javax.swing.*;
 import java.util.*;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
@@ -549,16 +547,18 @@ public class MainFrame extends javax.swing.JFrame {
     private void createHive(double percentX, double percentY) {
         hives.retainAll(hives);
         hives = new ArrayList<>();
-        BeeHive b = new BeeHive();
-        b.currentHeight = (int) Math.round((percentY / 100) * gridHeight);
-        b.currentWidth = (int) Math.round((percentX / 100) * gridWidth);
+        BeeHive b = new BeeHive(
+            (int) Math.round((percentX / 100) * gridWidth),
+            (int) Math.round((percentY / 100) * gridHeight)
+        );
         hives.add(b);
     }
 
     private void createFood(double percentX, double percentY) {
-        BeeFood argFood = new BeeFood();
-        argFood.currentHeight = (int) Math.round((percentY / 100) * gridHeight);
-        argFood.currentWidth = (int) Math.round((percentX / 100) * gridWidth);
+        BeeFood argFood = new BeeFood(
+            (int) Math.round((percentX / 100) * gridWidth),
+            (int) Math.round((percentY / 100) * gridHeight)
+        );
         foods.add(argFood);
     }
 
@@ -569,8 +569,8 @@ public class MainFrame extends javax.swing.JFrame {
         
         if (hives.size() > 0) {
             int i = getRandom(0, hives.size() - 1);
-            argHeight = getRandom(hives.get(i).currentHeight - spread, hives.get(i).currentHeight + spread);      //getting random height 
-            argWidth = getRandom(hives.get(i).currentWidth - spread, hives.get(i).currentWidth + spread);        //getting a random width
+            argHeight = getRandom(hives.get(i).getCoordinates()[0] - spread, hives.get(i).getCoordinates()[1] + spread);      //getting random height 
+            argWidth = getRandom(hives.get(i).getCoordinates()[0] - spread, hives.get(i).getCoordinates()[1] + spread);        //getting a random width
         } else {
             argHeight = getRandom(20, gridHeight - 1);      //getting random height 
             argWidth = getRandom(20, gridWidth - 1);        //getting a random width
@@ -585,8 +585,8 @@ public class MainFrame extends javax.swing.JFrame {
         
         if (hives.size() > 0) {
             int i = getRandom(0, hives.size() - 1);
-            argHeight = getRandom(hives.get(i).currentHeight - spread, hives.get(i).currentHeight + spread);      //getting random height 
-            argWidth = getRandom(hives.get(i).currentWidth - spread, hives.get(i).currentWidth + spread);        //getting a random width
+            argHeight = getRandom(hives.get(i).getCoordinates()[0] - spread, hives.get(i).getCoordinates()[1] + spread);      //getting random height 
+            argWidth = getRandom(hives.get(i).getCoordinates()[0] - spread, hives.get(i).getCoordinates()[1] + spread);        //getting a random width
         } else {
             argHeight = getRandom(20, gridHeight - 1);      //getting random height 
             argWidth = getRandom(20, gridWidth - 1);        //getting a random width

@@ -32,5 +32,6 @@ public class AnimalSimulation {
         
         // Create world..
         // Create groups and agents..
+        // Create static objects (e.g. food sources)
     }
 }

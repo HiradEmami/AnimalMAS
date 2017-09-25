@@ -12,16 +12,22 @@ import java.awt.Color;
  * @author jeroen
  */
 public abstract class WorldObject {
-    private Location location;
+    private int x, y;
     private Color color;
     // private Shape shape // Food for thought...
     
-    public Location getLocation() {
-        return location;
+    public WorldObject(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
     
-    public void setLocation(Location location) {
-        this.location = location;
+    public int[] getCoordinates() {
+        return new int[] {x, y};
+    }
+    
+    public void setCoordinates(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
     
     public Color getColor() {

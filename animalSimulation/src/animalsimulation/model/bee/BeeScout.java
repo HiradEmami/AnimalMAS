@@ -1,6 +1,6 @@
 package animalsimulation.model.bee;
 
-import animalsimulation.model.Location;
+import animalsimulation.model.BeeHive;
 
 /**
  *
@@ -9,8 +9,8 @@ import animalsimulation.model.Location;
 
 public class BeeScout extends BeeAgent {
 
-    public BeeScout(Location hiveLocation) {
-        super(hiveLocation);
+    public BeeScout(BeeHive hive) {
+        super(hive);
     }
 
     @Override
