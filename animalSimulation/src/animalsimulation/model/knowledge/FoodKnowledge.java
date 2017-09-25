@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package animalsimulation.Model.Knowledge;
+package animalsimulation.model.knowledge;
 
-import animalsimulation.Model.Location;
+import animalsimulation.model.Location;
 
 /**
  *
@@ -24,6 +24,4 @@ public class FoodKnowledge extends LocationKnowledge{
     public int getFoodStorage() {
         return foodStorage;
     }
-    
-    
 }

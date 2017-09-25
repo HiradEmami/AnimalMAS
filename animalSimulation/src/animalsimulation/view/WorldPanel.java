@@ -1,9 +1,13 @@
-package animalsimulation.View;
+package animalsimulation.view;
 
-import animalsimulation.Model.*;
+import animalsimulation.model.BeeFood;
+import animalsimulation.model.BeeScout;
+import animalsimulation.model.BeeWorker;
+import animalsimulation.model.BeeHive;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+
 /**
  *
  * @author Ebombo2
@@ -30,7 +34,6 @@ public class WorldPanel extends javax.swing.JPanel{
         this.foods = argFoods;
         this.workers = argWorkers;
     }
-    //
     
     @Override
     public void paintComponent(Graphics g) {

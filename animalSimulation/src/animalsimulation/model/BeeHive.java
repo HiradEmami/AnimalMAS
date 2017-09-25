@@ -1,4 +1,4 @@
-package animalsimulation.Model;
+package animalsimulation.model;
 
 import java.util.ArrayList;
 
@@ -11,8 +11,7 @@ public class BeeHive {
     public int id;              //unique id for the agent
     public int currentHeight;
     public int currentWidth;
-    public ArrayList<BeeScout> scoutBees;
-    
+    public ArrayList<BeeScout> scoutBees;    
     
     public void setId(int id) {
         this.id = id;

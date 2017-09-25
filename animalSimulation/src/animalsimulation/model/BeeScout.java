@@ -1,11 +1,11 @@
-package animalsimulation.Model;
+package animalsimulation.model;
 
 /**
  *
  * @author Ebombo2
  */
+import animalsimulation.model.knowledge.AgentKnowledge;
 import java.util.Random;
-import animalsimulation.Model.Knowledge.*;
 public class BeeScout {
 
     //public int energy;          //total available energy

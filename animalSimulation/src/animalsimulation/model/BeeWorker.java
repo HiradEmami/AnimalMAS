@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package animalsimulation.Model;
+package animalsimulation.model;
 
-import animalsimulation.Model.Knowledge.AgentKnowledge;
+import animalsimulation.model.knowledge.AgentKnowledge;
 
 /**
  *
@@ -32,6 +32,7 @@ public class BeeWorker {
         this.currentHeight = argHeight;
         this.currentWidth = argWidth;
     }
+    
     public void initKnowledge(Location argHive){
         this.knowledge =new AgentKnowledge(argHive);
     }

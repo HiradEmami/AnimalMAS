@@ -3,11 +3,13 @@
  * @author Ebombo2
  * This class is basically the main frame and UI
  */
-package animalsimulation.View;
+package animalsimulation.view;
 
 //required imports 
-import animalsimulation.Model.*;
-import animalsimulation.View.*;
+import animalsimulation.model.BeeFood;
+import animalsimulation.model.BeeScout;
+import animalsimulation.model.BeeWorker;
+import animalsimulation.model.BeeHive;
 import java.awt.Dimension;
 import javax.swing.*;
 import java.util.*;
@@ -15,7 +17,12 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
-
+    public static final int SIMULATION_CONTROL_PANEL = 0;
+    public static final int WORLD_INFORMATION_PANEL  = 1;
+    public static final int AGENT_INFORMATION_PANEL  = 2;
+    public static final int INDIVIDUAL_AGENT_PANEL   = 3;
+    public static final int GUIDE_PANEL              = 4;
+    
     private String imagePath;                                               //The path to the folder which contains the images
     private int spread, gridHeight, gridWidth, numWorkers, origin = 0;      //Height of the main grid(will be collected by user input), Width if the grid (will be collected by user input)
     private double amountScouts;
@@ -57,14 +64,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void topPanelManager(int argPanel) {
-        //Simulation Control =0
-        //World Information =1
-        //Agent Information =2
-        //Individual Agent =3
-        //Guide = 4
-
         switch (argPanel) {
-            case 0: {
+            case SIMULATION_CONTROL_PANEL: {
                 jp_Agents.setVisible(false);
                 jp_individualAgent.setVisible(false);
                 jp_world.setVisible(false);
@@ -72,7 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
                 jp_simulationControl.setVisible(true);
                 break;
             }
-            case 1: {
+            case WORLD_INFORMATION_PANEL: {
                 jp_Agents.setVisible(false);
                 jp_individualAgent.setVisible(false);
                 jp_guide.setVisible(false);
@@ -80,7 +81,7 @@ public class MainFrame extends javax.swing.JFrame {
                 jp_world.setVisible(true);
                 break;
             }
-            case 2: {
+            case AGENT_INFORMATION_PANEL: {
                 jp_individualAgent.setVisible(false);
                 jp_world.setVisible(false);
                 jp_guide.setVisible(false);
@@ -88,7 +89,7 @@ public class MainFrame extends javax.swing.JFrame {
                 jp_Agents.setVisible(true);
                 break;
             }
-            case 3: {
+            case INDIVIDUAL_AGENT_PANEL: {
                 jp_Agents.setVisible(false);
                 jp_world.setVisible(false);
                 jp_guide.setVisible(false);
@@ -96,7 +97,7 @@ public class MainFrame extends javax.swing.JFrame {
                 jp_individualAgent.setVisible(true);
                 break;
             }
-            case 4: {
+            case GUIDE_PANEL: {
                 jp_Agents.setVisible(false);
                 jp_individualAgent.setVisible(false);
                 jp_world.setVisible(false);
@@ -112,7 +113,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jp_worldPanel = new javax.swing.JPanel();
-        worldPanel1 = new animalsimulation.View.WorldPanel();
+        worldPanel1 = new animalsimulation.view.WorldPanel();
         jp_infoPanel = new javax.swing.JPanel();
         jp_simulationControl = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -754,6 +755,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jp_worldPanel;
     private javax.swing.JSlider jsl_animal;
     private javax.swing.JLabel tlb_animal;
-    private animalsimulation.View.WorldPanel worldPanel1;
+    private animalsimulation.view.WorldPanel worldPanel1;
     // End of variables declaration//GEN-END:variables
 }

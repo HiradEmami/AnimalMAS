@@ -1,4 +1,4 @@
-package animalsimulation.Model;
+package animalsimulation.model;
 
 /**
  *
