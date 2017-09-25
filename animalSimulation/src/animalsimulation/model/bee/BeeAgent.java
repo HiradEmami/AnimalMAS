@@ -24,6 +24,7 @@ public abstract class BeeAgent extends Agent {
     public BeeAgent(int x, int y, BeeHive hive) {
         super(x, y);
         initKnowledge(hive);
+        hive.addBee(this);
     }
     
     public void initKnowledge(BeeHive hive){

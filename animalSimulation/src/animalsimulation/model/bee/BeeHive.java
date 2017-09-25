@@ -2,7 +2,6 @@ package animalsimulation.model.bee;
 
 import animalsimulation.model.base.Group;
 import animalsimulation.model.base.WorldObject;
-import animalsimulation.model.bee.BeeAgent;
 
 /**
  *

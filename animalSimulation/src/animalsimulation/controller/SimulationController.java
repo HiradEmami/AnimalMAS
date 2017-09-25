@@ -6,6 +6,7 @@
 package animalsimulation.controller;
 
 import animalsimulation.model.base.Agent;
+import animalsimulation.model.base.SimulationSettings;
 import animalsimulation.model.base.World;
 import animalsimulation.view.WorldPanel;
 
@@ -17,15 +18,17 @@ import animalsimulation.view.WorldPanel;
 public class SimulationController implements Runnable {
     private WorldPanel view;
     private World world;
+    private SimulationSettings settings;
     private Thread thread;
     
-    public SimulationController(World world) {
-        this.world = world;
+    public SimulationController(SimulationSettings settings) {
+        this.settings = settings;
+        this.world = settings.getMap().getWorld();
     }
-    
+        
     // Executes one simulation step.
     public void step() {
-        Agent[] agents = world.getAgents();
+        Agent[] agents = world.getWorldObjectsByClass(Agent.class);
         // view.whipe();
         
         for (Agent agent : agents) {
@@ -43,10 +46,20 @@ public class SimulationController implements Runnable {
         thread = null;
     }
     
+    // Reset the state of the simulation using the information
+    // contained within the SimulationSettings instance.
+    public void resetSimulation() {
+        // view.whipe();
+        
+    }
+    
     @Override
     public void run() {
         while(thread != null) {
-            // Continuously run the step method.
+            try {
+                step();
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {}
         }
     }
 }
