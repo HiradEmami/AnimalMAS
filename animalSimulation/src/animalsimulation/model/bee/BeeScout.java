@@ -1,7 +1,5 @@
 package animalsimulation.model.bee;
 
-import animalsimulation.model.BeeHive;
-
 /**
  *
  * @author Ebombo2

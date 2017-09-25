@@ -1,4 +1,6 @@
-package animalsimulation.model;
+package animalsimulation.model.bee;
+
+import animalsimulation.model.base.WorldObject;
 
 /**
  *

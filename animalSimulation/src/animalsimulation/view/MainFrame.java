@@ -6,10 +6,10 @@
 package animalsimulation.view;
 
 //required imports 
-import animalsimulation.model.BeeFood;
+import animalsimulation.model.bee.BeeFood;
 import animalsimulation.model.bee.BeeScout;
 import animalsimulation.model.bee.BeeWorker;
-import animalsimulation.model.BeeHive;
+import animalsimulation.model.bee.BeeHive;
 import javax.swing.*;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;

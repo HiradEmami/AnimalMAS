@@ -1,9 +1,9 @@
 package animalsimulation.view;
 
-import animalsimulation.model.BeeFood;
+import animalsimulation.model.bee.BeeFood;
 import animalsimulation.model.bee.BeeScout;
 import animalsimulation.model.bee.BeeWorker;
-import animalsimulation.model.BeeHive;
+import animalsimulation.model.bee.BeeHive;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;

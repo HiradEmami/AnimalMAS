@@ -5,8 +5,6 @@
  */
 package animalsimulation.model.knowledge;
 
-import animalsimulation.model.Location;
-
 /**
  *
  * @author Hirad Gorgoroth
@@ -15,7 +13,7 @@ public class FoodKnowledge extends LocationKnowledge{
    
     private int foodStorage;
     
-    public FoodKnowledge(Location argHiveLocation, Location argTargetLocation, int argFoodStorage) {
+    public FoodKnowledge(int[] argHiveLocation, int[] argTargetLocation, int argFoodStorage) {
         super(argHiveLocation, argTargetLocation);
         this.foodStorage=argFoodStorage;
         

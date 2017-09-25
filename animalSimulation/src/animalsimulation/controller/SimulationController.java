@@ -5,8 +5,8 @@
  */
 package animalsimulation.controller;
 
-import animalsimulation.model.Agent;
-import animalsimulation.model.World;
+import animalsimulation.model.base.Agent;
+import animalsimulation.model.base.World;
 import animalsimulation.view.WorldPanel;
 
 /**

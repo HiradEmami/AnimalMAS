@@ -5,8 +5,7 @@
  */
 package animalsimulation.model.bee;
 
-import animalsimulation.model.Agent;
-import animalsimulation.model.BeeHive;
+import animalsimulation.model.base.Agent;
 import animalsimulation.model.knowledge.AgentKnowledge;
 
 /**
@@ -28,6 +27,6 @@ public abstract class BeeAgent extends Agent {
     }
     
     public void initKnowledge(BeeHive hive){
-        this.knowledge = new AgentKnowledge(hive);
+        this.knowledge = new AgentKnowledge(hive.getCoordinates());
     }
 }
