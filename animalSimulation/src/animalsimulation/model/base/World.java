@@ -12,10 +12,10 @@ import java.util.HashMap;
  *
  * @author jeroen
  */
-public class World {
+public class World implements BaseModel {
     private final int width, height;
     private final ArrayList<WorldObject> objects;
-    private final HashMap<Class<?>, ArrayList<WorldObject>> classMap;
+    private final HashMap<Class<? extends WorldObject>, ArrayList<WorldObject>> classMap;
             
     public World(int width, int height) {
         this.width = width;
@@ -73,7 +73,7 @@ public class World {
      * @param c
      * @return worldObjects
      */
-    public <T> T[] getWorldObjectsByClass(Class<T> c) {
+    public <T extends WorldObject> T[] getWorldObjectsByClass(Class<T> c) {
         ArrayList<WorldObject> worldObjects = classMap.get(c);
         WorldObject[] type = new WorldObject[worldObjects.size()];
         return (T[]) worldObjects.toArray(type);

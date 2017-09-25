@@ -8,33 +8,29 @@ package animalsimulation.controller;
 import animalsimulation.model.base.Agent;
 import animalsimulation.model.base.SimulationSettings;
 import animalsimulation.model.base.World;
-import animalsimulation.view.WorldPanel;
 
 /**
  * Controller class for linking the World model to the WorldPanel view.
  * The controller enables starting and stoping a simulation thread. 
  * @author jeroen
  */
-public class SimulationController implements Runnable {
-    private WorldPanel view;
-    private World world;
-    private SimulationSettings settings;
+public class SimulationController extends BaseController implements Runnable {
+    private final SimulationSettings settings;
     private Thread thread;
     
     public SimulationController(SimulationSettings settings) {
         this.settings = settings;
-        this.world = settings.getMap().getWorld();
+        model = settings.getMap().getWorld();
     }
         
     // Executes one simulation step.
     public void step() {
+        World world = (World) model;
         Agent[] agents = world.getWorldObjectsByClass(Agent.class);
-        // view.whipe();
-        
         for (Agent agent : agents) {
             agent.act();
-            // view.draw(agent);
         }
+        updateViews();
     }
     
     public void runForever() {
@@ -49,8 +45,9 @@ public class SimulationController implements Runnable {
     // Reset the state of the simulation using the information
     // contained within the SimulationSettings instance.
     public void resetSimulation() {
-        // view.whipe();
-        
+        stopSimulation();
+        model = settings.getMap().createWorld(settings);
+        updateViews();
     }
     
     @Override

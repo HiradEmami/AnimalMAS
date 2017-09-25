@@ -16,6 +16,7 @@ import animalsimulation.model.knowledge.AgentKnowledge;
  * @author jeroen
  */
 public abstract class BeeAgent extends Agent {
+    private BeeHive hive;
 
     public BeeAgent(BeeHive hive) {
         this(hive.getCoordinates()[0], hive.getCoordinates()[1], hive);
@@ -24,10 +25,16 @@ public abstract class BeeAgent extends Agent {
     public BeeAgent(int x, int y, BeeHive hive) {
         super(x, y);
         initKnowledge(hive);
+        
         hive.addBee(this);
+        this.hive = hive;
     }
     
     public void initKnowledge(BeeHive hive){
         this.knowledge = new AgentKnowledge(hive.getCoordinates());
+    }
+    
+    public BeeHive getHive() {
+        return hive;
     }
 }

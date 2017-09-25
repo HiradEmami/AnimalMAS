@@ -2,6 +2,7 @@ package animalsimulation.model.bee;
 
 import animalsimulation.model.base.Group;
 import animalsimulation.model.base.WorldObject;
+import java.awt.Color;
 
 /**
  *
@@ -16,6 +17,10 @@ public class BeeHive extends WorldObject {
     
     public BeeHive(int x, int y, Group group) {
         super(x, y);
+        color = Color.YELLOW;
+        shape = Shape.OVAL;
+        width = 40;
+        height = 80;
         
         this.group = group;
         if(group == null) {

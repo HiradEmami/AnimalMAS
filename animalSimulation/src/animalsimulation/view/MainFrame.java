@@ -41,11 +41,11 @@ public class MainFrame extends javax.swing.JFrame {
     
     //This method will rebuild all the parameters and can be used to reset them
     public void frameSetup() {
-        //set the guide icons
-        guid_hive.setIcon(icons.get(0));
-        guid_food.setIcon(icons.get(1));
-        guid_beeScout.setIcon(icons.get(2));
-        guid_beeWorker.setIcon(icons.get(3));
+//        //set the guide icons
+//        guid_hive.setIcon(icons.get(0));
+//        guid_food.setIcon(icons.get(1));
+//        guid_beeScout.setIcon(icons.get(2));
+//        guid_beeWorker.setIcon(icons.get(3));
         this.pack();
     }
 
@@ -527,7 +527,6 @@ public class MainFrame extends javax.swing.JFrame {
     
     private void repaintScreen() {
         jp_worldPanel.revalidate();
-        //worldPanel1.upDate(numWorkers, origin, scouts, hives, foods, workers);
         this.repaint();
     }
     

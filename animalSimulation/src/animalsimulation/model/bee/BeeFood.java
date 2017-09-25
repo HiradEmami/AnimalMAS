@@ -1,6 +1,7 @@
 package animalsimulation.model.bee;
 
 import animalsimulation.model.base.WorldObject;
+import java.awt.Color;
 
 /**
  *
@@ -11,5 +12,9 @@ public class BeeFood extends WorldObject {
 
     public BeeFood(int x, int y) {
         super(x, y);
+        color = Color.GREEN;
+        shape = Shape.CIRCLE;
+        width = 20;
+        height = 20;
     }
 }

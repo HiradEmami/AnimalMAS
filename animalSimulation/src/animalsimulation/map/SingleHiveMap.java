@@ -34,11 +34,11 @@ public class SingleHiveMap extends Map {
         world.addObjects((WorldObject[]) scoutBees);
         
         // Adds food sources in a circle around the hive
-        int radius = 200;
+        int radius = 400;
         for(int i = 0; i < settings.getNumberOfFoodSources(); i++) {
             BeeFood food = new BeeFood(
-                Math.round((float) (hive.getCoordinates()[0] + Math.cos(2 * Math.PI / settings.getNumberOfFoodSources() * radius * i))),
-                Math.round((float) (hive.getCoordinates()[1] + Math.sin(2 * Math.PI / settings.getNumberOfFoodSources() * radius * i)))
+                Math.round((float) (hive.getCoordinates()[0] + radius * Math.cos(2 * Math.PI / settings.getNumberOfFoodSources() * i))),
+                Math.round((float) (hive.getCoordinates()[1] + radius * Math.sin(2 * Math.PI / settings.getNumberOfFoodSources() * i)))
             );
             world.addObject(food);
         }
