@@ -81,7 +81,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="animalsimulation.View.WorldPanel" name="worldPanel1">
+        <Container class="animalsimulation.view.WorldPanel" name="worldPanel1">
 
           <Layout>
             <DimensionLayout dim="0">

@@ -3,19 +3,24 @@
  * @author Ebombo2
  * This class is basically the main frame and UI
  */
-package animalsimulation.View;
+package animalsimulation.view;
 
 //required imports 
-import animalsimulation.Model.*;
-import animalsimulation.View.*;
-import java.awt.Dimension;
+import animalsimulation.model.bee.BeeFood;
+import animalsimulation.model.bee.BeeScout;
+import animalsimulation.model.bee.BeeWorker;
+import animalsimulation.model.bee.BeeHive;
 import javax.swing.*;
 import java.util.*;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
-
+    public static final int SIMULATION_CONTROL_PANEL = 0;
+    public static final int WORLD_INFORMATION_PANEL  = 1;
+    public static final int AGENT_INFORMATION_PANEL  = 2;
+    public static final int INDIVIDUAL_AGENT_PANEL   = 3;
+    public static final int GUIDE_PANEL              = 4;
+    
     private String imagePath;                                               //The path to the folder which contains the images
     private int spread, gridHeight, gridWidth, numWorkers, origin = 0;      //Height of the main grid(will be collected by user input), Width if the grid (will be collected by user input)
     private double amountScouts;
@@ -23,8 +28,6 @@ public class MainFrame extends javax.swing.JFrame {
     private ArrayList<ImageIcon> icons = new ArrayList<>();     //List of imported images for rendering
     private ArrayList<BeeScout> scouts = new ArrayList<>();     //List of all created scouts
     private ArrayList<BeeHive> hives = new ArrayList<>();       //List of all created hives
-    private ArrayList<BeeFood> foods = new ArrayList<>();       //List of all created foods
-    private ArrayList<BeeWorker> workers = new ArrayList<>();   //List of all created workers
     private DefaultTableModel table1;
 
     public MainFrame() {
@@ -32,39 +35,23 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();                                                   //Creating and managing the main components
         System.out.println("Initializing Components Completed");
         System.out.println("Initializing Variables:");
-        this.imagePath = System.getProperty("user.dir") + "\\images";
         frameSetup();               
-         table1 = (DefaultTableModel) jTable1.getModel();//Handeling other (non-static) parameters 
-    }
-
-    private void readIcons() {                                              //method to read images and add them to 
-        icons.add(new ImageIcon(imagePath + "\\hive.jpg"));                 //Position 0 is the hive
-        icons.add(new ImageIcon(imagePath + "\\food.jpg"));                 //Position 1 is the food
-        icons.add(new ImageIcon(imagePath + "\\bee_scout.jpg"));            //Position 2 is the bee_scout
-        icons.add(new ImageIcon(imagePath + "\\bee_worker.jpg"));           //Position 3 is the bee_worker
+        table1 = (DefaultTableModel) jTable1.getModel();//Handeling other (non-static) parameters 
     }
     
     //This method will rebuild all the parameters and can be used to reset them
     public void frameSetup() {
-        readIcons();                                                        //Calling the method to read all the images
-
-        //set the guide icons
-        guid_hive.setIcon(icons.get(0));
-        guid_food.setIcon(icons.get(1));
-        guid_beeScout.setIcon(icons.get(2));
-        guid_beeWorker.setIcon(icons.get(3));
+//        //set the guide icons
+//        guid_hive.setIcon(icons.get(0));
+//        guid_food.setIcon(icons.get(1));
+//        guid_beeScout.setIcon(icons.get(2));
+//        guid_beeWorker.setIcon(icons.get(3));
         this.pack();
     }
 
     private void topPanelManager(int argPanel) {
-        //Simulation Control =0
-        //World Information =1
-        //Agent Information =2
-        //Individual Agent =3
-        //Guide = 4
-
         switch (argPanel) {
-            case 0: {
+            case SIMULATION_CONTROL_PANEL: {
                 jp_Agents.setVisible(false);
                 jp_individualAgent.setVisible(false);
                 jp_world.setVisible(false);
@@ -72,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
                 jp_simulationControl.setVisible(true);
                 break;
             }
-            case 1: {
+            case WORLD_INFORMATION_PANEL: {
                 jp_Agents.setVisible(false);
                 jp_individualAgent.setVisible(false);
                 jp_guide.setVisible(false);
@@ -80,7 +67,7 @@ public class MainFrame extends javax.swing.JFrame {
                 jp_world.setVisible(true);
                 break;
             }
-            case 2: {
+            case AGENT_INFORMATION_PANEL: {
                 jp_individualAgent.setVisible(false);
                 jp_world.setVisible(false);
                 jp_guide.setVisible(false);
@@ -88,7 +75,7 @@ public class MainFrame extends javax.swing.JFrame {
                 jp_Agents.setVisible(true);
                 break;
             }
-            case 3: {
+            case INDIVIDUAL_AGENT_PANEL: {
                 jp_Agents.setVisible(false);
                 jp_world.setVisible(false);
                 jp_guide.setVisible(false);
@@ -96,7 +83,7 @@ public class MainFrame extends javax.swing.JFrame {
                 jp_individualAgent.setVisible(true);
                 break;
             }
-            case 4: {
+            case GUIDE_PANEL: {
                 jp_Agents.setVisible(false);
                 jp_individualAgent.setVisible(false);
                 jp_world.setVisible(false);
@@ -112,7 +99,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jp_worldPanel = new javax.swing.JPanel();
-        worldPanel1 = new animalsimulation.View.WorldPanel();
+        worldPanel1 = new animalsimulation.view.WorldPanel();
         jp_infoPanel = new javax.swing.JPanel();
         jp_simulationControl = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -530,134 +517,20 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void setupWorld() {
         try {
-            gridHeight = jp_worldPanel.getHeight() - 20;
-            gridWidth = jp_worldPanel.getWidth() - 20;
             jsl_animal.setMaximum(100);
             numWorkers = jsl_animal.getValue();
-            spread = 100;
-            createHive(50, 50);
-            createFoods();
-            createWorkers();
-            createScouts();
             this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);   //to make it full screen
         } catch (Exception e) {                                         //Display the error if it failed to create the simulation
             JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);
         }
     }
-
-    private void createHive(double percentX, double percentY) {
-        hives.retainAll(hives);
-        hives = new ArrayList<>();
-        BeeHive b = new BeeHive();
-        b.currentHeight = (int) Math.round((percentY / 100) * gridHeight);
-        b.currentWidth = (int) Math.round((percentX / 100) * gridWidth);
-        hives.add(b);
-    }
-
-    private void createFood(double percentX, double percentY) {
-        BeeFood argFood = new BeeFood();
-        argFood.currentHeight = (int) Math.round((percentY / 100) * gridHeight);
-        argFood.currentWidth = (int) Math.round((percentX / 100) * gridWidth);
-        foods.add(argFood);
-    }
-
-    private void createScout() {
-        BeeScout argScout = new BeeScout();
-        int randomId, argHeight, argWidth;
-        boolean counter = false;
-        while (!counter) {
-            randomId = getRandom(100, 999);
-            if (acceptableID(randomId)) {
-                argScout.setId(randomId);
-                counter = true;
-            }
-        }
-        if (hives.size() > 0) {
-            int i = getRandom(0, hives.size() - 1);
-            argHeight = getRandom(hives.get(i).currentHeight - spread, hives.get(i).currentHeight + spread);      //getting random height 
-            argWidth = getRandom(hives.get(i).currentWidth - spread, hives.get(i).currentWidth + spread);        //getting a random width
-        } else {
-            argHeight = getRandom(20, gridHeight - 1);      //getting random height 
-            argWidth = getRandom(20, gridWidth - 1);        //getting a random width
-        }
-        argScout.setCoordination(argHeight, argWidth);
-        scouts.add(argScout);
-    }
-
-    private void createWorker() {
-        BeeWorker argWorker = new BeeWorker();
-        int randomId, argHeight, argWidth;
-        boolean counter = false;
-        while (!counter) {
-            randomId = getRandom(100, 999);
-            if (acceptableID(randomId)) {
-                argWorker.setId(randomId);
-                counter = true;
-            }
-        }
-        if (hives.size() > 0) {
-            int i = getRandom(0, hives.size() - 1);
-            argHeight = getRandom(hives.get(i).currentHeight - spread, hives.get(i).currentHeight + spread);      //getting random height 
-            argWidth = getRandom(hives.get(i).currentWidth - spread, hives.get(i).currentWidth + spread);        //getting a random width
-        } else {
-            argHeight = getRandom(20, gridHeight - 1);      //getting random height 
-            argWidth = getRandom(20, gridWidth - 1);        //getting a random width
-        }
-        argWorker.setCoordination(argHeight, argWidth);
-        workers.add(argWorker);
-    }
     
-    private void createFoods() {
-        foods.retainAll(foods);
-        foods = new ArrayList<>();
-        for (int i = 0; i < 3; i += 2) {
-            createFood(25 + 25 * i, 25 + 25 * i);           //25-25 75-25
-            createFood(75 - 25 * i, 25 + 25 * i);               //75-25 25-75
-        }
-    }
-    
-    private void createScouts() {
-        scouts.retainAll(scouts);
-        scouts = new ArrayList<>();
-        for (int i = 0; i<amountScouts; i++) {
-            createScout();
-        }
-    }
-
-    private void createWorkers() {
-        amountScouts = (int)Math.round((numWorkers)/3);
-        workers.retainAll(workers);
-        workers = new ArrayList<>();
-        for (int i = 0; i < numWorkers-amountScouts; i++) {
-            createWorker();
-        }
-    }
-
-    private boolean acceptableID(int argId) {
-        for (int j = 0; j <= scouts.size() - 1; j++) {
-            if (argId == scouts.get(j).id) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-//    private int getAgentGroup(int argID) {
-//        int agentPosition = 0;
-//        for (int i = 0; i <= scouts.size() - 1; i++) {
-//            if (argID == scouts.get(i).id) {
-//                agentPosition = scouts.get(i).groupNumber;
-//                return agentPosition;
-//            }
-//        }
-//        return agentPosition;
-//    }
     private void repaintScreen() {
         jp_worldPanel.revalidate();
-        worldPanel1.upDate(numWorkers, origin, scouts, hives, foods, workers);
         this.repaint();
     }
-       private void refreshTable() {
+    
+    private void refreshTable() {
         table1 = (DefaultTableModel) jTable1.getModel();
         int x = table1.getRowCount() - 1;
         while (x >= 0) {
@@ -665,20 +538,12 @@ public class MainFrame extends javax.swing.JFrame {
             x--;
         }
     }
-          private void setupTable() {
+    
+    private void setupTable() {
         for (int i = 0; i <= scouts.size() - 1; i++) {
-            String cord = scouts.get(i).currentHeight + " x " + scouts.get(i).currentWidth;
-            table1.addRow(new Object[]{(i + 1), scouts.get(i).id, scouts.get(i).groupNumber, cord});
+            String cord = "? x ?";
+            table1.addRow(new Object[]{(i + 1), -1, -1, cord});
         }
-    }
-
-    //method to get random 
-    private static int getRandom(int min, int max) {
-        if (min > max) {
-            throw new IllegalArgumentException("max must be greater than min");
-        }
-        Random r = new Random();
-        return r.nextInt((max - min) + 1) + min;
     }
 
     public static void main(String args[]) {
@@ -754,6 +619,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jp_worldPanel;
     private javax.swing.JSlider jsl_animal;
     private javax.swing.JLabel tlb_animal;
-    private animalsimulation.View.WorldPanel worldPanel1;
+    private animalsimulation.view.WorldPanel worldPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package animalsimulation.Model.Knowledge;
-
-import animalsimulation.Model.Location;
+package animalsimulation.model.knowledge;
 
 /**
  *
@@ -15,7 +13,7 @@ public class FoodKnowledge extends LocationKnowledge{
    
     private int foodStorage;
     
-    public FoodKnowledge(Location argHiveLocation, Location argTargetLocation, int argFoodStorage) {
+    public FoodKnowledge(int[] argHiveLocation, int[] argTargetLocation, int argFoodStorage) {
         super(argHiveLocation, argTargetLocation);
         this.foodStorage=argFoodStorage;
         
@@ -24,6 +22,4 @@ public class FoodKnowledge extends LocationKnowledge{
     public int getFoodStorage() {
         return foodStorage;
     }
-    
-    
 }
