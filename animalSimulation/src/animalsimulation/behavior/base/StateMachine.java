@@ -5,7 +5,6 @@
  */
 package animalsimulation.behavior.base;
 
-import animalsimulation.model.base.BaseModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,11 +14,9 @@ import java.util.HashMap;
  */
 public abstract class StateMachine {
     protected State currentState;
-    protected BaseModel model;
     protected HashMap<State, ArrayList<StateTransition>> stateMap;
     
-    public StateMachine(BaseModel model) {
-        this.model = model;
+    public StateMachine() {
         stateMap = new HashMap<>();
     }
     
@@ -46,7 +43,7 @@ public abstract class StateMachine {
     }
     
     public void setCurrentState(State state) {
-        currentState.resetTick();
+        currentState.reset();
         currentState = state;
     }
     

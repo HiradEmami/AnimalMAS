@@ -5,7 +5,8 @@
  */
 package animalsimulation.behavior.movement;
 
-import animalsimulation.model.base.BaseModel;
+import animalsimulation.behavior.base.State;
+import animalsimulation.model.base.Agent;
 
 /**
  *
@@ -13,9 +14,13 @@ import animalsimulation.model.base.BaseModel;
  */
 public class BeeMovement extends BaseMovement {
 
-    @Override
-    public void execute(BaseModel model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void execute(Agent agent, State state) {
+        // something something cos...
+        // something something sin...
+        int[] coordinates = agent.getCoordinates();
+        agent.setCoordinates(coordinates[0] + 1, coordinates[1] + 1);
+        
+        super.execute(agent, state);
     }
     
 }

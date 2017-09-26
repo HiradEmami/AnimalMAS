@@ -5,8 +5,11 @@
  */
 package animalsimulation.behavior;
 
+import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
-import animalsimulation.model.base.BaseModel;
+import animalsimulation.behavior.base.StateTransition;
+import animalsimulation.behavior.event.DestinationReachedEvent;
+import animalsimulation.behavior.movement.BeeMovement;
 
 /**
  *
@@ -14,11 +17,18 @@ import animalsimulation.model.base.BaseModel;
  */
 public class BeeBehavior extends StateMachine {
     
-    public BeeBehavior(BaseModel model) {
-        super(model);
-        
+    public BeeBehavior() {
         // Add state and associated transitions here..
+        // General structure:
+        // - Create a state and define the action an agent needs to execute while in said state.
+        // - Create a state transition definining the target state and which event type triggers the transition
+        // - Add the transition to the list of transitions. This links a source state to a transition.
         
+        State exploration = new State("Exploring", new BeeMovement());
+        StateTransition transition = new StateTransition(exploration, DestinationReachedEvent.class);
+        addStateTransition(exploration, transition);
+        
+        currentState = exploration;
     }
     
 }

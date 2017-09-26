@@ -5,7 +5,7 @@
  */
 package animalsimulation.behavior.base;
 
-import animalsimulation.model.base.BaseModel;
+import animalsimulation.model.base.Agent;
 
 /**
  *
@@ -36,18 +36,21 @@ public class State {
         this.action = action;
     }
     
-    public void act(BaseModel model) {
+    public void act(Agent agent) {
         if(action != null) {
-            action.execute(model);
+            action.execute(agent, this);
         }
     }
+     
+    public int getTick() {
+        return tick;
+    }
     
-    // Override the tick method to auto generate an event after N simulation steps.
     public void tick() {
         tick++;
     }
     
-    public void resetTick() {
+    public void reset() {
         tick = 0;
     }
 }

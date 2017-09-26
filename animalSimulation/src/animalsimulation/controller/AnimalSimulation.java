@@ -18,6 +18,7 @@ public class AnimalSimulation {
     public static void main(String[] args) {       
         initializeWorld();
         initializeUI();
+        simulationController.runForever();
     }
     
     public static SimulationController getSimulationController() {

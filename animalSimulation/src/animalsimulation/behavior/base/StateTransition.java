@@ -10,24 +10,12 @@ package animalsimulation.behavior.base;
  * @author jeroen
  */
 public class StateTransition {
-    private Event transitionEvent;
     private State targetState;
+    private Class<? extends Event> transitionEvent;
     
-    public StateTransition(Event transitionEvent, State targetState) {
-        this.transitionEvent = transitionEvent;
+    public StateTransition(State targetState, Class<? extends Event> transitionEvent) {
         this.targetState = targetState;
-    }
-    
-    public Event getTransitionEvent() {
-        return transitionEvent;
-    }
-    
-    public void setTransitionEvent(Event transitionEvent) {
         this.transitionEvent = transitionEvent;
-    }
-    
-    public boolean requires(Event event) {
-        return event.equals(transitionEvent);
     }
     
     public State getTargetState() {
@@ -36,5 +24,17 @@ public class StateTransition {
     
     public void setTargetState(State targetState) {
         this.targetState = targetState;
+    }
+    
+    public Class<? extends Event> getTransitionEvent() {
+        return transitionEvent;
+    }
+    
+    public void setTransitionEvent(Class<? extends Event> transitionEvent) {
+        this.transitionEvent = transitionEvent;
+    }
+    
+    public boolean requires(Event event) {
+        return event.getClass().equals(transitionEvent);
     }
 }

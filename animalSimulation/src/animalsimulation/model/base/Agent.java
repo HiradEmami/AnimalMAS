@@ -5,6 +5,7 @@
  */
 package animalsimulation.model.base;
 
+import animalsimulation.behavior.base.StateMachine;
 import animalsimulation.model.knowledge.AgentKnowledge;
 
 /**
@@ -18,7 +19,9 @@ public abstract class Agent extends WorldObject {
     private static final Group individuals = new Group("Individuals");
     
     private Group group;
+    protected int speed;
     protected AgentKnowledge knowledge;
+    protected StateMachine stateMachine;
     //private int energy;          // total available energy
 
     public Agent(int x, int y) {
@@ -28,15 +31,17 @@ public abstract class Agent extends WorldObject {
     public Agent(int x, int y, Group group) {
         super(x, y);
         setGroup(group);
+        speed = 1;
     }
-    
-    // Abstract methods.
-    // Specific implementation may be found in the subclasses.
     
     public void initKnowledge() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    public abstract void act();
+    
+    public void act() {
+        stateMachine.tick();
+        stateMachine.getCurrentState().act(this);
+    }
 
     // Group methods.
     
@@ -59,5 +64,13 @@ public abstract class Agent extends WorldObject {
                 this.group.removeMember(this);
             }
         }
+    }
+    
+    public StateMachine getStateMachine() {
+        return stateMachine;
+    }
+    
+    public void setStateMachine(StateMachine stateMachine) {
+        this.stateMachine = stateMachine;
     }
 }

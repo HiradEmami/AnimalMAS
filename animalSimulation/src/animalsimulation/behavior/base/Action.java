@@ -5,12 +5,12 @@
  */
 package animalsimulation.behavior.base;
 
-import animalsimulation.model.base.BaseModel;
+import animalsimulation.model.base.Agent;
 
 /**
  *
  * @author jeroen
  */
 public interface Action {
-    public void execute(BaseModel model);
+    public void execute(Agent agent, State state);
 }
