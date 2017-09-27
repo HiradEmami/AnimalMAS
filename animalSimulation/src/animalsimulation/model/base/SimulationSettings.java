@@ -30,7 +30,7 @@ public class SimulationSettings {
     }
     
     public void setNumberOfWorkerBees(int numberOfWorkerBees) {
-        this.numberOfScoutBees = numberOfWorkerBees;
+        this.numberOfWorkerBees = numberOfWorkerBees;
     }
     
     public int getNumberOfScoutBees() {

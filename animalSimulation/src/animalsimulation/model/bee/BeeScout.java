@@ -1,5 +1,6 @@
 package animalsimulation.model.bee;
 
+import animalsimulation.behavior.BeeBehavior;
 import java.awt.Color;
 
 /**
@@ -15,10 +16,7 @@ public class BeeScout extends BeeAgent {
         shape = Shape.CIRCLE;
         width = 10;
         height = 10;
+        stateMachine = new BeeBehavior();
     }
-
-    @Override
-    public void act() {
-        // Add behavior here!
-    }
+    
 }

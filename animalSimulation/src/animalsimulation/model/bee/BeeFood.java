@@ -10,7 +10,7 @@ import java.awt.Color;
 public class BeeFood extends WorldObject {
     //public int amount;          //total amount food LATER
 
-    public BeeFood(int x, int y) {
+    public BeeFood(double x, double y) {
         super(x, y);
         color = Color.GREEN;
         shape = Shape.CIRCLE;

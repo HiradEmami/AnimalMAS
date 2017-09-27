@@ -16,11 +16,11 @@ agent and updete the knowledge
 import java.util.ArrayList;
 
 public class AgentKnowledge {
-    private int[] hiveLocation;
+    private double[] hiveLocation;
     private ArrayList<FoodKnowledge> foodKnowledge;
     private ArrayList<ObstacleKnowledge> obstacleKnowledge;
 
-    public AgentKnowledge(int[] argHiveLocation) {
+    public AgentKnowledge(double[] argHiveLocation) {
         this.hiveLocation=argHiveLocation;
         this.obstacleKnowledge= new ArrayList<>();
         this.foodKnowledge=new ArrayList<>();
@@ -77,7 +77,7 @@ public class AgentKnowledge {
         }
     }
         
-    private boolean checkNewFoodKnowledge(int x, int y){
+    private boolean checkNewFoodKnowledge(double x, double y){
         for(int i=0;i<=foodKnowledge.size()-1;i++){
             if(foodKnowledge.get(i).getTargetCoordinates()[0]==x &&
                 foodKnowledge.get(i).getTargetCoordinates()[1]==y){
@@ -87,7 +87,7 @@ public class AgentKnowledge {
         return true;
     }
 
-    private boolean checkNewObstacleKnowledge(int x, int y){
+    private boolean checkNewObstacleKnowledge(double x, double y){
         for(int i=0;i<=obstacleKnowledge.size()-1;i++){
             if(obstacleKnowledge.get(i).getTargetCoordinates()[0]==x &&
                 obstacleKnowledge.get(i).getTargetCoordinates()[1]==y){

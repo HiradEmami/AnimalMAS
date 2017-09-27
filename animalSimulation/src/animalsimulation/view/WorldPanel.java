@@ -22,7 +22,7 @@ public class WorldPanel extends javax.swing.JPanel implements BaseView {
     
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponents(g);
+        super.paintComponent(g);
         
         if(world != null) {
             float scaleX = (float) this.getSize().width / world.getWidth();

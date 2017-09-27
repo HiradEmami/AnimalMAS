@@ -13,20 +13,21 @@ import java.awt.Graphics;
  * @author jeroen
  */
 public abstract class WorldObject {
-    protected int x, y, width, height;
+    protected int width, height;
+    protected double x, y;
     protected Color color;
     protected Shape shape;
     
-    public WorldObject(int x, int y) {
+    public WorldObject(double x, double y) {
         this.x = x;
         this.y = y;
     }
     
-    public int[] getCoordinates() {
-        return new int[] {x, y};
+    public double[] getCoordinates() {
+        return new double[] {x, y};
     }
     
-    public void setCoordinates(int x, int y) {
+    public void setCoordinates(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -78,8 +79,8 @@ public abstract class WorldObject {
     public void drawObject(Graphics g, float scale) {
         g.setColor(getColor());
         int[] dimensions = {
-            Math.round((x - getWidth() / 2) * scale),    // Center x
-            Math.round((y - getHeight() / 2) * scale),   // Center y
+            (int) Math.round((x - getWidth() / 2) * scale),    // Center x
+            (int) Math.round((y - getHeight() / 2) * scale),   // Center y
             Math.round(getWidth() * scale),            // Width
             Math.round(getHeight() * scale)            // Height
         };

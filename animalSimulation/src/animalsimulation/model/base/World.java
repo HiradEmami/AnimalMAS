@@ -5,6 +5,7 @@
  */
 package animalsimulation.model.base;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,13 +15,11 @@ import java.util.HashMap;
  */
 public class World implements BaseModel {
     private final int width, height;
-    private final ArrayList<WorldObject> objects;
     private final HashMap<Class<? extends WorldObject>, ArrayList<WorldObject>> classMap;
             
     public World(int width, int height) {
         this.width = width;
         this.height = height;
-        objects = new ArrayList<>();
         classMap = new HashMap<>();
     }
     
@@ -37,13 +36,7 @@ public class World implements BaseModel {
      * @param object 
      */
     public void addObject(WorldObject object) {
-        objects.add(object);
-        
-        // For performance keep track of all specific object classes.
-        if(!classMap.containsKey(object.getClass())) {
-            classMap.put(object.getClass(), new ArrayList<>());
-        }
-        classMap.get(object.getClass()).add(object);
+        addObjectToObjectSets(object, object.getClass());
     }
     
     /**
@@ -56,13 +49,22 @@ public class World implements BaseModel {
         }
     }
     
+    private void addObjectToObjectSets(WorldObject object, Class<? extends WorldObject> c) {
+        if(!classMap.containsKey(c)) {
+            classMap.put(c, new ArrayList<>());
+        }
+        classMap.get(c).add(object);
+        if(c != WorldObject.class) {
+            addObjectToObjectSets(object, (Class<? extends WorldObject>) c.getSuperclass());
+        }
+    }
+    
     /**
      * Usefull for drawing all the worldly objects.
      * @return worldObjects
      */
     public WorldObject[] getWorldObjects() {
-        WorldObject[] type = new WorldObject[objects.size()];
-        return objects.toArray(type);
+        return getWorldObjectsByClass(WorldObject.class);
     }
     
     /**
@@ -75,7 +77,8 @@ public class World implements BaseModel {
      */
     public <T extends WorldObject> T[] getWorldObjectsByClass(Class<T> c) {
         ArrayList<WorldObject> worldObjects = classMap.get(c);
-        WorldObject[] type = new WorldObject[worldObjects.size()];
-        return (T[]) worldObjects.toArray(type);
+        if(worldObjects == null) { return (T[]) Array.newInstance(c, 0); }
+        T[] type = (T[]) Array.newInstance(c, worldObjects.size());
+        return worldObjects.toArray(type);
     }
 }

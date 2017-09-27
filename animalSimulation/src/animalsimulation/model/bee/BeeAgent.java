@@ -22,7 +22,7 @@ public abstract class BeeAgent extends Agent {
         this(hive.getCoordinates()[0], hive.getCoordinates()[1], hive);
     }
     
-    public BeeAgent(int x, int y, BeeHive hive) {
+    public BeeAgent(double x, double y, BeeHive hive) {
         super(x, y);
         initKnowledge(hive);
         
