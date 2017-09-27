@@ -6,29 +6,18 @@
 package animalsimulation.view;
 
 //required imports 
-import animalsimulation.model.bee.BeeFood;
 import animalsimulation.model.bee.BeeScout;
-import animalsimulation.model.bee.BeeWorker;
 import animalsimulation.model.bee.BeeHive;
 import javax.swing.*;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
-    public static final int SIMULATION_CONTROL_PANEL = 0;
-    public static final int WORLD_INFORMATION_PANEL  = 1;
-    public static final int AGENT_INFORMATION_PANEL  = 2;
-    public static final int INDIVIDUAL_AGENT_PANEL   = 3;
-    public static final int GUIDE_PANEL              = 4;
-    
-    private String imagePath;                                               //The path to the folder which contains the images
     private int spread, gridHeight, gridWidth, numWorkers, origin = 0;      //Height of the main grid(will be collected by user input), Width if the grid (will be collected by user input)
     private double amountScouts;
 
-    private ArrayList<ImageIcon> icons = new ArrayList<>();     //List of imported images for rendering
     private ArrayList<BeeScout> scouts = new ArrayList<>();     //List of all created scouts
     private ArrayList<BeeHive> hives = new ArrayList<>();       //List of all created hives
-    private DefaultTableModel table1;
 
     public MainFrame() {
         System.out.println("Initializing Components:");
@@ -36,7 +25,6 @@ public class MainFrame extends javax.swing.JFrame {
         System.out.println("Initializing Components Completed");
         System.out.println("Initializing Variables:");
         frameSetup();               
-        table1 = (DefaultTableModel) jTable1.getModel();//Handeling other (non-static) parameters 
     }
     
     //This method will rebuild all the parameters and can be used to reset them
@@ -49,51 +37,6 @@ public class MainFrame extends javax.swing.JFrame {
         this.pack();
     }
 
-    private void topPanelManager(int argPanel) {
-        switch (argPanel) {
-            case SIMULATION_CONTROL_PANEL: {
-                jp_Agents.setVisible(false);
-                jp_individualAgent.setVisible(false);
-                jp_world.setVisible(false);
-                jp_guide.setVisible(false);
-                jp_simulationControl.setVisible(true);
-                break;
-            }
-            case WORLD_INFORMATION_PANEL: {
-                jp_Agents.setVisible(false);
-                jp_individualAgent.setVisible(false);
-                jp_guide.setVisible(false);
-                jp_simulationControl.setVisible(false);
-                jp_world.setVisible(true);
-                break;
-            }
-            case AGENT_INFORMATION_PANEL: {
-                jp_individualAgent.setVisible(false);
-                jp_world.setVisible(false);
-                jp_guide.setVisible(false);
-                jp_simulationControl.setVisible(false);
-                jp_Agents.setVisible(true);
-                break;
-            }
-            case INDIVIDUAL_AGENT_PANEL: {
-                jp_Agents.setVisible(false);
-                jp_world.setVisible(false);
-                jp_guide.setVisible(false);
-                jp_simulationControl.setVisible(false);
-                jp_individualAgent.setVisible(true);
-                break;
-            }
-            case GUIDE_PANEL: {
-                jp_Agents.setVisible(false);
-                jp_individualAgent.setVisible(false);
-                jp_world.setVisible(false);
-                jp_simulationControl.setVisible(false);
-                jp_guide.setVisible(true);
-                break;
-            }
-        }
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -101,12 +44,10 @@ public class MainFrame extends javax.swing.JFrame {
         jp_worldPanel = new javax.swing.JPanel();
         worldPanel1 = new animalsimulation.view.WorldPanel();
         jp_infoPanel = new javax.swing.JPanel();
-        jp_simulationControl = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jp_individualAgent = new javax.swing.JPanel();
         combo_agnet = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
@@ -114,7 +55,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jp_Agents = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jp_guide = new javax.swing.JPanel();
@@ -123,12 +63,10 @@ public class MainFrame extends javax.swing.JFrame {
         guid_hive = new javax.swing.JLabel();
         guid_beeScout = new javax.swing.JLabel();
         guid_beeWorker = new javax.swing.JLabel();
-        jp_world = new javax.swing.JPanel();
         jp_SetupPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jb_SetupButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        combo_Control = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jsl_animal = new javax.swing.JSlider();
         tlb_animal = new javax.swing.JLabel();
@@ -159,162 +97,6 @@ public class MainFrame extends javax.swing.JFrame {
             jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(worldPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        jp_infoPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
-        jp_infoPanel.setLayout(new java.awt.CardLayout());
-
-        jLabel6.setText("Simulate next stage:");
-
-        jButton2.setText("Next");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Simulate the Entire round:");
-
-        jButton3.setText("Simulate");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jp_simulationControlLayout = new javax.swing.GroupLayout(jp_simulationControl);
-        jp_simulationControl.setLayout(jp_simulationControlLayout);
-        jp_simulationControlLayout.setHorizontalGroup(
-            jp_simulationControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jp_simulationControlLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jp_simulationControlLayout.setVerticalGroup(
-            jp_simulationControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jp_simulationControlLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(jp_simulationControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jp_infoPanel.add(jp_simulationControl, "card6");
-
-        jLabel8.setText("Select the agent:");
-
-        jButton4.setText("Select");
-
-        jLabel9.setText("Id:");
-
-        jLabel10.setText("Energy:");
-
-        jLabel11.setText("Current Location:");
-
-        jLabel12.setText("Group Number:");
-
-        javax.swing.GroupLayout jp_individualAgentLayout = new javax.swing.GroupLayout(jp_individualAgent);
-        jp_individualAgent.setLayout(jp_individualAgentLayout);
-        jp_individualAgentLayout.setHorizontalGroup(
-            jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jp_individualAgentLayout.createSequentialGroup()
-                .addGroup(jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jp_individualAgentLayout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(combo_agnet, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jp_individualAgentLayout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel8))))
-                    .addGroup(jp_individualAgentLayout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(jButton4)))
-                .addGap(92, 92, 92)
-                .addGroup(jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel12))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jp_individualAgentLayout.setVerticalGroup(
-            jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jp_individualAgentLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(combo_agnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jp_individualAgentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jp_infoPanel.add(jp_individualAgent, "card5");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Number", "ID", "Group", "Cord"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-        }
-
-        javax.swing.GroupLayout jp_AgentsLayout = new javax.swing.GroupLayout(jp_Agents);
-        jp_Agents.setLayout(jp_AgentsLayout);
-        jp_AgentsLayout.setHorizontalGroup(
-            jp_AgentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_AgentsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        jp_AgentsLayout.setVerticalGroup(
-            jp_AgentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jp_AgentsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-
-        jp_infoPanel.add(jp_Agents, "card4");
 
         jLabel13.setText("Icons:");
 
@@ -362,19 +144,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jp_infoPanel.add(jp_guide, "card3");
 
-        javax.swing.GroupLayout jp_worldLayout = new javax.swing.GroupLayout(jp_world);
-        jp_world.setLayout(jp_worldLayout);
-        jp_worldLayout.setHorizontalGroup(
-            jp_worldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jp_worldLayout.setVerticalGroup(
-            jp_worldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jp_infoPanel.add(jp_world, "card2");
-
         jp_SetupPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray));
 
         jLabel1.setText("World Setup: ");
@@ -387,15 +156,6 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jLabel4.setText("Animal:");
-
-        combo_Control.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simulation Control", "World Information", "Agent Information", "Individual Agent", "Guide" }));
-        combo_Control.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo_ControlActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Information Panel");
 
         jsl_animal.setValue(10);
         jsl_animal.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -430,7 +190,6 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(combo_Control, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         jp_SetupPanelLayout.setVerticalGroup(
@@ -448,7 +207,6 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jb_SetupButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
                 .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(combo_Control, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(69, 69, 69))
         );
@@ -488,7 +246,6 @@ public class MainFrame extends javax.swing.JFrame {
     private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SetupButtonActionPerformed
         setupWorld();           //Creating the grid and calling render method within
         repaintScreen();        //Method to remove the previously built tiles (reset UI)
-        setupTable();
     }//GEN-LAST:event_jb_SetupButtonActionPerformed
 
     private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsl_animalStateChanged
@@ -496,7 +253,6 @@ public class MainFrame extends javax.swing.JFrame {
         tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
         setupWorld();           //Creating the grid and calling render method within
         repaintScreen();        //Method to remove the previously built tiles (reset UI)
-        refreshTable();
     }//GEN-LAST:event_jsl_animalStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -511,10 +267,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void combo_ControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_ControlActionPerformed
-        topPanelManager(combo_Control.getSelectedIndex());
-    }//GEN-LAST:event_combo_ControlActionPerformed
-
     private void setupWorld() {
         try {
             jsl_animal.setMaximum(100);
@@ -528,22 +280,6 @@ public class MainFrame extends javax.swing.JFrame {
     private void repaintScreen() {
         jp_worldPanel.revalidate();
         this.repaint();
-    }
-    
-    private void refreshTable() {
-        table1 = (DefaultTableModel) jTable1.getModel();
-        int x = table1.getRowCount() - 1;
-        while (x >= 0) {
-            table1.removeRow(x);
-            x--;
-        }
-    }
-    
-    private void setupTable() {
-        for (int i = 0; i <= scouts.size() - 1; i++) {
-            String cord = "? x ?";
-            table1.addRow(new Object[]{(i + 1), -1, -1, cord});
-        }
     }
 
     public static void main(String args[]) {
@@ -586,7 +322,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> combo_Control;
     private javax.swing.JComboBox<String> combo_agnet;
     private javax.swing.JLabel guid_beeScout;
     private javax.swing.JLabel guid_beeWorker;
@@ -609,13 +344,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_SetupButton;
-    private javax.swing.JPanel jp_Agents;
     private javax.swing.JPanel jp_SetupPanel;
     private javax.swing.JPanel jp_guide;
-    private javax.swing.JPanel jp_individualAgent;
     private javax.swing.JPanel jp_infoPanel;
-    private javax.swing.JPanel jp_simulationControl;
-    private javax.swing.JPanel jp_world;
     private javax.swing.JPanel jp_worldPanel;
     private javax.swing.JSlider jsl_animal;
     private javax.swing.JLabel tlb_animal;
