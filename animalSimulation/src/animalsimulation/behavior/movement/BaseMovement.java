@@ -14,11 +14,11 @@ import animalsimulation.model.base.Agent;
  *
  * @author jeroen
  */
-public abstract class BaseMovement implements Action {
-    protected int targetX, targetY;
+public abstract class BaseMovement extends Action {
+    protected double targetX, targetY;
     
-    public int[] getTargetCoordinates() {
-        return new int[] {targetX, targetY};
+    public double[] getTargetCoordinates() {
+        return new double[] {targetX, targetY};
     }
     
     public void setTargetCoordinates(int targetX, int targetY) {
@@ -27,7 +27,7 @@ public abstract class BaseMovement implements Action {
     }
     
     public void execute(Agent agent, State state) {
-        if(agent.getCoordinates()[0] == targetX && agent.getCoordinates()[1] == targetY) {
+        if(Math.round(agent.getCoordinates()[0]) == targetX && Math.round(agent.getCoordinates()[1]) == targetY) {
             DestinationReachedEvent destinationReachedEvent = new DestinationReachedEvent(this);
             agent.getStateMachine().updateState(destinationReachedEvent);
         }

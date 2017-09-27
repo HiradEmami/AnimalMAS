@@ -11,6 +11,8 @@ import animalsimulation.model.base.Agent;
  *
  * @author jeroen
  */
-public interface Action {
-    public void execute(Agent agent, State state);
+public abstract class Action {
+    public void initialize() {};
+    public abstract void execute(Agent agent, State state);
+    public void reset() {};
 }

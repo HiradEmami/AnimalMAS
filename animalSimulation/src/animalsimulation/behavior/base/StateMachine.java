@@ -43,8 +43,12 @@ public abstract class StateMachine {
     }
     
     public void setCurrentState(State state) {
-        currentState.reset();
+        if(currentState != null) {
+            currentState.reset();
+            currentState.getAction().reset();
+        }
         currentState = state;
+        currentState.getAction().initialize();
     }
     
     public void tick() {

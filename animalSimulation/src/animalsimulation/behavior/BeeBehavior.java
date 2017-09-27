@@ -28,7 +28,7 @@ public class BeeBehavior extends StateMachine {
         StateTransition transition = new StateTransition(exploration, DestinationReachedEvent.class);
         addStateTransition(exploration, transition);
         
-        currentState = exploration;
+        setCurrentState(exploration);
     }
     
 }

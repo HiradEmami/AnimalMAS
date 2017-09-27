@@ -36,11 +36,17 @@ public class SingleHiveMap extends Map {
         // Adds food sources in a circle around the hive
         int radius = 400;
         for(int i = 0; i < settings.getNumberOfFoodSources(); i++) {
-            BeeFood food = new BeeFood(
+            try{
+                BeeFood food = new BeeFood(
                 Math.round((float) (hive.getCoordinates()[0] + radius * Math.cos(2 * Math.PI / settings.getNumberOfFoodSources() * i))),
                 Math.round((float) (hive.getCoordinates()[1] + radius * Math.sin(2 * Math.PI / settings.getNumberOfFoodSources() * i)))
             );
             world.addObject(food);
+            }catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
         }
         
         return world;

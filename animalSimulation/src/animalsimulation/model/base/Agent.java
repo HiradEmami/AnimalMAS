@@ -24,11 +24,11 @@ public abstract class Agent extends WorldObject {
     protected StateMachine stateMachine;
     //private int energy;          // total available energy
 
-    public Agent(int x, int y) {
+    public Agent(double x, double y) {
         this(x, y, null);
     }
     
-    public Agent(int x, int y, Group group) {
+    public Agent(double x, double y, Group group) {
         super(x, y);
         setGroup(group);
         speed = 1;
@@ -72,5 +72,19 @@ public abstract class Agent extends WorldObject {
     
     public void setStateMachine(StateMachine stateMachine) {
         this.stateMachine = stateMachine;
+    }
+
+    /**
+     * @return the speed
+     */
+    public int getSpeed() {
+        return speed;
+    }
+
+    /**
+     * @param speed the speed to set
+     */
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 }

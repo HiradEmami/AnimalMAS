@@ -11,11 +11,11 @@ import java.awt.Color;
 public class BeeHive extends WorldObject {
     private Group group;
     
-    public BeeHive(int x, int y) {
+    public BeeHive(double x, double y) {
         this(x, y, null);
     }
     
-    public BeeHive(int x, int y, Group group) {
+    public BeeHive(double x, double y, Group group) {
         super(x, y);
         color = Color.YELLOW;
         shape = Shape.OVAL;
