@@ -17,6 +17,7 @@ public class State {
     private int tick; // signifies how many steps the state machine is in this state.
     
     public State(String stateName, Action action) {
+        this.stateName = stateName;
         this.action = action;
     }
     

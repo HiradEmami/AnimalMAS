@@ -33,7 +33,7 @@ public class AnimalSimulation {
         settings = new SimulationSettings();
         settings.setMap(new SingleHiveMap());
         settings.setNumberOfFoodSources(10);
-        settings.setNumberOfScoutBees(1000);
+        settings.setNumberOfScoutBees(1);
         settings.setNumberOfWorkerBees(20);
         settings.getMap().createWorld(settings);
         

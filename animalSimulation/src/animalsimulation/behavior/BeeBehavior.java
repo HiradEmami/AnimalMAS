@@ -25,10 +25,13 @@ public class BeeBehavior extends StateMachine {
         // - Add the transition to the list of transitions. This links a source state to a transition.
         
         State exploration = new State("Exploring", new BeeMovement());
-        StateTransition transition = new StateTransition(exploration, DestinationReachedEvent.class);
-        addStateTransition(exploration, transition);
+        State returnhive = new State("Returning", new BeeMovement(500,500));
+        StateTransition returntransition = new StateTransition(returnhive, DestinationReachedEvent.class);
+        StateTransition exploretransition = new StateTransition(exploration, DestinationReachedEvent.class);
+        addStateTransition(exploration, returntransition);
+        addStateTransition(returnhive, exploretransition);
         
-        setCurrentState(exploration);
+        setCurrentState(exploration); //TODO NEEDS TO CHANGE ACCORDING TO STATE??
     }
     
 }
