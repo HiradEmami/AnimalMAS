@@ -8,7 +8,6 @@ package animalsimulation.behavior.movement;
 import animalsimulation.behavior.base.Action;
 import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.event.DestinationReachedEvent;
-import animalsimulation.behavior.event.HiveReachedEvent;
 import animalsimulation.model.base.Agent;
 
 /**
@@ -31,12 +30,6 @@ public abstract class BaseMovement extends Action {
         if(Math.round(agent.getCoordinates()[0]) == targetX && Math.round(agent.getCoordinates()[1]) == targetY) {
             DestinationReachedEvent destinationReachedEvent = new DestinationReachedEvent(this);
             agent.getStateMachine().updateState(destinationReachedEvent);
-        }
-        
-        //TODO: HIVE LOC
-        if(Math.round(agent.getCoordinates()[0]) == 500 && Math.round(agent.getCoordinates()[1]) == 500) {
-            HiveReachedEvent hiveReachedEvent = new HiveReachedEvent(this);
-            agent.getStateMachine().updateState(hiveReachedEvent);
         }
     }
 }

@@ -17,8 +17,4 @@ public class DestinationReachedEvent extends Event {
         super(source);
     }
     
-    public void afterStateChange()
-    {
-        //System.out.println("Dest reached");
-    }
 }

@@ -15,17 +15,6 @@ import animalsimulation.model.base.Agent;
  */
 public class BeeMovement extends BaseMovement {
 
-    public BeeMovement()
-    {
-        initialize();
-    }
-    
-    public BeeMovement(double x, double y)
-    {
-        targetX = x;
-        targetY = y;
-    }
-    
     public void initialize() {
         targetX = (double) Math.round(Math.random() * AnimalSimulation.getSettings().getMap().getWorld().getWidth());
         targetY = (double) Math.round(Math.random() * AnimalSimulation.getSettings().getMap().getWorld().getHeight());
@@ -33,6 +22,7 @@ public class BeeMovement extends BaseMovement {
     
     public void execute(Agent agent, State state) {
         double[] coordinates = agent.getCoordinates();
+        agent.setCoordinates(coordinates[0] + 1, coordinates[1] + 1);
         
         double distance = Math.sqrt(Math.pow((targetX - coordinates[0]),2) + Math.pow((targetY - coordinates[1]),2));
         double[] movement =
