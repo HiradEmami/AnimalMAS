@@ -7,7 +7,6 @@ package animalsimulation.behavior;
 
 import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
-import animalsimulation.behavior.base.StateTransition;
 import animalsimulation.behavior.event.DestinationReachedEvent;
 import animalsimulation.behavior.movement.BeeMovement;
 import animalsimulation.model.base.Agent;

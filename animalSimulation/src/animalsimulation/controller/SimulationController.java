@@ -22,7 +22,7 @@ public class SimulationController extends BaseController implements Runnable {
         this.settings = settings;
         model = settings.getMap().getWorld();
     }
-        
+    
     // Executes one simulation step.
     public void step() {
         World world = (World) model;
@@ -38,8 +38,7 @@ public class SimulationController extends BaseController implements Runnable {
         thread.start();
     }
     
-    public synchronized void stopSimulation() {
-        //thread.stop(); WAS NEEDED TO DONT GO FASTER
+    public void stopSimulation() {
         thread = null;
     }
     
@@ -55,10 +54,12 @@ public class SimulationController extends BaseController implements Runnable {
     @Override
     public void run() {
         while(thread != null) {
-            try {
-                step();
-                Thread.sleep(20);
-            } catch (InterruptedException ex) {}
+            synchronized(this) {
+                try {
+                    step();
+                    Thread.sleep(20);
+                } catch (InterruptedException ex) {}   
+            }
         }
     }
 }
