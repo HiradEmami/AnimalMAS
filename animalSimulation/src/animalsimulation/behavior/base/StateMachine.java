@@ -23,11 +23,12 @@ public abstract class StateMachine {
         this.agent = agent;
     }
     
-    public void addStateTransition(State state, StateTransition transition) {
-        if(!stateMap.containsKey(state)) {
-            stateMap.put(state, new ArrayList<>());
+    public void addStateTransition(State sourceState, State targetState, Class<? extends Event> event) {
+        StateTransition transition = new StateTransition(targetState, event);
+        if(!stateMap.containsKey(sourceState)) {
+            stateMap.put(sourceState, new ArrayList<>());
         }
-        stateMap.get(state).add(transition);
+        stateMap.get(sourceState).add(transition);
     }
     
     public void updateState(Event event) {

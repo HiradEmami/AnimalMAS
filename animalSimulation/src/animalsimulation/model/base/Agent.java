@@ -39,8 +39,11 @@ public abstract class Agent extends WorldObject {
     }
     
     public void act() {
-        stateMachine.tick();
-        stateMachine.getCurrentState().act(this);
+        if(stateMachine != null)
+        {
+            stateMachine.tick();
+            stateMachine.getCurrentState().act(this);
+        }
     }
 
     // Group methods.
