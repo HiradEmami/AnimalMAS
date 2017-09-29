@@ -31,15 +31,18 @@ public class BeeMovement extends BaseMovement {
 
     public void execute(Agent agent, State state) {
         double[] coordinates = agent.getCoordinates();
-
         double distance = Math.sqrt(Math.pow((targetX - coordinates[0]), 2) + Math.pow((targetY - coordinates[1]), 2));
-        double[] movement
-                = {
-                    (targetX - coordinates[0]) / distance * agent.getSpeed(),
-                    (targetY - coordinates[1]) / distance * agent.getSpeed()
-                };
-
-        agent.setCoordinates(coordinates[0] + movement[0], coordinates[1] + movement[1]);
+        
+        if(distance < agent.getSpeed()) {
+            agent.setCoordinates(targetX, targetY);
+        } else {
+            double[] movement = {
+                (targetX - coordinates[0]) / distance * agent.getSpeed(),
+                (targetY - coordinates[1]) / distance * agent.getSpeed()
+            };
+            agent.setCoordinates(coordinates[0] + movement[0], coordinates[1] + movement[1]);
+        }
+        
         super.execute(agent, state);
     }
 

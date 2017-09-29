@@ -13,6 +13,7 @@ public class BeeScout extends BeeAgent {
         super(hive);
         color = Color.BLUE;
         shape = Shape.CIRCLE;
+        speed = 5;
         width = 10;
         height = 10;
         stateMachine = new BeeBehavior(this);
