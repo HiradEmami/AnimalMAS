@@ -8,6 +8,7 @@ package animalsimulation.behavior.movement;
 import animalsimulation.behavior.base.State;
 import animalsimulation.controller.AnimalSimulation;
 import animalsimulation.model.base.Agent;
+import animalsimulation.model.bee.BeeAgent;
 
 /**
  *
@@ -20,18 +21,21 @@ public class BeeMovement extends BaseMovement {
         initialize();
     }
     
-    public BeeMovement(double x, double y)
-    {
-        targetX = x;
-        targetY = y;
-    }
-    
     public void initialize() {
         targetX = (double) Math.round(Math.random() * AnimalSimulation.getSettings().getMap().getWorld().getWidth());
         targetY = (double) Math.round(Math.random() * AnimalSimulation.getSettings().getMap().getWorld().getHeight());
     }
     
     public void execute(Agent agent, State state) {
+        if(state.getStateName() == "Returning")
+        {
+            BeeAgent bAgent = (BeeAgent) agent;
+            double[] coordinates = bAgent.getHive().getCoordinates();
+            
+            targetX = coordinates[0];
+            targetY = coordinates[1];
+        }
+        
         double[] coordinates = agent.getCoordinates();
         
         double distance = Math.sqrt(Math.pow((targetX - coordinates[0]),2) + Math.pow((targetY - coordinates[1]),2));
@@ -48,5 +52,4 @@ public class BeeMovement extends BaseMovement {
     public void reset() {
         initialize();
     }
-    
 }

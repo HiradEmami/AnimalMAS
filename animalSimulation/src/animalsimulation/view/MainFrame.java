@@ -7,49 +7,21 @@ package animalsimulation.view;
 
 //required imports 
 import animalsimulation.controller.SimulationController;
-import animalsimulation.model.bee.BeeScout;
-import animalsimulation.model.bee.BeeHive;
 import animalsimulation.model.base.SimulationSettings;
 import javax.swing.*;
-import java.util.*;
-import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
     private String imagePath;
     private SimulationSettings settings = animalsimulation.controller.AnimalSimulation.getSettings();
-    private SimulationController simController = animalsimulation.controller.AnimalSimulation.getSimulationController();
-    private int spread, gridHeight, gridWidth, numWorkers, origin = 0;      //Height of the main grid(will be collected by user input), Width if the grid (will be collected by user input)
-    private double amountScouts;
-
-    private ArrayList<ImageIcon> icons = new ArrayList<>();     //List of imported images for rendering
-    private ArrayList<BeeScout> scouts = new ArrayList<>();     //List of all created scouts
-    private ArrayList<BeeHive> hives = new ArrayList<>();       //List of all created hives
+    private SimulationController simController = animalsimulation.controller.AnimalSimulation.getSimulationController();    
 
     public MainFrame() {
-        System.out.println("Initializing Components:");
         initComponents();                                                   //Creating and managing the main components
-        System.out.println("Initializing Components Completed");
-        System.out.println("Initializing Variables:");
         this.imagePath = System.getProperty("user.dir") + "\\images";
-        frameSetup();               
-    }
-    
-    private void readIcons() {                                              //method to read images and add them to 
-        icons.add(new ImageIcon(imagePath + "\\hive.jpg"));                 //Position 0 is the hive
-        icons.add(new ImageIcon(imagePath + "\\food.jpg"));                 //Position 1 is the food
-        icons.add(new ImageIcon(imagePath + "\\bee_scout.jpg"));            //Position 2 is the bee_scout
-        icons.add(new ImageIcon(imagePath + "\\bee_worker.jpg"));           //Position 3 is the bee_worker
-    }
-    
-    //This method will rebuild all the parameters and can be used to reset them
-    public void frameSetup() {
-        readIcons();                                                        //Calling the method to read all the images
-
-        //set the guide icons
-        guid_hive.setIcon(icons.get(0));
-        guid_food.setIcon(icons.get(1));
-        guid_beeScout.setIcon(icons.get(2));
-        guid_beeWorker.setIcon(icons.get(3));
+        guid_hive.setIcon(new ImageIcon(imagePath + "\\hive.jpg"));
+        guid_food.setIcon(new ImageIcon(imagePath + "\\food.jpg"));
+        guid_beeScout.setIcon(new ImageIcon(imagePath + "\\bee_scout.jpg"));
+        guid_beeWorker.setIcon(new ImageIcon(imagePath + "\\bee_worker.jpg"));
         this.pack();
     }
 
@@ -58,34 +30,21 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jp_worldPanel = new javax.swing.JPanel();
-        worldPanel1 = new animalsimulation.view.WorldPanel();
+        jp_SetupPanel = new javax.swing.JPanel();
         jp_infoPanel = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        combo_agnet = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jp_guide = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+		worldPanel1 = new animalsimulation.view.WorldPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();        
+		jLabel13 = new javax.swing.JLabel();
+        tlb_animal = new javax.swing.JLabel();
         guid_food = new javax.swing.JLabel();
         guid_hive = new javax.swing.JLabel();
         guid_beeScout = new javax.swing.JLabel();
         guid_beeWorker = new javax.swing.JLabel();
-        jp_SetupPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jb_SetupButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jsl_animal = new javax.swing.JSlider();
-        tlb_animal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -124,6 +83,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         guid_beeWorker.setText("Worker");
 
+        jp_infoPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
+        jp_infoPanel.setLayout(new java.awt.CardLayout());
+        
         javax.swing.GroupLayout jp_guideLayout = new javax.swing.GroupLayout(jp_guide);
         jp_guide.setLayout(jp_guideLayout);
         jp_guideLayout.setHorizontalGroup(
@@ -265,23 +227,10 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_SetupButtonActionPerformed
 
     private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsl_animalStateChanged
-        //Reading the three main inputs from the user   
         tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
         setupWorld();           //Creating the grid and calling render method within
         repaintScreen();        //Method to remove the previously built tiles (reset UI)
     }//GEN-LAST:event_jsl_animalStateChanged
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        origin += 10;
-        repaintScreen();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        for (int i = 0; i < 10; i++) {
-            origin += 10;
-            repaintScreen();
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void setupWorld() {
         try {
@@ -294,72 +243,18 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     private void repaintScreen() {
-        jp_worldPanel.revalidate();
         simController.resetSimulation();
-        this.repaint();
-    }
-
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> combo_agnet;
     private javax.swing.JLabel guid_beeScout;
     private javax.swing.JLabel guid_beeWorker;
     private javax.swing.JLabel guid_food;
     private javax.swing.JLabel guid_hive;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_SetupButton;
     private javax.swing.JPanel jp_SetupPanel;
     private javax.swing.JPanel jp_guide;
