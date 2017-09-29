@@ -4,6 +4,7 @@ import animalsimulation.map.SingleHiveMap;
 import animalsimulation.model.base.SimulationSettings;
 import animalsimulation.view.MainFrame;
 
+
 /**
  *
  * @author Hirad Gorgoroth main Class that is used to setup the frame and it's
@@ -15,7 +16,10 @@ public class AnimalSimulation {
     private static SimulationSettings settings;
     private static SimulationController simulationController;
     
-    public static void main(String[] args) {       
+    
+    public static void main(String[] args) {  
+        ChartExamples testchart =new ChartExamples(args);
+        
         initializeWorld();
         initializeUI();
         simulationController.runForever();
