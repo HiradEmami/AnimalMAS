@@ -33,12 +33,12 @@ public class SimulationController extends BaseController implements Runnable {
         updateViews();
     }
     
-    public void runForever() {
+    public synchronized void runForever() {
         thread = new Thread(this);
         thread.start();
     }
     
-    public void stopSimulation() {
+    public synchronized void stopSimulation() {
         //thread.stop(); WAS NEEDED TO DONT GO FASTER
         thread = null;
     }

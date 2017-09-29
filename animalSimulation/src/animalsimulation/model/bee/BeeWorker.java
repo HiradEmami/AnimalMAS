@@ -20,9 +20,4 @@ public class BeeWorker extends BeeAgent {
         width = 10;
         height = 10;
     }
-    
-    @Override
-    public void act() {
-        // Add behavior here!
-    }
 }

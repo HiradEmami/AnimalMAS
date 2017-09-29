@@ -7,7 +7,6 @@ import java.awt.Color;
  *
  * @author Ebombo2
  */
-
 public class BeeScout extends BeeAgent {
 
     public BeeScout(BeeHive hive) {
@@ -16,7 +15,6 @@ public class BeeScout extends BeeAgent {
         shape = Shape.CIRCLE;
         width = 10;
         height = 10;
-        stateMachine = new BeeBehavior();
+        stateMachine = new BeeBehavior(this);
     }
-    
 }

@@ -5,6 +5,7 @@
  */
 package animalsimulation.behavior.base;
 
+import animalsimulation.model.base.Agent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,10 +15,12 @@ import java.util.HashMap;
  */
 public abstract class StateMachine {
     protected State currentState;
+    protected Agent agent;
     protected HashMap<State, ArrayList<StateTransition>> stateMap;
     
-    public StateMachine() {
+    public StateMachine(Agent agent) {
         stateMap = new HashMap<>();
+        this.agent = agent;
     }
     
     public void addStateTransition(State state, StateTransition transition) {
@@ -45,11 +48,24 @@ public abstract class StateMachine {
     public void setCurrentState(State state) {
         if(currentState != null) {
             currentState.reset();
-            currentState.getAction().reset();
+            currentState.getAction().reset(agent, state);
         }
         currentState = state;
-        currentState.getAction().initialize();
-        currentState.getAction();
+        currentState.getAction().initialize(agent, state);
+    }
+
+    /**
+     * @return the agent
+     */
+    public Agent getAgent() {
+        return agent;
+    }
+
+    /**
+     * @param agent the agent to set
+     */
+    public void setAgent(Agent agent) {
+        this.agent = agent;
     }
     
     public void tick() {

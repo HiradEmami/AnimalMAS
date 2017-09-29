@@ -12,7 +12,7 @@ import animalsimulation.model.base.Agent;
  * @author jeroen
  */
 public abstract class Action {
-    public void initialize() {};
+    public void initialize(Agent agent, State state) {};
     public abstract void execute(Agent agent, State state);
-    public void reset() {};
+    public void reset(Agent agent, State state) {};
 }
