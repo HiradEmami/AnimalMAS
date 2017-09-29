@@ -45,11 +45,10 @@ public abstract class StateMachine {
     public void setCurrentState(State state) {
         if(currentState != null) {
             currentState.reset();
-            if(currentState.getStateName() == "Exploring")
-                currentState.getAction().reset();
+            currentState.getAction().reset();
         }
         currentState = state;
-        //currentState.getAction().initialize();
+        currentState.getAction().initialize();
         currentState.getAction();
     }
     

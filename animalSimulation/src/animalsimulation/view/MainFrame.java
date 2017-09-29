@@ -6,16 +6,22 @@
 package animalsimulation.view;
 
 //required imports 
+import animalsimulation.controller.SimulationController;
 import animalsimulation.model.bee.BeeScout;
 import animalsimulation.model.bee.BeeHive;
+import animalsimulation.model.base.SimulationSettings;
 import javax.swing.*;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
+    private String imagePath;
+    private SimulationSettings settings = animalsimulation.controller.AnimalSimulation.getSettings();
+    private SimulationController simController = animalsimulation.controller.AnimalSimulation.getSimulationController();
     private int spread, gridHeight, gridWidth, numWorkers, origin = 0;      //Height of the main grid(will be collected by user input), Width if the grid (will be collected by user input)
     private double amountScouts;
 
+    private ArrayList<ImageIcon> icons = new ArrayList<>();     //List of imported images for rendering
     private ArrayList<BeeScout> scouts = new ArrayList<>();     //List of all created scouts
     private ArrayList<BeeHive> hives = new ArrayList<>();       //List of all created hives
 
@@ -24,16 +30,26 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();                                                   //Creating and managing the main components
         System.out.println("Initializing Components Completed");
         System.out.println("Initializing Variables:");
+        this.imagePath = System.getProperty("user.dir") + "\\images";
         frameSetup();               
+    }
+    
+    private void readIcons() {                                              //method to read images and add them to 
+        icons.add(new ImageIcon(imagePath + "\\hive.jpg"));                 //Position 0 is the hive
+        icons.add(new ImageIcon(imagePath + "\\food.jpg"));                 //Position 1 is the food
+        icons.add(new ImageIcon(imagePath + "\\bee_scout.jpg"));            //Position 2 is the bee_scout
+        icons.add(new ImageIcon(imagePath + "\\bee_worker.jpg"));           //Position 3 is the bee_worker
     }
     
     //This method will rebuild all the parameters and can be used to reset them
     public void frameSetup() {
-//        //set the guide icons
-//        guid_hive.setIcon(icons.get(0));
-//        guid_food.setIcon(icons.get(1));
-//        guid_beeScout.setIcon(icons.get(2));
-//        guid_beeWorker.setIcon(icons.get(3));
+        readIcons();                                                        //Calling the method to read all the images
+
+        //set the guide icons
+        guid_hive.setIcon(icons.get(0));
+        guid_food.setIcon(icons.get(1));
+        guid_beeScout.setIcon(icons.get(2));
+        guid_beeWorker.setIcon(icons.get(3));
         this.pack();
     }
 
@@ -270,7 +286,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void setupWorld() {
         try {
             jsl_animal.setMaximum(100);
-            numWorkers = jsl_animal.getValue();
+            settings.setNumberOfScoutBees(jsl_animal.getValue());
             this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);   //to make it full screen
         } catch (Exception e) {                                         //Display the error if it failed to create the simulation
             JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);
@@ -279,6 +295,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     private void repaintScreen() {
         jp_worldPanel.revalidate();
+        simController.resetSimulation();
         this.repaint();
     }
 

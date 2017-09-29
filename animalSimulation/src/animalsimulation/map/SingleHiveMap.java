@@ -44,7 +44,6 @@ public class SingleHiveMap extends Map {
             world.addObject(food);
             }catch(Exception e)
             {
-                System.out.println(e.getMessage());
                 e.printStackTrace();
             }
         }

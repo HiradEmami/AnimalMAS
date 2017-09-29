@@ -39,6 +39,7 @@ public class SimulationController extends BaseController implements Runnable {
     }
     
     public void stopSimulation() {
+        //thread.stop(); WAS NEEDED TO DONT GO FASTER
         thread = null;
     }
     
@@ -48,6 +49,7 @@ public class SimulationController extends BaseController implements Runnable {
         stopSimulation();
         model = settings.getMap().createWorld(settings);
         updateViews();
+        runForever();
     }
     
     @Override
@@ -55,7 +57,7 @@ public class SimulationController extends BaseController implements Runnable {
         while(thread != null) {
             try {
                 step();
-                Thread.sleep(1);
+                Thread.sleep(20);
             } catch (InterruptedException ex) {}
         }
     }
