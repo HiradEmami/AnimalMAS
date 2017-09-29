@@ -22,8 +22,8 @@ public class BeeBehavior extends StateMachine {
         // Add state and associated transitions here..
         // General structure:
         // - Create a state and define the action an agent needs to execute while in said state.
-        // - Create a state transition definining the target state and which event type triggers the transition
-        // - Add the transition to the list of transitions. This links a source state to a transition.
+        // - Create a state transition definining the source and target states 
+        //   and which event type triggers the transition
 
         State exploration = new State("Exploring", new BeeMovement());
         State returnToHive = new State("Returning", new BeeMovement());
