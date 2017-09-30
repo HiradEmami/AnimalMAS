@@ -29,7 +29,7 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 
-public class LineChart extends ApplicationFrame{ //application frame is their unique jframe (so it;s basically jframe)
+public class EnergyLinechart extends ApplicationFrame{ //application frame is their unique jframe (so it;s basically jframe)
     
     private ArrayList<Integer> naturalBeesEnergy;
     private ArrayList<Integer> aiBeesEnergy;
@@ -39,8 +39,8 @@ public class LineChart extends ApplicationFrame{ //application frame is their un
     so it is expected that the length of this array and aiBeesFood be the same
     
     */
-   public LineChart( ArrayList<Integer> argnaturalBeesEnergy, ArrayList<Integer> argaiBeesEnergy ) {
-      super("Line Chart - Progress");
+   public EnergyLinechart( ArrayList<Integer> argnaturalBeesEnergy, ArrayList<Integer> argaiBeesEnergy ) {
+      super("Line Chart - Energy Progress");
       //reading the data
       this.naturalBeesEnergy =argnaturalBeesEnergy;
       this.aiBeesEnergy=argaiBeesEnergy;
@@ -50,7 +50,7 @@ public class LineChart extends ApplicationFrame{ //application frame is their un
       //creating the energy chart 
       JFreeChart lineChart = ChartFactory.createXYLineChart(
          "Simulation Progress", //the title for the chart
-         "Energy Spent","steps", //y and x axies title 
+         "steps","Energy Spent", //y and x axies title 
          createDatasetEnergy(), //using the dataset that was created using this method
          PlotOrientation.VERTICAL, //Vertical or Hor
          

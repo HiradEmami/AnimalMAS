@@ -36,14 +36,22 @@ public class ChartExamples {
          exampleAIlBeeFood.add(80);
          
         
+        //you need these to create the custom chart frame
+        EnergyLinechart chart1 = new EnergyLinechart(exampleNaturalBeeFood,exampleAIlBeeFood);
+        RefineryUtilities.centerFrameOnScreen( chart1 );
+        chart1.setLocationRelativeTo(null);                                  //centering the frame to center
+        chart1.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);   //setting the close function to completely exit the app
+        chart1.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);          //to make it full screen
+        chart1.setVisible(true);                                             //displaying the frame
         
-        LineChart chart = new LineChart(exampleNaturalBeeFood,exampleAIlBeeFood);
-        RefineryUtilities.centerFrameOnScreen( chart );
-        chart.setLocationRelativeTo(null);                                  //centering the frame to center
-        chart.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);   //setting the close function to completely exit the app
-        chart.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);          //to make it full screen
-        chart.setVisible(true);                                             //displaying the frame
         
+        //you need these to create the custom chart frame
+        FoodLinechart chart2 = new FoodLinechart(exampleNaturalBeeFood,exampleAIlBeeFood);
+        RefineryUtilities.centerFrameOnScreen( chart2 );
+        chart2.setLocationRelativeTo(null);                                  //centering the frame to center
+        chart2.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);   //setting the close function to completely exit the app
+        chart2.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);          //to make it full screen
+        chart2.setVisible(true);                                             //displaying the frame
         
         
         
