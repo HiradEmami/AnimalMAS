@@ -1,4 +1,3 @@
-
 package animalsimulation.controller;
 
 import animalsimulation.view.graphModel.*;
@@ -34,7 +33,6 @@ public class ChartExamples {
          exampleAIlBeeFood.add(46);
          exampleAIlBeeFood.add(60);
          exampleAIlBeeFood.add(80);
-         
         
         //you need these to create the custom chart frame
         EnergyLinechart chart1 = new EnergyLinechart(exampleNaturalBeeFood,exampleAIlBeeFood);
@@ -44,7 +42,6 @@ public class ChartExamples {
         chart1.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);          //to make it full screen
         chart1.setVisible(true);                                             //displaying the frame
         
-        
         //you need these to create the custom chart frame
         FoodLinechart chart2 = new FoodLinechart(exampleNaturalBeeFood,exampleAIlBeeFood);
         RefineryUtilities.centerFrameOnScreen( chart2 );
@@ -52,11 +49,5 @@ public class ChartExamples {
         chart2.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);   //setting the close function to completely exit the app
         chart2.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);          //to make it full screen
         chart2.setVisible(true);                                             //displaying the frame
-        
-        
-        
-        
-        
     }
-    
 }
