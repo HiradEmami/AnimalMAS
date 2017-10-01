@@ -20,6 +20,7 @@ public abstract class BeeAgent extends Agent {
 
     public BeeAgent(BeeHive hive) {
         this(hive.getCoordinates()[0], hive.getCoordinates()[1], hive);
+        initKnowledge(hive);
     }
     
     public BeeAgent(double x, double y, BeeHive hive) {

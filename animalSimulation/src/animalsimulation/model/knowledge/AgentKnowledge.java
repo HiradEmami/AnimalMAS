@@ -19,6 +19,7 @@ public class AgentKnowledge {
     private double[] hiveLocation;
     private ArrayList<FoodKnowledge> foodKnowledge;
     private ArrayList<ObstacleKnowledge> obstacleKnowledge;
+    private LocationKnowledge lastKnowledge;
 
     public AgentKnowledge(double[] argHiveLocation) {
         this.hiveLocation=argHiveLocation;
@@ -27,11 +28,14 @@ public class AgentKnowledge {
     }
         
     public void updateFoodKnowledge(ArrayList<FoodKnowledge> argNewData){
+        
+        
         for(int i=0;i<=argNewData.size()-1;i++){
             if(checkNewFoodKnowledge(argNewData.get(i).getTargetCoordinates()[0], 
                argNewData.get(i).getTargetCoordinates()[1]))
             {
               foodKnowledge.add(argNewData.get(i));
+              lastKnowledge=argNewData.get(i);
             }
         }
     }
@@ -48,6 +52,7 @@ public class AgentKnowledge {
             }
         }
         foodKnowledge.add(argnew);
+        lastKnowledge=argnew;
         return true; 
     }
     
@@ -63,6 +68,7 @@ public class AgentKnowledge {
             }
         }
         obstacleKnowledge.add(argnew);
+        lastKnowledge=argnew;
         return true; 
     }
 
@@ -96,4 +102,22 @@ public class AgentKnowledge {
         }
         return true;
     }
+
+    public ArrayList<FoodKnowledge> getFoodKnowledge() {
+        return foodKnowledge;
+    }
+
+    public double[] getHiveLocation() {
+        return hiveLocation;
+    }
+
+    public LocationKnowledge getLastKnowledge() {
+        return lastKnowledge;
+    }
+
+    public ArrayList<ObstacleKnowledge> getObstacleKnowledge() {
+        return obstacleKnowledge;
+    }
+    
+    
 }

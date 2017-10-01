@@ -12,6 +12,7 @@ package animalsimulation.model.knowledge;
 public class FoodKnowledge extends LocationKnowledge{
    
     private int foodStorage;
+    private String type="foodKnowledge";
     
     public FoodKnowledge(int[] argHiveLocation, int[] argTargetLocation, int argFoodStorage) {
         super(argHiveLocation, argTargetLocation);
@@ -22,4 +23,9 @@ public class FoodKnowledge extends LocationKnowledge{
     public int getFoodStorage() {
         return foodStorage;
     }
+
+    public String getType() {
+        return type;
+    }
+    
 }

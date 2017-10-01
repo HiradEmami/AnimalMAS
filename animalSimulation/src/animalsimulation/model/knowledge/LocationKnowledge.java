@@ -37,4 +37,5 @@ public class LocationKnowledge {
     public double getDistance() {
         return distance;
     }
+    
 }

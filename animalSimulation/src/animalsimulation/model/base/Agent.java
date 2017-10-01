@@ -90,4 +90,9 @@ public abstract class Agent extends WorldObject {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+
+    public AgentKnowledge getKnowledge() {
+        return knowledge;
+    }
+    
 }
