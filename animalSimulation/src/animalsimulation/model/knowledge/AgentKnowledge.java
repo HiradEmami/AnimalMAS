@@ -29,15 +29,17 @@ public class AgentKnowledge {
         
     public void updateFoodKnowledge(ArrayList<FoodKnowledge> argNewData){
         
-        
+        int counter=0;
         for(int i=0;i<=argNewData.size()-1;i++){
             if(checkNewFoodKnowledge(argNewData.get(i).getTargetCoordinates()[0], 
                argNewData.get(i).getTargetCoordinates()[1]))
             {
               foodKnowledge.add(argNewData.get(i));
               lastKnowledge=argNewData.get(i);
+              counter++;
             }
         }
+       
     }
     
     public boolean addnewFoodknowledge(FoodKnowledge argnew){
@@ -72,15 +74,18 @@ public class AgentKnowledge {
         return true; 
     }
 
-    public void updateObstacleKnowledge(ArrayList<ObstacleKnowledge> argNewData){
+    public void  updateObstacleKnowledge(ArrayList<ObstacleKnowledge> argNewData){
+        int counter=0;
         for(int i=0;i<=argNewData.size()-1;i++){
             if(checkNewObstacleKnowledge(argNewData.get(i).getTargetCoordinates()[0], 
                argNewData.get(i).getTargetCoordinates()[1]))
             {
               obstacleKnowledge.add(argNewData.get(i));
+              counter++;
             }
             
         }
+        
     }
         
     private boolean checkNewFoodKnowledge(double x, double y){

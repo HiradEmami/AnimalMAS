@@ -17,5 +17,6 @@ public class BeeScout extends BeeAgent {
         width = 10;
         height = 10;
         stateMachine = new BeeBehavior(this);
+        setType("Scout");
     }
 }

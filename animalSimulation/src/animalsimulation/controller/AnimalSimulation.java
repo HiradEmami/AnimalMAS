@@ -19,11 +19,11 @@ public class AnimalSimulation {
     
     public static void main(String[] args) {  
        // ChartExamples testchart =new ChartExamples(args);
-       //KnowledgeExample ex = new KnowledgeExample();
+      KnowledgeExample ex = new KnowledgeExample();
         
-       initializeWorld();
-       initializeUI();
-       simulationController.runForever();
+       //initializeWorld();
+       //initializeUI();
+       //simulationController.runForever();
     }
     
     public static SimulationController getSimulationController() {

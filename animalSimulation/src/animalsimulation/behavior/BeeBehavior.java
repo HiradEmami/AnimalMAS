@@ -25,12 +25,12 @@ public class BeeBehavior extends StateMachine {
         // - Create a state transition definining the source and target states 
         //   and which event type triggers the transition
 
-        State exploration = new State("Exploring", new BeeMovement());
-        State returnToHive = new State("Returning", new BeeMovement());
-        
-        addStateTransition(exploration, returnToHive, DestinationReachedEvent.class);
-        addStateTransition(returnToHive, exploration, DestinationReachedEvent.class);
-
-        setCurrentState(exploration); //TODO NEEDS TO CHANGE ACCORDING TO STATE??
+//        State exploration = new State("Exploring", new BeeMovement());
+//        State returnToHive = new State("Returning", new BeeMovement());
+//        
+//        addStateTransition(exploration, returnToHive, DestinationReachedEvent.class);
+//        addStateTransition(returnToHive, exploration, DestinationReachedEvent.class);
+//
+//        setCurrentState(exploration); //TODO NEEDS TO CHANGE ACCORDING TO STATE??
     }
 }
