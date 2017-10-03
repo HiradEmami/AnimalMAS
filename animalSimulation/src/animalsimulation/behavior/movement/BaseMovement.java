@@ -6,7 +6,6 @@
 package animalsimulation.behavior.movement;
 
 import animalsimulation.behavior.base.Action;
-import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.event.DestinationReachedEvent;
 import animalsimulation.model.base.Agent;
 
@@ -25,9 +24,9 @@ public abstract class BaseMovement extends Action {
         this.targetX = targetX;
         this.targetY = targetY;
     }
-    
-    public void execute(Agent agent, State state) {
-        if(Math.abs(Math.round(agent.getCoordinates()[0]) - targetX) < 20 && Math.abs(Math.round(agent.getCoordinates()[1]) - targetY) < 20) {
+        
+    protected void checkDestinationReached(Agent agent, double targetRadius) {
+        if(agent.distanceToLocation(targetX, targetY) < targetRadius) {
             DestinationReachedEvent destinationReachedEvent = new DestinationReachedEvent(this);
             agent.getStateMachine().updateState(destinationReachedEvent);
         }

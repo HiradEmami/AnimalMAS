@@ -11,9 +11,9 @@ import animalsimulation.behavior.base.Event;
  *
  * @author jeroen
  */
-public class DestinationReachedEvent extends Event {
+public class FoodSourceFoundEvent extends Event  {
     
-    public DestinationReachedEvent(Object source) {
+    public FoodSourceFoundEvent(Object source) {
         super(source);
     }
     
