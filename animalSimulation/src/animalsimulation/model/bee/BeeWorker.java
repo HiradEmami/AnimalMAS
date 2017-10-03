@@ -19,6 +19,6 @@ public class BeeWorker extends BeeAgent {
         shape = Shape.CIRCLE;
         width = 10;
         height = 10;
-        newDriftVector();
+        theta = 0;
     }
 }

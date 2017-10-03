@@ -17,8 +17,14 @@ import animalsimulation.model.bee.BeeFood;
  *
  * @author Ebombo2
  */
-public class BiologicalBeeMovement extends BeeMovement{
-        
+public class ScoutBeeExploreMovement extends BaseMovement{
+    
+    @Override
+    public void initialize(Agent agent, State state) {
+        if(agent instanceof BeeAgent)
+            ((BeeAgent) agent).newDriftVector();
+    }
+    
     @Override
     public void execute(Agent agent, State state) {
         BeeAgent bee = (BeeAgent) agent;

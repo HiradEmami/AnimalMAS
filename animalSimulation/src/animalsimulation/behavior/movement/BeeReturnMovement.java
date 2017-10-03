@@ -6,6 +6,8 @@
 package animalsimulation.behavior.movement;
 
 import animalsimulation.behavior.base.State;
+import animalsimulation.behavior.event.DestinationReachedEvent;
+import animalsimulation.behavior.event.HiveReachedEvent;
 import animalsimulation.controller.AnimalSimulation;
 import animalsimulation.model.base.Agent;
 import animalsimulation.model.bee.BeeAgent;
@@ -14,7 +16,7 @@ import animalsimulation.model.bee.BeeAgent;
  *
  * @author jeroen
  */
-public class BeeMovement extends BaseMovement {
+public class BeeReturnMovement extends BaseMovement {
 
     public void initialize(Agent agent, State state) {
         if (state.getStateName().equals("Returning")) {
@@ -42,7 +44,13 @@ public class BeeMovement extends BaseMovement {
             };
             agent.setCoordinates(coordinates[0] + movement[0], coordinates[1] + movement[1]);
         }
-        
-        checkDestinationReached(agent, 1d);
+        checkHiveReached(agent, 1d);
+    }
+    
+    private void checkHiveReached(Agent agent, double targetRadius) { 
+        if(agent.distanceToLocation(targetX, targetY) < targetRadius) {
+            HiveReachedEvent hiveReachedEvent = new HiveReachedEvent(this);
+            agent.getStateMachine().updateState(hiveReachedEvent);
+        }
     }
 }

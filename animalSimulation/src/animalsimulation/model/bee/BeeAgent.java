@@ -32,6 +32,8 @@ public abstract class BeeAgent extends Agent {
         
         hive.addBee(this);
         this.hive = hive;
+        this.tsigma = 3;
+        this.v = 1.5;
     }
     
     public void initKnowledge(BeeHive hive){
@@ -67,8 +69,6 @@ public abstract class BeeAgent extends Agent {
             }
         }
         theta = Math.acos(normal[0][0])*toSigned(normal[1][0]);
-        tsigma = 3;
-        v = 1.5;
     }
 
     private double toSigned(double unsigned) {

@@ -9,8 +9,9 @@ import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
 import animalsimulation.behavior.event.DestinationReachedEvent;
 import animalsimulation.behavior.event.FoodSourceFoundEvent;
-import animalsimulation.behavior.movement.BeeMovement;
-import animalsimulation.behavior.movement.BiologicalBeeMovement;
+import animalsimulation.behavior.event.HiveReachedEvent;
+import animalsimulation.behavior.movement.BeeReturnMovement;
+import animalsimulation.behavior.movement.ScoutBeeExploreMovement;
 import animalsimulation.model.base.Agent;
 
 /**
@@ -27,11 +28,11 @@ public class BeeBehavior extends StateMachine {
         // - Create a state transition definining the source and target states 
         //   and which event type triggers the transition
 
-        State exploration = new State("Exploring", new BiologicalBeeMovement());
-        State returnToHive = new State("Returning", new BeeMovement());
+        State exploration = new State("Exploring", new ScoutBeeExploreMovement());
+        State returnToHive = new State("Returning", new BeeReturnMovement());
         
         addStateTransition(exploration, returnToHive, FoodSourceFoundEvent.class);
-        addStateTransition(returnToHive, exploration, DestinationReachedEvent.class);
+        addStateTransition(returnToHive, exploration, HiveReachedEvent.class);
 
         setCurrentState(exploration); //TODO NEEDS TO CHANGE ACCORDING TO STATE??
     }
