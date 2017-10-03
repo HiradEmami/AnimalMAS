@@ -25,8 +25,8 @@ public class ScoutBeeBehavior  extends StateMachine{
         State exploration = new State("Exploring", new ScoutBeeExploreMovement());
         State returnToHive = new State("Returning", new BeeReturnMovement());
         
-        addStateTransition(exploration, returnToHive, DestinationReachedEvent.class);
-        addStateTransition(returnToHive, exploration, DestinationReachedEvent.class);
+        addStateTransition(exploration, returnToHive, FoodSourceFoundEvent.class);
+        addStateTransition(returnToHive, exploration, HiveReachedEvent.class);
         
         setCurrentState(exploration); //TODO NEEDS TO CHANGE ACCORDING TO STATE??
     }
