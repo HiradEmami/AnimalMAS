@@ -34,14 +34,14 @@ public class BiologicalBeeMovement extends BaseMovement{
 
     public void execute(Agent agent, State state) {
         double[] coordinates = agent.getCoordinates();
-        //if(agent.getGroup().getGroupName()=="Scouts")
-        //{
+        if(agent instanceof BeeScout)
+        {
             BeeScout scout = (BeeScout) agent;
             double theta = scout.theta + scout.tsigma*(Math.random() - 0.5);
             double dx = scout.v*Math.cos(theta);
             double dy = scout.v*Math.sin(theta);
             agent.setCoordinates(coordinates[0]+dx, coordinates[1]+dy);
-        //}
+        }
         super.execute(agent, state);
     }
     
