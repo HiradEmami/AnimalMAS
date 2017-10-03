@@ -11,9 +11,9 @@ import animalsimulation.behavior.base.Event;
  *
  * @author Hirad Gorgoroth
  */
-public class DroppedFood extends Event {
+public class KnowledgeUpdatedEvent extends Event {
     
-    public DroppedFood(Object source) {
+    public KnowledgeUpdatedEvent(Object source) {
         super(source);
     }
     

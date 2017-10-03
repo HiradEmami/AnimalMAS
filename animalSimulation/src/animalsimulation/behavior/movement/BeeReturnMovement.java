@@ -18,6 +18,7 @@ import animalsimulation.model.bee.BeeAgent;
  */
 public class BeeReturnMovement extends BaseMovement {
 
+    @Override
     public void initialize(Agent agent, State state) {
         if (state.getStateName().equals("Returning")) {
             BeeAgent bee = (BeeAgent) agent;
@@ -31,6 +32,7 @@ public class BeeReturnMovement extends BaseMovement {
         }
     }
 
+    @Override
     public void execute(Agent agent, State state) {
         double[] coordinates = agent.getCoordinates();
         double distance = agent.distanceToLocation(targetX, targetY);

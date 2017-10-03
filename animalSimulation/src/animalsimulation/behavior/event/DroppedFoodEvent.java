@@ -11,9 +11,9 @@ import animalsimulation.behavior.base.Event;
  *
  * @author Hirad Gorgoroth
  */
-public class MeetingAgent extends Event {
+public class DroppedFoodEvent extends Event {
     
-    public MeetingAgent(Object source) {
+    public DroppedFoodEvent(Object source) {
         super(source);
     }
     

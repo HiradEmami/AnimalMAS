@@ -1,7 +1,6 @@
 package animalsimulation.model.bee;
 
-import Jama.Matrix;
-import animalsimulation.behavior.BeeBehavior;
+import animalsimulation.behavior.ScoutBeeBehavior;
 import java.awt.Color;
 
 /**
@@ -17,7 +16,7 @@ public class BeeScout extends BeeAgent {
         speed = 2;
         width = 10;
         height = 10;
-        stateMachine = new BeeBehavior(this);
+        stateMachine = new ScoutBeeBehavior(this);
         newDriftVector();
     }
 
