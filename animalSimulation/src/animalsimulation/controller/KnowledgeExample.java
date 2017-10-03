@@ -59,7 +59,7 @@ public class KnowledgeExample {
         
         
         System.out.println("B2 and B1 Communicating");
-        b2.getKnowledge().updateFoodKnowledge(b1.getKnowledge().getFoodKnowledge());
+        communicateFood(b1, b2);
         System.out.println("B2's Knoweledge is updated");
         printKnowledge(b2);
         
@@ -73,5 +73,16 @@ public class KnowledgeExample {
             System.out.println("i="+argb.getKnowledge().getFoodKnowledge().get(i));
         }
     }
+    
+    private void communicateFood (BeeAgent argFirst, BeeAgent argSecond){
+        argFirst.getKnowledge().updateFoodKnowledge(argSecond.getKnowledge().getFoodKnowledge());
+        argSecond.getKnowledge().updateFoodKnowledge(argFirst.getKnowledge().getFoodKnowledge());
+    }
+    private void communicateObstacle (BeeAgent argFirst, BeeAgent argSecond){
+        argFirst.getKnowledge().updateObstacleKnowledge(argSecond.getKnowledge().getObstacleKnowledge());
+        argSecond.getKnowledge().updateObstacleKnowledge(argFirst.getKnowledge().getObstacleKnowledge());
+    }
+    
+   
     
 }

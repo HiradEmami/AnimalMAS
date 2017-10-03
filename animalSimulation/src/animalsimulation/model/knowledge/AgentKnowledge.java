@@ -88,7 +88,7 @@ public class AgentKnowledge {
         
     }
         
-    private boolean checkNewFoodKnowledge(double x, double y){
+    public boolean checkNewFoodKnowledge(double x, double y){
         for(int i=0;i<=foodKnowledge.size()-1;i++){
             if(foodKnowledge.get(i).getTargetCoordinates()[0]==x &&
                 foodKnowledge.get(i).getTargetCoordinates()[1]==y){
@@ -98,7 +98,7 @@ public class AgentKnowledge {
         return true;
     }
 
-    private boolean checkNewObstacleKnowledge(double x, double y){
+    public boolean checkNewObstacleKnowledge(double x, double y){
         for(int i=0;i<=obstacleKnowledge.size()-1;i++){
             if(obstacleKnowledge.get(i).getTargetCoordinates()[0]==x &&
                 obstacleKnowledge.get(i).getTargetCoordinates()[1]==y){

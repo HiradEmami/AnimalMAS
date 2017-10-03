@@ -13,7 +13,7 @@ package animalsimulation.model.bdi;
  * 1) idle = waiting (not doing anything)
  */
 
-import animalsimulation.behavior.base.State;
+import animalsimulation.behavior.base.*;
 import animalsimulation.model.knowledge.*;
 import animalsimulation.model.bee.*;
 
@@ -40,6 +40,7 @@ public class Decision {
         }else{
             switch (previousState.getStateName()){
                 case "explore":{
+                    
                     break;
                 }
             }
