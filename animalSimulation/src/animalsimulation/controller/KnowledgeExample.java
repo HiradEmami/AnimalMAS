@@ -31,9 +31,9 @@ public class KnowledgeExample {
         Decision d1 = new Decision(b1.getType(), b1.getKnowledge(), new State("idle", a));
         System.out.println("decision "+d1.getIntention().getDecision());
         
-        int []hivelocation = {h1.getHeight(),h1.getWidth()};
-        int []randomlocation1 ={20,20};
-        int []randomlocation2 ={30,30};
+        double []hivelocation = h1.getCoordinates();
+        double []randomlocation1 ={20,20};
+        double []randomlocation2 ={30,30};
         
         
         System.out.println("Knowledge Size"+b1.getKnowledge().getFoodKnowledge().size());

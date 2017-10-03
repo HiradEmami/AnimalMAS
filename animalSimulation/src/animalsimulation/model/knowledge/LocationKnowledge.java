@@ -1,12 +1,12 @@
 package animalsimulation.model.knowledge;
   
 public class LocationKnowledge {
-    private int[] targetLocation;
+    private double[] targetLocation;
     private float direction;
-    private int[] hiveLocation;
+    private double[] hiveLocation;
     private double distance;
 
-    public LocationKnowledge(int[] argHiveLocation, int[] argTargetLocation) {
+    public LocationKnowledge(double[] argHiveLocation, double[] argTargetLocation) {
         this.targetLocation=argTargetLocation;
         this.hiveLocation=argHiveLocation;
         setDirection();
@@ -17,7 +17,7 @@ public class LocationKnowledge {
         return direction;
     }
 
-    public int[] getTargetCoordinates() {
+    public double[] getTargetCoordinates() {
         return targetLocation;
     }
     
