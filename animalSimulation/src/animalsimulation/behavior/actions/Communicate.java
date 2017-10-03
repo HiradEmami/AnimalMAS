@@ -7,8 +7,12 @@ package animalsimulation.behavior.actions;
 
 import animalsimulation.behavior.base.Action;
 import animalsimulation.behavior.base.State;
+import animalsimulation.behavior.event.KnowledgeUpdatedEvent;
+import animalsimulation.behavior.event.MeetingAgentEvent;
+import animalsimulation.controller.AnimalSimulation;
 import animalsimulation.model.base.Agent;
 import animalsimulation.model.bee.BeeAgent;
+import animalsimulation.model.bee.BeeWorker;
 
 /**
  *
@@ -18,7 +22,17 @@ public class Communicate extends Action{
 
     @Override
     public void execute(Agent agent, State state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        BeeWorker[] workers = AnimalSimulation.getSettings().getMap().getWorld().getWorldObjectsByClass(BeeWorker.class);
+        for(BeeWorker worker : workers)
+        {
+            MeetingAgentEvent meetingAgentEvent = new MeetingAgentEvent(this);
+            worker.getStateMachine().updateState(meetingAgentEvent);
+            communicateFood((BeeAgent)agent, worker);
+            KnowledgeUpdatedEvent knowledgeUpdatedEvent = new KnowledgeUpdatedEvent(this);
+            worker.getStateMachine().updateState(knowledgeUpdatedEvent);
+        }
+        KnowledgeUpdatedEvent knowledgeUpdatedEvent = new KnowledgeUpdatedEvent(this);
+        agent.getStateMachine().updateState(knowledgeUpdatedEvent);
     }
     
       private void communicateFood (BeeAgent argFirst, BeeAgent argSecond){

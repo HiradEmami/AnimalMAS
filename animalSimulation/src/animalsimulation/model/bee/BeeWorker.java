@@ -5,6 +5,7 @@
  */
 package animalsimulation.model.bee;
 
+import animalsimulation.behavior.WorkerBeeBehavior;
 import java.awt.Color;
 
 /**
@@ -19,6 +20,7 @@ public class BeeWorker extends BeeAgent {
         shape = Shape.CIRCLE;
         width = 10;
         height = 10;
+        stateMachine = new WorkerBeeBehavior(this);
         theta = 0;
     }
 }

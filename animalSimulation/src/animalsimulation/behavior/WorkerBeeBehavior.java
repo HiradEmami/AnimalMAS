@@ -16,6 +16,7 @@ import animalsimulation.behavior.movement.BeeReturnMovement;
 import animalsimulation.behavior.movement.ScoutBeeExploreMovement;
 import animalsimulation.model.base.Agent;
 import animalsimulation.behavior.actions.*;
+import animalsimulation.behavior.movement.WorkerBeeExploidMovement;
 
 public class WorkerBeeBehavior  extends StateMachine {
     
@@ -23,28 +24,21 @@ public class WorkerBeeBehavior  extends StateMachine {
         super(agent);
         
         
-        State idle = new State("Idle", null);
+        State idle = new State("Idle", new Idle());
         State gatherFood = new State("GatheringFood", new GatherFood());
         State dropFood = new State("DroppingFood", new DropFood());
         State returnToHive = new State("Returning", new BeeReturnMovement());
         State moveToFoodSource = new State("TravellingToFood", new ScoutBeeExploreMovement());
         State communicate = new State("communicate", new Communicate());
         
-        
-        
-        
         addStateTransition(idle, communicate, MeetingAgentEvent.class);
         addStateTransition(communicate, moveToFoodSource, KnowledgeUpdatedEvent.class);
-        addStateTransition(moveToFoodSource, gatherFood, DestinationReachedEvent.class);
+        addStateTransition(moveToFoodSource, gatherFood, FoodSourceFoundEvent.class);
         addStateTransition(gatherFood, returnToHive, GatheredFoodEvent.class);
         addStateTransition(returnToHive, dropFood, DestinationReachedEvent.class);
         addStateTransition(dropFood, moveToFoodSource, DroppedFoodEvent.class);
         
-        
-        
-
         setCurrentState(idle); //TODO NEEDS TO CHANGE ACCORDING TO STATE??
-        
     }
     
 }
