@@ -98,6 +98,14 @@ public abstract class WorldObject {
         }
     }
     
+    public double distanceToObject(WorldObject object) {
+        return distanceToLocation(object.getCoordinates()[0], object.getCoordinates()[1]);
+    }
+    
+    public double distanceToLocation(double x, double y) {
+        return Math.sqrt(Math.pow((x - this.x), 2) + Math.pow((y - this.y), 2));
+    }
+    
     public enum Shape {
         CIRCLE, OVAL, RECTANGLE 
     }
