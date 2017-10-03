@@ -3,7 +3,7 @@ package animalsimulation.model.knowledge;
 public class ObstacleKnowledge extends LocationKnowledge{
     
     private String type ="obstacleKnowledge";
-    public ObstacleKnowledge(int[] argHiveLocation, int[] argTargetLocation) {
+    public ObstacleKnowledge(double[] argHiveLocation, double[] argTargetLocation) {
         super(argHiveLocation, argTargetLocation);
     }
 
