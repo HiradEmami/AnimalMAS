@@ -48,11 +48,10 @@ public abstract class StateMachine {
     
     public void setCurrentState(State state) {
         if(currentState != null) {
-            currentState.reset();
-            currentState.getAction().reset(agent, state);
+            currentState.reset(agent);
         }
         currentState = state;
-        currentState.getAction().initialize(agent, state);
+        currentState.initialize(agent);
     }
 
     /**

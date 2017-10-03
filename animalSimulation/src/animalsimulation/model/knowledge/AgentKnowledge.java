@@ -37,8 +37,8 @@ public class AgentKnowledge {
     }
     
     public boolean addnewFoodknowledge(FoodKnowledge argnew){
-        int x = argnew.getTargetCoordinates()[0];
-        int y = argnew.getTargetCoordinates()[1];
+        double x = argnew.getTargetCoordinates()[0];
+        double y = argnew.getTargetCoordinates()[1];
         
          for(int i=0;i<=foodKnowledge.size()-1;i++){
             if(foodKnowledge.get(i).getTargetCoordinates()[0]==x &&
@@ -52,8 +52,8 @@ public class AgentKnowledge {
     }
     
     public boolean addnewObstacleKnowledge(ObstacleKnowledge argnew){
-        int x = argnew.getTargetCoordinates()[0];
-        int y = argnew.getTargetCoordinates()[1];
+        double x = argnew.getTargetCoordinates()[0];
+        double y = argnew.getTargetCoordinates()[1];
         
          for(int i=0;i<=obstacleKnowledge.size()-1;i++){
             if(obstacleKnowledge.get(i).getTargetCoordinates()[0]==x &&

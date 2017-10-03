@@ -20,11 +20,13 @@ public abstract class Action {
     public void reset(Agent agent, State state) {};
     
     public void setTimeOut(int ticks) { this.ticks=ticks;};
-    public void checkTimeOut(Agent agent, int ticks) {
+    public boolean checkTimeOut(Agent agent, int ticks) {
         if(this.ticks == ticks){
             agent.getStateMachine().updateState(
                 new ActionCompletedEvent(this)
             );
+            return true;
         }
+        return false;
     };
 }

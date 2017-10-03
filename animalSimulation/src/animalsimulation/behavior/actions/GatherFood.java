@@ -13,13 +13,9 @@ import animalsimulation.behavior.base.Action;
 import animalsimulation.behavior.base.State;
 import animalsimulation.model.base.Agent;
 
-public class GatherFood extends Action{
+public class GatherFood extends Action {
     
-
-    
-    
-    
-  @Override
+    @Override
     public void initialize(Agent agent, State state) {
         setTimeOut(3);
     }

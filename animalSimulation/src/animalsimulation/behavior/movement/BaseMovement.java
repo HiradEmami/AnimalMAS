@@ -25,8 +25,8 @@ public abstract class BaseMovement extends Action {
         this.targetY = targetY;
     }
         
-    protected void checkDestinationReached(Agent agent) {
-        if(agent.getCoordinates()[0] == targetX && agent.getCoordinates()[1] == targetY) {
+    protected void checkDestinationReached(Agent agent, double targetRadius) {
+        if(agent.distanceToLocation(targetX, targetY) < targetRadius) {
             DestinationReachedEvent destinationReachedEvent = new DestinationReachedEvent(this);
             agent.getStateMachine().updateState(destinationReachedEvent);
         }

@@ -46,13 +46,6 @@ public class BeeReturnMovement extends BaseMovement {
             };
             agent.setCoordinates(coordinates[0] + movement[0], coordinates[1] + movement[1]);
         }
-        checkHiveReached(agent, 1d);
-    }
-    
-    private void checkHiveReached(Agent agent, double targetRadius) { 
-        if(agent.distanceToLocation(targetX, targetY) < targetRadius) {
-            HiveReachedEvent hiveReachedEvent = new HiveReachedEvent(this);
-            agent.getStateMachine().updateState(hiveReachedEvent);
-        }
+        checkDestinationReached(agent, 1d);
     }
 }

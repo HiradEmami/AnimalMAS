@@ -13,7 +13,6 @@ import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
 import animalsimulation.behavior.event.*;
 import animalsimulation.behavior.movement.BeeReturnMovement;
-import animalsimulation.behavior.movement.ScoutBeeExploreMovement;
 import animalsimulation.model.base.Agent;
 import animalsimulation.behavior.actions.*;
 import animalsimulation.behavior.movement.WorkerBeeExploidMovement;
@@ -23,22 +22,21 @@ public class WorkerBeeBehavior  extends StateMachine {
     public WorkerBeeBehavior(Agent agent) {
         super(agent);
         
-        
-        State idle = new State("Idle", new Idle());
+        State idle = new State("Idle", null);
+        State communicate = new State("communicate", null);
+        State moveToFoodSource = new State("TravellingToFood", new WorkerBeeExploidMovement());
         State gatherFood = new State("GatheringFood", new GatherFood());
-        State dropFood = new State("DroppingFood", new DropFood());
         State returnToHive = new State("Returning", new BeeReturnMovement());
-        State moveToFoodSource = new State("TravellingToFood", new ScoutBeeExploreMovement());
-        State communicate = new State("communicate", new Communicate());
+        State dropFood = new State("DroppingFood", new DropFood());
         
         addStateTransition(idle, communicate, MeetingAgentEvent.class);
         addStateTransition(communicate, moveToFoodSource, KnowledgeUpdatedEvent.class);
-        addStateTransition(moveToFoodSource, gatherFood, FoodSourceFoundEvent.class);
-        addStateTransition(gatherFood, returnToHive, GatheredFoodEvent.class);
+        addStateTransition(moveToFoodSource, gatherFood, DestinationReachedEvent.class);
+        addStateTransition(gatherFood, returnToHive, ActionCompletedEvent.class);
         addStateTransition(returnToHive, dropFood, DestinationReachedEvent.class);
-        addStateTransition(dropFood, moveToFoodSource, DroppedFoodEvent.class);
+        addStateTransition(dropFood, moveToFoodSource, ActionCompletedEvent.class);
         
-        setCurrentState(idle); //TODO NEEDS TO CHANGE ACCORDING TO STATE??
+        setCurrentState(idle);
     }
     
 }

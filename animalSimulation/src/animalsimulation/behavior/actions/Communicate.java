@@ -7,10 +7,11 @@ package animalsimulation.behavior.actions;
 
 import animalsimulation.behavior.base.Action;
 import animalsimulation.behavior.base.State;
+import animalsimulation.behavior.event.ActionCompletedEvent;
 import animalsimulation.behavior.event.KnowledgeUpdatedEvent;
 import animalsimulation.behavior.event.MeetingAgentEvent;
-import animalsimulation.controller.AnimalSimulation;
 import animalsimulation.model.base.Agent;
+import animalsimulation.model.base.WorldObject;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeWorker;
 
@@ -18,27 +19,48 @@ import animalsimulation.model.bee.BeeWorker;
  *
  * @author Hirad Gorgoroth
  */
-public class Communicate extends Action{
+public class Communicate extends Action {
+    private BeeWorker workerBee;
+    
+    public void initialize(Agent agent, State state) {
+        setTimeOut(3); // Finish after three simulation steps.
+        
+        BeeAgent bee = (BeeAgent) agent;
+        WorldObject[] memberBees = bee.getHive().getAffiliatedBees();
+                
+        for(WorldObject memberBee : memberBees) {
+            // Single out an idle worker bee and update its knowledge.
+            if(memberBee instanceof BeeWorker) {
+                workerBee = (BeeWorker) memberBee;
+                if(workerBee.getStateMachine().getCurrentState().getStateName().equals("Idle")) {
+                    workerBee.getStateMachine().updateState(new MeetingAgentEvent(this));
 
-    @Override
-    public void execute(Agent agent, State state) {
-        BeeWorker[] workers = AnimalSimulation.getSettings().getMap().getWorld().getWorldObjectsByClass(BeeWorker.class);
-        for(BeeWorker worker : workers)
-        {
-            MeetingAgentEvent meetingAgentEvent = new MeetingAgentEvent(this);
-            worker.getStateMachine().updateState(meetingAgentEvent);
-            communicateFood((BeeAgent)agent, worker);
-            KnowledgeUpdatedEvent knowledgeUpdatedEvent = new KnowledgeUpdatedEvent(this);
-            worker.getStateMachine().updateState(knowledgeUpdatedEvent);
+                    communicateFood((BeeAgent) agent, workerBee);
+                    communicateObstacle((BeeAgent) agent, workerBee);
+                    
+                    return;
+                }
+            }
         }
-        KnowledgeUpdatedEvent knowledgeUpdatedEvent = new KnowledgeUpdatedEvent(this);
-        agent.getStateMachine().updateState(knowledgeUpdatedEvent);
+        
+        // If no idle worker bees exist, return to exploration.
+        agent.getStateMachine().updateState(new ActionCompletedEvent(this));
     }
     
-      private void communicateFood (BeeAgent argFirst, BeeAgent argSecond){
+    @Override
+    public void execute(Agent agent, State state) {
+        // The worker bee is along for the ride.
+        // The state of the worker bee is not updated until the scout decides this action is done.
+        if(checkTimeOut(agent, state.getTick())) {
+            workerBee.getStateMachine().updateState(new KnowledgeUpdatedEvent(this));
+        }
+    }
+    
+    private void communicateFood (BeeAgent argFirst, BeeAgent argSecond){
         argFirst.getKnowledge().updateFoodKnowledge(argSecond.getKnowledge().getFoodKnowledge());
         argSecond.getKnowledge().updateFoodKnowledge(argFirst.getKnowledge().getFoodKnowledge());
     }
+    
     private void communicateObstacle (BeeAgent argFirst, BeeAgent argSecond){
         argFirst.getKnowledge().updateObstacleKnowledge(argSecond.getKnowledge().getObstacleKnowledge());
         argSecond.getKnowledge().updateObstacleKnowledge(argFirst.getKnowledge().getObstacleKnowledge());

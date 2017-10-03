@@ -51,7 +51,16 @@ public class State {
         tick++;
     }
     
-    public void reset() {
+    public void initialize(Agent agent) {
+        if(action != null) {
+            action.initialize(agent, this);
+        }
+    }
+    
+    public void reset(Agent agent) {
         tick = 0;
+        if(action != null) {
+            action.reset(agent, this);
+        }
     }
 }

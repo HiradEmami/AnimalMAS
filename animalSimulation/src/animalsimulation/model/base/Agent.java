@@ -34,6 +34,10 @@ public abstract class Agent extends WorldObject {
         speed = 1;
     }
     
+    public AgentKnowledge getKnowledge() {
+        return knowledge;
+    }
+    
     public void initKnowledge() {
         throw new UnsupportedOperationException("Not supported yet.");
     }

@@ -12,6 +12,7 @@ import animalsimulation.model.base.Agent;
 import animalsimulation.model.base.World;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeFood;
+import animalsimulation.model.knowledge.FoodKnowledge;
 
 /**
  *
@@ -48,8 +49,15 @@ public class ScoutBeeExploreMovement extends BaseMovement{
         BeeFood[] foodSources = AnimalSimulation.getSettings().getMap().getWorld().getWorldObjectsByClass(BeeFood.class);
         for (BeeFood foodSource : foodSources) {
             if(agent.distanceToObject(foodSource) <= foodSource.getHeight()) {
-                FoodSourceFoundEvent foodSourceFoundEvent = new FoodSourceFoundEvent(this);
-                agent.getStateMachine().updateState(foodSourceFoundEvent);
+                agent.getKnowledge().addnewFoodknowledge(
+                    new FoodKnowledge(
+                            ((BeeAgent)agent).getHive().getCoordinates(),
+                            foodSource.getCoordinates(),
+                            -1
+                    )
+                );
+                
+                agent.getStateMachine().updateState(new FoodSourceFoundEvent(this));
             }
         }
     }

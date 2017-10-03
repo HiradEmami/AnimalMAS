@@ -80,9 +80,4 @@ public abstract class BeeAgent extends Agent {
             return 1d;
         }
     }
-
-    public AgentKnowledge getKnowledge() {
-        return knowledge;
-    }
-    
 }

@@ -9,7 +9,7 @@ import animalsimulation.behavior.base.Event;
 
 /**
  *
- * @author Hirad Gorgoroth
+ * @author jeroen
  */
 public class MeetingAgentEvent extends Event {
     

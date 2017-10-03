@@ -13,10 +13,9 @@ public class FoodKnowledge extends LocationKnowledge{
    
     private int foodStorage;
     
-    public FoodKnowledge(int[] argHiveLocation, int[] argTargetLocation, int argFoodStorage) {
+    public FoodKnowledge(double[] argHiveLocation, double[] argTargetLocation, int argFoodStorage) {
         super(argHiveLocation, argTargetLocation);
-        this.foodStorage=argFoodStorage;
-        
+        this.foodStorage=argFoodStorage;   
     }
 
     public int getFoodStorage() {
