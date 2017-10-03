@@ -9,6 +9,7 @@ import animalsimulation.behavior.base.State;
 import animalsimulation.controller.AnimalSimulation;
 import animalsimulation.model.base.Agent;
 import animalsimulation.model.bee.BeeAgent;
+import animalsimulation.model.bee.BeeScout;
 import java.util.Random;
 import Jama.Matrix;
 
@@ -33,19 +34,14 @@ public class BiologicalBeeMovement extends BaseMovement{
 
     public void execute(Agent agent, State state) {
         double[] coordinates = agent.getCoordinates();
-        
-        double[][] df = {{(Math.random()-0.5)},{(Math.random()-0.5)}};
-        Matrix a = new Matrix(df);
-        
-        double[][] normal = new double[2][1];
-        for(int i = 0; i < df.length; i++)
-        {
-            for(int j = 0; j < df[i].length; j++) {
-                normal[i][j] = toSigned(df[i][j]/a.normF());
-            }
-        }
-        
-        agent.setCoordinates(coordinates[0], coordinates[1]);
+        //if(agent.getGroup().getGroupName()=="Scouts")
+        //{
+            BeeScout scout = (BeeScout) agent;
+            double theta = scout.theta + scout.tsigma*(Math.random() - 0.5);
+            double dx = scout.v*Math.cos(theta);
+            double dy = scout.v*Math.sin(theta);
+            agent.setCoordinates(coordinates[0]+dx, coordinates[1]+dy);
+        //}
         super.execute(agent, state);
     }
     

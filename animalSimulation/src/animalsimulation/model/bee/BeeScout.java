@@ -8,6 +8,9 @@ import java.awt.Color;
  * @author Ebombo2
  */
 public class BeeScout extends BeeAgent {
+    public double theta;
+    public double tsigma;
+    public double v;
 
     public BeeScout(BeeHive hive) {
         super(hive);

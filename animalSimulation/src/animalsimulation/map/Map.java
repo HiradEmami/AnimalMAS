@@ -5,6 +5,7 @@
  */
 package animalsimulation.map;
 
+import Jama.Matrix;
 import animalsimulation.model.base.SimulationSettings;
 import animalsimulation.model.base.World;
 import animalsimulation.model.bee.BeeAgent;
@@ -36,13 +37,41 @@ public abstract class Map {
                     break;
                 case SCOUT_BEE:
                     bee = new BeeScout(hive);
+                    newDriftVector((BeeScout) bee);
                     break;
             }
             bees[i] = bee;
         }
         return bees;
     }
+
+    public void newDriftVector(BeeScout bee)
+    {
+        double[][] df = {{(Math.random()-0.5)},{(Math.random()-0.5)}};
+        Matrix a = new Matrix(df);
         
+        double[][] normal = new double[2][1];
+        for(int i = 0; i < df.length; i++)
+        {
+            for(int j = 0; j < df[i].length; j++) {
+                normal[i][j] = df[i][j]/a.normF();
+            }
+        }
+        bee.theta = Math.acos(normal[0][0])*toSigned(normal[1][0]);
+        bee.tsigma = 3;
+        bee.v = 1.5;
+    }
+    
+    private double toSigned(double unsigned) {
+        if(unsigned < 0) {
+            return -1d;
+        } else if(unsigned == 0) {
+            return 0d;
+        } else {
+            return 1d;
+        }
+    }
+    
     // Abstract methods
     
     public abstract World createWorld(SimulationSettings settings);
