@@ -12,6 +12,8 @@ import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeScout;
 import java.util.Random;
 import Jama.Matrix;
+import animalsimulation.behavior.event.DestinationReachedEvent;
+import animalsimulation.model.bee.BeeFood;
 
 /**
  *
@@ -34,6 +36,7 @@ public class BiologicalBeeMovement extends BaseMovement{
 
     public void execute(Agent agent, State state) {
         double[] coordinates = agent.getCoordinates();
+        BeeFood[] beeFood = AnimalSimulation.getSettings().getMap().getWorld().getWorldObjectsByClass(BeeFood.class);
         if(agent instanceof BeeScout)
         {
             BeeScout scout = (BeeScout) agent;
@@ -42,16 +45,10 @@ public class BiologicalBeeMovement extends BaseMovement{
             double dy = scout.v*Math.sin(theta);
             agent.setCoordinates(coordinates[0]+dx, coordinates[1]+dy);
         }
-        super.execute(agent, state);
-    }
-    
-    private double toSigned(double unsigned) {
-        if(unsigned < 0) {
-            return -1d;
-        } else if(unsigned == 0) {
-            return 0d;
-        } else {
-            return 1d;
+        for (BeeFood beeFood1 : beeFood) {
+            super.targetX = beeFood1.getCoordinates()[0];
+            super.targetY = beeFood1.getCoordinates()[1];
+            super.execute(agent, state);
         }
     }
 

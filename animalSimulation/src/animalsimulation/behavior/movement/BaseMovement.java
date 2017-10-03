@@ -27,7 +27,7 @@ public abstract class BaseMovement extends Action {
     }
     
     public void execute(Agent agent, State state) {
-        if(Math.round(agent.getCoordinates()[0]) == targetX && Math.round(agent.getCoordinates()[1]) == targetY) {
+        if(Math.abs(Math.round(agent.getCoordinates()[0]) - targetX) < 20 && Math.abs(Math.round(agent.getCoordinates()[1]) - targetY) < 20) {
             DestinationReachedEvent destinationReachedEvent = new DestinationReachedEvent(this);
             agent.getStateMachine().updateState(destinationReachedEvent);
         }
