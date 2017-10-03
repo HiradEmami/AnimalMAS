@@ -5,6 +5,7 @@
  */
 package animalsimulation.model.bee;
 
+import Jama.Matrix;
 import animalsimulation.model.base.Agent;
 import animalsimulation.model.knowledge.AgentKnowledge;
 
@@ -16,7 +17,10 @@ import animalsimulation.model.knowledge.AgentKnowledge;
  * @author jeroen
  */
 public abstract class BeeAgent extends Agent {
-    private BeeHive hive;
+    protected BeeHive hive;
+    protected double theta;
+    protected double tsigma;
+    protected double v;
 
     public BeeAgent(BeeHive hive) {
         this(hive.getCoordinates()[0], hive.getCoordinates()[1], hive);
@@ -36,5 +40,44 @@ public abstract class BeeAgent extends Agent {
     
     public BeeHive getHive() {
         return hive;
+    }
+    
+    public double getTheta() {
+        return theta;
+    }
+    
+    public double getTsigma() {
+        return tsigma;
+    }
+    
+    public double getV() {
+        return v;
+    }
+    
+    public void newDriftVector()
+    {
+        double[][] df = {{(Math.random()-0.5)},{(Math.random()-0.5)}};
+        Matrix a = new Matrix(df);
+        
+        double[][] normal = new double[2][1];
+        for(int i = 0; i < df.length; i++)
+        {
+            for(int j = 0; j < df[i].length; j++) {
+                normal[i][j] = df[i][j]/a.normF();
+            }
+        }
+        theta = Math.acos(normal[0][0])*toSigned(normal[1][0]);
+        tsigma = 3;
+        v = 1.5;
+    }
+
+    private double toSigned(double unsigned) {
+        if(unsigned < 0) {
+            return -1d;
+        } else if(unsigned == 0) {
+            return 0d;
+        } else {
+            return 1d;
+        }
     }
 }

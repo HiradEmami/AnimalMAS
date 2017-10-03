@@ -17,9 +17,9 @@ import animalsimulation.model.bee.BeeAgent;
 public class BeeMovement extends BaseMovement {
 
     public void initialize(Agent agent, State state) {
-        if (state.getStateName() == "Returning") {
-            BeeAgent bAgent = (BeeAgent) agent;
-            double[] coordinates = bAgent.getHive().getCoordinates();
+        if (state.getStateName().equals("Returning")) {
+            BeeAgent bee = (BeeAgent) agent;
+            double[] coordinates = bee.getHive().getCoordinates();
 
             targetX = coordinates[0];
             targetY = coordinates[1];
@@ -43,10 +43,6 @@ public class BeeMovement extends BaseMovement {
             agent.setCoordinates(coordinates[0] + movement[0], coordinates[1] + movement[1]);
         }
         
-        super.execute(agent, state);
-    }
-
-    public void reset(Agent agent, State state) {
-        initialize(agent, state);
+        checkDestinationReached(agent, 1d);
     }
 }
