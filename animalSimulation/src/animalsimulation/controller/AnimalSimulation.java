@@ -49,6 +49,7 @@ public class AnimalSimulation {
         mainFrame.setLocationRelativeTo(null);                                  //centering the frame to center
         mainFrame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);   //setting the close function to completely exit the app
         mainFrame.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);          //to make it full screen
+        mainFrame.setResizable(true);
         mainFrame.setVisible(true);                                             //displaying the frame
     }
 }

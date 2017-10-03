@@ -3,9 +3,6 @@ package animalsimulation.controller;
 import animalsimulation.view.graphModel.*;
 import java.util.ArrayList;
 import org.jfree.ui.RefineryUtilities;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class ChartExamples {
 

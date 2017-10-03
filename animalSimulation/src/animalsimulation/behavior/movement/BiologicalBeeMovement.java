@@ -40,27 +40,23 @@ public class BiologicalBeeMovement extends BaseMovement{
         double[][] normal = new double[2][1];
         for(int i = 0; i < df.length; i++)
         {
-          for(int j = 0; j < df[i].length; j++)
-              normal[i][j] = df[i][j]/a.normF();
+            for(int j = 0; j < df[i].length; j++) {
+                normal[i][j] = toSigned(df[i][j]/a.normF());
+            }
         }
+        
+        agent.setCoordinates(coordinates[0], coordinates[1]);
         super.execute(agent, state);
     }
     
-    public void executeS(Agent agent, State state) {
-        double[] coordinates = agent.getCoordinates();
-        double distance = Math.sqrt(Math.pow((targetX - coordinates[0]), 2) + Math.pow((targetY - coordinates[1]), 2));
-        
-        if(distance < agent.getSpeed()) {
-            agent.setCoordinates(targetX, targetY);
+    private double toSigned(double unsigned) {
+        if(unsigned < 0) {
+            return -1d;
+        } else if(unsigned == 0) {
+            return 0d;
         } else {
-            double[] movement = {
-                (targetX - coordinates[0]) / distance * agent.getSpeed(),
-                (targetY - coordinates[1]) / distance * agent.getSpeed()
-            };
-            agent.setCoordinates(coordinates[0] + movement[0], coordinates[1] + movement[1]);
+            return 1d;
         }
-        
-        super.execute(agent, state);
     }
 
     public void reset(Agent agent, State state) {
