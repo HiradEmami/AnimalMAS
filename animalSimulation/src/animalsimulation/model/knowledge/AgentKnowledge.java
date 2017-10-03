@@ -96,4 +96,13 @@ public class AgentKnowledge {
         }
         return true;
     }
+
+    public ArrayList<FoodKnowledge> getFoodKnowledge() {
+        return foodKnowledge;
+    }
+
+    public ArrayList<ObstacleKnowledge> getObstacleKnowledge() {
+        return obstacleKnowledge;
+    }
+    
 }
