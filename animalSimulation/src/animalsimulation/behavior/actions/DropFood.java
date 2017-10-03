@@ -14,10 +14,14 @@ import animalsimulation.behavior.base.State;
 import animalsimulation.model.base.Agent;
 
 public class DropFood  extends Action {
+    
 
+   
+
+   
     @Override
     public void execute(Agent agent, State state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }

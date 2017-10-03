@@ -36,7 +36,7 @@ public class WorkerBeeBehavior  extends StateMachine {
         addStateTransition(idle, communicate, MeetingAgent.class);
         addStateTransition(communicate, moveToFoodSource, KnowledgeUpdated.class);
         addStateTransition(moveToFoodSource, gatherFood, DestinationReachedEvent.class);
-        addStateTransition(gatherFood, returnToHive, DestinationReachedEvent.class);
+        addStateTransition(gatherFood, returnToHive, GatheredFood.class);
         addStateTransition(returnToHive, dropFood, DestinationReachedEvent.class);
         addStateTransition(dropFood, moveToFoodSource, DroppedFood.class);
         
