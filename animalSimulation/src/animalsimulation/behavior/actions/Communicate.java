@@ -8,6 +8,7 @@ package animalsimulation.behavior.actions;
 import animalsimulation.behavior.base.Action;
 import animalsimulation.behavior.base.State;
 import animalsimulation.model.base.Agent;
+import animalsimulation.model.bee.BeeAgent;
 
 /**
  *
@@ -20,4 +21,12 @@ public class Communicate extends Action{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+      private void communicateFood (BeeAgent argFirst, BeeAgent argSecond){
+        argFirst.getKnowledge().updateFoodKnowledge(argSecond.getKnowledge().getFoodKnowledge());
+        argSecond.getKnowledge().updateFoodKnowledge(argFirst.getKnowledge().getFoodKnowledge());
+    }
+    private void communicateObstacle (BeeAgent argFirst, BeeAgent argSecond){
+        argFirst.getKnowledge().updateObstacleKnowledge(argSecond.getKnowledge().getObstacleKnowledge());
+        argSecond.getKnowledge().updateObstacleKnowledge(argFirst.getKnowledge().getObstacleKnowledge());
+    }
 }

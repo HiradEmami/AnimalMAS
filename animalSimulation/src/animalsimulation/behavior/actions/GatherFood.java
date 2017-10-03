@@ -19,9 +19,14 @@ public class GatherFood extends Action{
     
     
     
+  @Override
+    public void initialize(Agent agent, State state) {
+        setTimeOut(3);
+    }
+    
     @Override
     public void execute(Agent agent, State state) {
-       
+        checkTimeOut(agent, state.getTick());
     }
     
 }
