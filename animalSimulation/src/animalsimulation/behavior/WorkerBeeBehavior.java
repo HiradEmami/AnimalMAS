@@ -34,7 +34,18 @@ public class WorkerBeeBehavior  extends StateMachine {
         addStateTransition(moveToFoodSource, gatherFood, DestinationReachedEvent.class);
         addStateTransition(gatherFood, returnToHive, ActionCompletedEvent.class);
         addStateTransition(returnToHive, dropFood, DestinationReachedEvent.class);
-        addStateTransition(dropFood, moveToFoodSource, ActionCompletedEvent.class);
+        
+        /** 
+         * !!! Transition probabilities do not add up to 100% !!!
+         * probabailities are evaluated individually. E.g.:
+         * 
+         * the dropFood => moveToFoodSource state transition has a 60% chance of happening
+         * if the transition doesn't happen then
+         * the dropFood => idle state transition should always fire (i.e. 100% chance)
+         */
+        addStateTransition(dropFood, moveToFoodSource, ActionCompletedEvent.class, 0.6d);
+        addStateTransition(dropFood, idle, ActionCompletedEvent.class, 1d);
+        
         
         setCurrentState(idle);
     }

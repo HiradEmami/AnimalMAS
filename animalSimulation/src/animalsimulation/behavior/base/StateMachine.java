@@ -21,13 +21,19 @@ public abstract class StateMachine {
     private final Random random;
     
     public StateMachine(Agent agent) {
-        stateMap = new HashMap<>();
         this.agent = agent;
+        stateMap = new HashMap<>();
         random = new Random();
     }
     
     public void addStateTransition(State sourceState, State targetState, Class<? extends Event> event) {
-        StateTransition transition = new StateTransition(targetState, event);
+        addStateTransition(sourceState, targetState, event, 1d);
+    }
+    
+    public void addStateTransition(State sourceState, State targetState, Class<? extends Event> event,
+        double transitionProbability) {
+        
+        StateTransition transition = new StateTransition(targetState, event, transitionProbability);
         if(!stateMap.containsKey(sourceState)) {
             stateMap.put(sourceState, new ArrayList<>());
         }
