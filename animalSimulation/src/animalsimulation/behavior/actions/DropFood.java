@@ -18,7 +18,7 @@ public class DropFood  extends Action {
     
     @Override
     public void initialize(Agent agent, State state) {
-        setTimeOut(3);
+        setTimeOut(100);
         
         BeeWorker bee = (BeeWorker) agent;
         int gatheredFood = bee.getGatheredFood();

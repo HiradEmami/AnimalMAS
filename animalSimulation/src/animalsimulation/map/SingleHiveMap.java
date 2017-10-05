@@ -24,6 +24,16 @@ public class SingleHiveMap extends Map {
         // Adds bee hive
         BeeHive hive = new BeeHive(world.getWidth()/2, world.getHeight()/2);
         world.addObject(hive);
+                
+        // Adds food sources in a circle around the hive
+        int radius = 300;
+        for(int i = 0; i < settings.getNumberOfFoodSources(); i++) {
+            BeeFood food = new BeeFood(
+                Math.round((float) (hive.getCoordinates()[0] + radius * Math.cos(2 * Math.PI / settings.getNumberOfFoodSources() * i))),
+                Math.round((float) (hive.getCoordinates()[1] + radius * Math.sin(2 * Math.PI / settings.getNumberOfFoodSources() * i)))
+            );
+            world.addObject(food);
+        }
         
         // Adds worker bees to hive
         BeeAgent[] workerBees = createBees(Map.WORKER_BEE, settings.getNumberOfWorkerBees(), hive);
@@ -32,16 +42,6 @@ public class SingleHiveMap extends Map {
         // Adds scout bees to hive
         BeeAgent[] scoutBees = createBees(Map.SCOUT_BEE, settings.getNumberOfScoutBees(), hive);
         world.addObjects((WorldObject[]) scoutBees);
-        
-        // Adds food sources in a circle around the hive
-        int radius = 400;
-        for(int i = 0; i < settings.getNumberOfFoodSources(); i++) {
-            BeeFood food = new BeeFood(
-                Math.round((float) (hive.getCoordinates()[0] + radius * Math.cos(2 * Math.PI / settings.getNumberOfFoodSources() * i))),
-                Math.round((float) (hive.getCoordinates()[1] + radius * Math.sin(2 * Math.PI / settings.getNumberOfFoodSources() * i)))
-            );
-            world.addObject(food);
-        }
         
         return world;
     }

@@ -22,7 +22,7 @@ public class GatherFood extends Action {
     
     @Override
     public void initialize(Agent agent, State state) {
-        setTimeOut(3);
+        setTimeOut(100);
         
         World world = AnimalSimulation.getSettings().getMap().getWorld();
         for(BeeFood foodSource : world.getWorldObjectsByClass(BeeFood.class)) {
