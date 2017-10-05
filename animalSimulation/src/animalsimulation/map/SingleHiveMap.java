@@ -37,8 +37,8 @@ public class SingleHiveMap extends Map {
         int radius = 400;
         for(int i = 0; i < settings.getNumberOfFoodSources(); i++) {
             BeeFood food = new BeeFood(
-            Math.round((float) (hive.getCoordinates()[0] + radius * Math.cos(2 * Math.PI / settings.getNumberOfFoodSources() * i))),
-            Math.round((float) (hive.getCoordinates()[1] + radius * Math.sin(2 * Math.PI / settings.getNumberOfFoodSources() * i)))
+                Math.round((float) (hive.getCoordinates()[0] + radius * Math.cos(2 * Math.PI / settings.getNumberOfFoodSources() * i))),
+                Math.round((float) (hive.getCoordinates()[1] + radius * Math.sin(2 * Math.PI / settings.getNumberOfFoodSources() * i)))
             );
             world.addObject(food);
         }

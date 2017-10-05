@@ -8,6 +8,7 @@ package animalsimulation.behavior.base;
 import animalsimulation.model.base.Agent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  *
@@ -17,10 +18,12 @@ public abstract class StateMachine {
     protected State currentState;
     protected Agent agent;
     protected HashMap<State, ArrayList<StateTransition>> stateMap;
+    private final Random random;
     
     public StateMachine(Agent agent) {
         stateMap = new HashMap<>();
         this.agent = agent;
+        random = new Random();
     }
     
     public void addStateTransition(State sourceState, State targetState, Class<? extends Event> event) {
@@ -32,8 +35,9 @@ public abstract class StateMachine {
     }
     
     public void updateState(Event event) {
+        double randomValue = random.nextDouble();
         for(StateTransition transition : stateMap.get(currentState)) {
-            if(transition.requires(event)) {
+            if(transition.requires(event) && randomValue <= transition.getTransitionProbability()) {
                 event.beforeStateChange();
                 setCurrentState(transition.getTargetState());
                 event.afterStateChange();
