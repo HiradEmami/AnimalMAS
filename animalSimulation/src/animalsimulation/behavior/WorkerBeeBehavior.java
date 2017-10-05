@@ -46,7 +46,6 @@ public class WorkerBeeBehavior  extends StateMachine {
         addStateTransition(dropFood, moveToFoodSource, ActionCompletedEvent.class, 0.6d);
         addStateTransition(dropFood, idle, ActionCompletedEvent.class, 1d);
         
-        
         setCurrentState(idle);
     }
     

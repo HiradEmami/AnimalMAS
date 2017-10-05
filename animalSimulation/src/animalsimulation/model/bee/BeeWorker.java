@@ -13,7 +13,8 @@ import java.awt.Color;
  * @author Ebombo2
  */
 public class BeeWorker extends BeeAgent {
-
+    private int gatheredFood;
+    
     public BeeWorker(BeeHive hive) {
         super(hive);
         color = Color.BLACK;
@@ -22,5 +23,13 @@ public class BeeWorker extends BeeAgent {
         height = 10;
         stateMachine = new WorkerBeeBehavior(this);
         theta = 0;
+    }
+        
+    public int getGatheredFood() {
+        return gatheredFood;
+    }
+    
+    public void setGatheredFood(int gatheredFood) {
+        this.gatheredFood = gatheredFood;
     }
 }

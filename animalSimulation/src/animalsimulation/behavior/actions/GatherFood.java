@@ -11,13 +11,29 @@ package animalsimulation.behavior.actions;
  */
 import animalsimulation.behavior.base.Action;
 import animalsimulation.behavior.base.State;
+import animalsimulation.controller.AnimalSimulation;
 import animalsimulation.model.base.Agent;
+import animalsimulation.model.base.World;
+import animalsimulation.model.bee.BeeFood;
+import animalsimulation.model.bee.BeeWorker;
 
 public class GatherFood extends Action {
+    private BeeFood foodSource;
     
     @Override
     public void initialize(Agent agent, State state) {
         setTimeOut(3);
+        
+        World world = AnimalSimulation.getSettings().getMap().getWorld();
+        for(BeeFood foodSource : world.getWorldObjectsByClass(BeeFood.class)) {
+            if(agent.distanceToObject(foodSource) <= foodSource.getHeight()) {
+                this.foodSource = foodSource;
+                break;
+            }
+        }
+        
+        BeeWorker bee = (BeeWorker) agent;
+        bee.setGatheredFood(foodSource.getQualityFoodYield());
     }
     
     @Override

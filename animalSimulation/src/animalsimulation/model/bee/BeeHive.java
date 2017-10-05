@@ -10,6 +10,7 @@ import java.awt.Color;
  */
 public class BeeHive extends WorldObject {
     private Group group;
+    private int gatheredFood;
     
     public BeeHive(double x, double y) {
         this(x, y, null);
@@ -44,5 +45,13 @@ public class BeeHive extends WorldObject {
     
     public int hiveSize() {
         return group.getGroupSize();
+    }
+    
+    public int getGatheredFood() {
+        return gatheredFood;
+    }
+    
+    public synchronized void addGatheredFood(int gatheredFood) {
+        this.gatheredFood += gatheredFood;
     }
 }
