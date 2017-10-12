@@ -1,13 +1,14 @@
 
 package animalsimulation.controller.recordData;
 
-import animalsimulation.Model.*;
+import animalsimulation.model.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import animalsimulation.behavior.base.*;
 import animalsimulation.model.base.Agent;
+import animalsimulation.model.bee.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
