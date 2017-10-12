@@ -16,6 +16,11 @@ public class SimulationSettings {
     private int numberOfWorkerBees;
     private int numberOfScoutBees;
     private int numberOfFoodSources;
+    private int recordingInterval;
+    
+    public SimulationSettings() {
+        recordingInterval = 1;
+    }
     
     public Map getMap() {
         return map;
@@ -47,5 +52,16 @@ public class SimulationSettings {
     
     public void setNumberOfFoodSources(int numberOfFoodSources) {
         this.numberOfFoodSources = numberOfFoodSources;
+    }
+    
+    public int getRecordingInterval() {
+        return recordingInterval;
+    }
+    
+    public void setRecordingInterval(int recordingInterval) {
+        this.recordingInterval = recordingInterval;
+        if(recordingInterval < 1) {
+            this.recordingInterval = 1;
+        }
     }
 }

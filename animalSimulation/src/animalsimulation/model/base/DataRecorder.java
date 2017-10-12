@@ -53,9 +53,12 @@ public class DataRecorder {
     }
     
     public void addDataSource(WorldObject dataSource) {
-        dataSources.add(dataSource);
-        XSSFSheet sheet = workbook.createSheet(dataSource.toString());
-        sheetMap.put(sheet, 0);
+        try {
+            dataSources.add(dataSource);
+            XSSFSheet sheet = workbook.createSheet(dataSource.toString());
+            writeHeader(sheet, dataSource);
+            sheetMap.put(sheet, 1);
+        } catch (IOException ex) {}
     }
     
     public void removeDataSource(WorldObject dataSource) {
@@ -66,18 +69,21 @@ public class DataRecorder {
         sheetMap.remove(sheet);
     }
     
-    public void persistData() throws IOException {
+    public void persistData(int simulationStep) throws IOException {
         for(int i = 0; i < dataSources.size(); i++) {
             XSSFSheet sheet = workbook.getSheetAt(i);
             int currentRow = sheetMap.get(sheet);
-            int currentColumn = 0;
+            int currentColumn = 1;
             Row row = sheet.createRow(currentRow);            
             HashMap dataMap = dataSources.get(i).getData();
             Iterator iterator = dataMap.keySet().iterator();
             
+            Cell cell = row.createCell(0);
+            cell.setCellValue(simulationStep);
+            
             while(iterator.hasNext()) {
                 Object key = iterator.next();
-                Cell cell = row.createCell(currentColumn);
+                cell = row.createCell(currentColumn);
                 Object value = dataMap.get(key);
                 cell.setCellValue(value.toString());
                 currentColumn++;
@@ -85,6 +91,27 @@ public class DataRecorder {
             
             currentRow++;
             sheetMap.put(sheet, currentRow);
+        }
+        
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        workbook.write(fileOutputStream);
+        fileOutputStream.close();
+    }
+    
+    // PRIVATE METHODS
+    
+    private void writeHeader(XSSFSheet sheet, WorldObject object) throws IOException {
+        Row row = sheet.createRow(0);
+        Iterator iterator = object.getData().keySet().iterator();
+        Cell cell = row.createCell(0);
+        cell.setCellValue("SimulationStep");
+        
+        int i = 1;
+        while(iterator.hasNext()) {
+            Object key = iterator.next();
+            cell = row.createCell(i);
+            cell.setCellValue(key.toString());
+            i++;
         }
         
         FileOutputStream fileOutputStream = new FileOutputStream(file);

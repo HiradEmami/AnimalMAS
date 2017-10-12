@@ -40,6 +40,7 @@ public class AnimalSimulation {
         settings.setNumberOfScoutBees(20);
         settings.setNumberOfWorkerBees(20);
         settings.getMap().createWorld(settings);
+        settings.setRecordingInterval(100);
         
         simulationController = new SimulationController(settings);
     }

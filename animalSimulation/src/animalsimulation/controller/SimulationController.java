@@ -20,6 +20,7 @@ public class SimulationController extends BaseController implements Runnable {
     private final SimulationSettings settings;
     private final DataRecorder recorder;
     private Thread thread;
+    private int step;
     
     public SimulationController(SimulationSettings settings) {
         this.settings = settings;
@@ -37,7 +38,12 @@ public class SimulationController extends BaseController implements Runnable {
         }
         
         updateViews();
-        recorder.persistData();
+        
+        if(step % settings.getRecordingInterval() == 0) {
+            recorder.persistData(step);
+        }
+        
+        step++;
     }
     
     public synchronized void runForever() {
