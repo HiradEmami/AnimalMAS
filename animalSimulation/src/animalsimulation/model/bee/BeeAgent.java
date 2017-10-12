@@ -8,6 +8,10 @@ package animalsimulation.model.bee;
 import Jama.Matrix;
 import animalsimulation.model.base.Agent;
 import animalsimulation.model.knowledge.AgentKnowledge;
+import animalsimulation.model.knowledge.FoodKnowledge;
+import java.util.ArrayList;
+import org.apache.commons.math3.geometry.Vector;
+import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 /**
  * Abstract class for describing properties specific to bee typed agents.
@@ -79,5 +83,39 @@ public abstract class BeeAgent extends Agent {
         } else {
             return 1d;
         }
+    }
+    
+    public double[] newTargetFactor(Agent agent)
+    {
+        ArrayList<FoodKnowledge> f = this.getKnowledge().getFoodKnowledge();
+        double[][] pos = new double[30][2];
+        double[] normal = {0,1};
+        int i = 0;
+        
+        for(FoodKnowledge fk:f)
+        {
+            pos[i] = fk.getTargetCoordinates();
+        }
+        int index = (int) (Math.random()*f.size());
+//        int index = 0;
+        
+        Vector2D agentC = new Vector2D(agent.getCoordinates());
+        Vector2D targetC = new Vector2D(f.get(index).getTargetCoordinates());
+        double[] target = targetC.toArray();
+        Vector2D u = targetC.subtract(agentC);
+        double[] w = u.toArray();
+        
+        for(int j = 0; j < w.length; j++) {
+                normal[j] = w[j]/u.getNorm();
+            }
+        theta = (Math.acos(normal[0])*toSigned(normal[1]));
+        
+        return target;
+    }
+    
+    public double getD()
+    {
+        //la.norm( self.recruitedSpot - np.array([self.hiveX,self.hiveY]) ) - la.norm( np.array([int(self.x),int(self.y)]) - np.array([self.hiveX,self.hiveY]) );
+        return 1.0;
     }
 }

@@ -20,7 +20,8 @@ public class WorkerBeeExploidMovement extends BaseMovement{
     {
         if(agent instanceof BeeAgent)
         {
-            double[] coordinates = ((BeeAgent)agent).getKnowledge().getFoodKnowledge().get(0).getTargetCoordinates();
+            double[] coordinates = ((BeeAgent) agent).newTargetFactor(agent);
+            //double[] coordinates = ((BeeAgent)agent).getKnowledge().getFoodKnowledge().get(0).getTargetCoordinates();
             targetX = coordinates[0];
             targetY = coordinates[1];
         }
@@ -28,19 +29,30 @@ public class WorkerBeeExploidMovement extends BaseMovement{
     
     @Override
     public void execute(Agent agent, State state) {
-        double[] coordinates = agent.getCoordinates();
-        double distance = agent.distanceToLocation(targetX, targetY);
+        BeeAgent bee = (BeeAgent) agent;
+        double[] coordinates = bee.getCoordinates();
         
-        if(distance < agent.getSpeed()) {
-            agent.setCoordinates(targetX, targetY);
-        } else {
-            double[] movement = {
-                (targetX - coordinates[0]) / distance * agent.getSpeed(),
-                (targetY - coordinates[1]) / distance * agent.getSpeed()
-            };
-            agent.setCoordinates(coordinates[0] + movement[0], coordinates[1] + movement[1]);
-        }
+        double b = bee.getD();
+        if(b < 0)
+            move2(bee, coordinates);
+        else
+            move(bee, coordinates);
+                
+        checkDestinationReached(agent, 3d);
+    }
+    
+    private void move(BeeAgent bee, double[] coordinates) {        
+        double theta = bee.getTheta() + bee.getTsigma()*(Math.random() - 0.5);
+        double dx = bee.getV()*Math.cos(theta);
+        double dy = bee.getV()*Math.sin(theta);
         
-        checkDestinationReached(agent, 1d);
+        bee.setCoordinates(coordinates[0]+dx, coordinates[1]+dy);
+    }
+    
+    private void move2(BeeAgent bee, double[] coordinates) {        
+        double dx = 3*(Math.random() - 0.5);
+        double dy = 3*(Math.random() - 0.5);
+        
+        bee.setCoordinates(coordinates[0]+dx, coordinates[1]+dy);
     }
 }

@@ -18,7 +18,7 @@ public class AnimalSimulation {
     
     
     public static void main(String[] args) {  
-        ChartExamples testchart =new ChartExamples(args);
+        //ChartExamples testchart =new ChartExamples(args);
         
         initializeWorld();
         initializeUI();
@@ -38,7 +38,7 @@ public class AnimalSimulation {
         settings.setMap(new SingleHiveMap());
         settings.setNumberOfFoodSources(30);
         settings.setNumberOfScoutBees(20);
-        settings.setNumberOfWorkerBees(20);
+        settings.setNumberOfWorkerBees(2);
         settings.getMap().createWorld(settings);
         settings.setRecordingInterval(100);
         

@@ -23,7 +23,7 @@ public class Communicate extends Action {
     private BeeWorker workerBee;
     
     public void initialize(Agent agent, State state) {
-        setTimeOut(3); // Finish after three simulation steps.
+        setTimeOut(50); // Finish after fifty simulation steps.
         
         BeeAgent bee = (BeeAgent) agent;
         WorldObject[] memberBees = bee.getHive().getAffiliatedBees();

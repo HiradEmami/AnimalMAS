@@ -23,6 +23,7 @@ public class BeeWorker extends BeeAgent {
         height = 10;
         stateMachine = new WorkerBeeBehavior(this);
         theta = 0;
+        v = 1;
     }
         
     public int getGatheredFood() {
