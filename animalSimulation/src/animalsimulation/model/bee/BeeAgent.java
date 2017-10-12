@@ -10,7 +10,6 @@ import animalsimulation.model.base.Agent;
 import animalsimulation.model.knowledge.AgentKnowledge;
 import animalsimulation.model.knowledge.FoodKnowledge;
 import java.util.ArrayList;
-import org.apache.commons.math3.geometry.Vector;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 /**
@@ -97,7 +96,6 @@ public abstract class BeeAgent extends Agent {
             pos[i] = fk.getTargetCoordinates();
         }
         int index = (int) (Math.random()*f.size());
-//        int index = 0;
         
         Vector2D agentC = new Vector2D(agent.getCoordinates());
         Vector2D targetC = new Vector2D(f.get(index).getTargetCoordinates());
@@ -113,9 +111,19 @@ public abstract class BeeAgent extends Agent {
         return target;
     }
     
-    public double getD()
+    public double getD(Agent agent, double[] targetCoordinates)
     {
-        //la.norm( self.recruitedSpot - np.array([self.hiveX,self.hiveY]) ) - la.norm( np.array([int(self.x),int(self.y)]) - np.array([self.hiveX,self.hiveY]) );
-        return 1.0;
+        BeeAgent bee = (BeeAgent) agent;
+        
+        Vector2D recruitedSpot = new Vector2D(targetCoordinates);
+        Vector2D agentSpot = new Vector2D(bee.getCoordinates());
+        Vector2D hiveSpot = new Vector2D(bee.getHive().getCoordinates());
+
+        Vector2D a = recruitedSpot.subtract(hiveSpot);
+        Vector2D b = agentSpot.subtract(hiveSpot);
+        
+        Vector2D c = a.subtract(b);
+        
+        return(c.getNorm());
     }
 }

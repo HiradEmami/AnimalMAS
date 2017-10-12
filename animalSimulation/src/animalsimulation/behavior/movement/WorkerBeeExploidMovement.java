@@ -31,22 +31,36 @@ public class WorkerBeeExploidMovement extends BaseMovement{
     public void execute(Agent agent, State state) {
         BeeAgent bee = (BeeAgent) agent;
         double[] coordinates = bee.getCoordinates();
+        double[] targetCoordinates = {targetX, targetY};
         
-        double b = bee.getD();
+        double b = bee.getD(agent, targetCoordinates);
         if(b < 0)
             move2(bee, coordinates);
         else
             move(bee, coordinates);
                 
-        checkDestinationReached(agent, 3d);
+        checkDestinationReached(agent, 1d);
     }
     
     private void move(BeeAgent bee, double[] coordinates) {        
-        double theta = bee.getTheta() + bee.getTsigma()*(Math.random() - 0.5);
-        double dx = bee.getV()*Math.cos(theta);
-        double dy = bee.getV()*Math.sin(theta);
+        if(Math.abs(coordinates[0] - targetX)<6 && Math.abs(coordinates[1] - targetY)<6)
+            bee.setCoordinates(targetX, targetY);
+        else if(Math.abs(coordinates[0] - targetX)<25 && Math.abs(coordinates[1] - targetY)<25)
+        {
+            double distance = bee.distanceToLocation(targetX, targetY);
+            double[] movement = {
+                (targetX - coordinates[0]) / distance * 1,
+                (targetY - coordinates[1]) / distance * 1
+            };
+            bee.setCoordinates(coordinates[0] + movement[0], coordinates[1] + movement[1]);    
+        }
+        else{
+            double theta = bee.getTheta() + bee.getTsigma()*(Math.random() - 0.5);
+            double dx = bee.getV()*Math.cos(theta);
+            double dy = bee.getV()*Math.sin(theta);
         
-        bee.setCoordinates(coordinates[0]+dx, coordinates[1]+dy);
+            bee.setCoordinates(coordinates[0]+dx, coordinates[1]+dy);
+        }
     }
     
     private void move2(BeeAgent bee, double[] coordinates) {        
