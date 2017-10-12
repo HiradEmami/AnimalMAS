@@ -7,6 +7,8 @@ package animalsimulation.model.base;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.lang.reflect.Field;
+import java.util.HashMap;
 
 /**
  *
@@ -96,6 +98,20 @@ public abstract class WorldObject {
                 g.fillRect(dimensions[0], dimensions[1], dimensions[2], dimensions[3]);
                 break;
         }
+    }
+    
+    public HashMap<String, Object> getData() {
+        HashMap<String, Object> dataMap = new HashMap<String, Object>();
+        
+        for(Field field : this.getClass().getDeclaredFields()) {
+            Class<?> c = field.getType();
+            try {
+                field.setAccessible(true);
+                dataMap.put(field.getName(), field.get(this));
+            } catch (Exception e) {}
+        }
+        
+        return dataMap;
     }
     
     public double distanceToObject(WorldObject object) {

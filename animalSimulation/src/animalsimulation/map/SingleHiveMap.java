@@ -22,7 +22,7 @@ public class SingleHiveMap extends Map {
         world = new World(1000, 1000);
         
         // Adds bee hive
-        BeeHive hive = new BeeHive(world.getWidth()/2, world.getHeight()/2);
+        BeeHive hive = new BeeHive("Natural Hive", world.getWidth()/2, world.getHeight()/2);
         world.addObject(hive);
                 
         // Adds food sources in a circle around the hive
@@ -42,6 +42,9 @@ public class SingleHiveMap extends Map {
         // Adds scout bees to hive
         BeeAgent[] scoutBees = createBees(Map.SCOUT_BEE, settings.getNumberOfScoutBees(), hive);
         world.addObjects((WorldObject[]) scoutBees);
+        
+        // Register data sources for data collection
+        recorder.addDataSource(hive);
         
         return world;
     }

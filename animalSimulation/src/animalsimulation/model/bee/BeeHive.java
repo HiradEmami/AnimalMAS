@@ -9,15 +9,19 @@ import java.awt.Color;
  * @author Ebombo2
  */
 public class BeeHive extends WorldObject {
+    private String hiveType;
     private Group group;
     private int gatheredFood;
+    private int idleBees;
+    private int activeBees;
     
-    public BeeHive(double x, double y) {
-        this(x, y, null);
+    public BeeHive(String hiveType, double x, double y) {
+        this(hiveType, x, y, null);
     }
     
-    public BeeHive(double x, double y, Group group) {
+    public BeeHive(String hiveType, double x, double y, Group group) {
         super(x, y);
+        this.hiveType = hiveType;
         color = Color.YELLOW;
         shape = Shape.OVAL;
         width = 40;
@@ -53,5 +57,19 @@ public class BeeHive extends WorldObject {
     
     public synchronized void addGatheredFood(int gatheredFood) {
         this.gatheredFood += gatheredFood;
+    }
+    
+    public synchronized void incrementActiveBees() {
+        if(idleBees > 0) {
+            activeBees++;
+            idleBees--;
+        }
+    }
+    
+    public synchronized void decrementActiveBees() {
+        if(activeBees > 0) {
+            activeBees--;
+            idleBees++;
+        }
     }
 }

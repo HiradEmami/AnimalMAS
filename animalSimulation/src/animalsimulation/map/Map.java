@@ -5,12 +5,14 @@
  */
 package animalsimulation.map;
 
+import animalsimulation.model.base.DataRecorder;
 import animalsimulation.model.base.SimulationSettings;
 import animalsimulation.model.base.World;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeHive;
 import animalsimulation.model.bee.BeeScout;
 import animalsimulation.model.bee.BeeWorker;
+import java.io.IOException;
 
 /**
  *
@@ -21,9 +23,23 @@ public abstract class Map {
     protected static final int SCOUT_BEE = 1;
     
     protected World world;
+    protected DataRecorder recorder;
+    
+    public Map() {
+        try {
+            recorder = new DataRecorder();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            System.exit(1);
+        }
+    }
     
     public World getWorld() {
         return world;
+    }
+    
+    public DataRecorder getDataRecorder() {
+        return recorder;
     }
     
     protected BeeAgent[] createBees(int type, int amount, BeeHive hive) {

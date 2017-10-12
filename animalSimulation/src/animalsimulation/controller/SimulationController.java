@@ -6,8 +6,10 @@
 package animalsimulation.controller;
 
 import animalsimulation.model.base.Agent;
+import animalsimulation.model.base.DataRecorder;
 import animalsimulation.model.base.SimulationSettings;
 import animalsimulation.model.base.World;
+import java.io.IOException;
 
 /**
  * Controller class for linking the World model to the WorldPanel view.
@@ -16,21 +18,26 @@ import animalsimulation.model.base.World;
  */
 public class SimulationController extends BaseController implements Runnable {
     private final SimulationSettings settings;
+    private final DataRecorder recorder;
     private Thread thread;
     
     public SimulationController(SimulationSettings settings) {
         this.settings = settings;
         model = settings.getMap().getWorld();
+        recorder = settings.getMap().getDataRecorder();
     }
     
     // Executes one simulation step.
-    public void step() {
+    public void step() throws IOException {
         World world = (World) model;
         Agent[] agents = world.getWorldObjectsByClass(Agent.class);
+        
         for (Agent agent : agents) {
             agent.act();
         }
+        
         updateViews();
+        recorder.persistData();
     }
     
     public synchronized void runForever() {
@@ -58,7 +65,12 @@ public class SimulationController extends BaseController implements Runnable {
                 try {
                     step();
                     Thread.sleep(20);
-                } catch (InterruptedException ex) {}   
+                }
+                catch (InterruptedException ex) {}
+                catch (IOException ioe) {
+                    ioe.printStackTrace();
+                    System.exit(1);
+                }
             }
         }
     }
