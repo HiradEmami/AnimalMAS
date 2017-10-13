@@ -23,7 +23,7 @@ public class WorkerBeeBehavior  extends StateMachine {
         super(agent);
         
         State idle = new State("Idle", null);
-        State communicate = new State("communicate", null);
+        State communicate = new State("Communicate", null);
         State moveToFoodSource = new State("TravellingToFood", new WorkerBeeExploidMovement());
         State gatherFood = new State("GatheringFood", new GatherFood());
         State returnToHive = new State("Returning", new BeeReturnMovement());

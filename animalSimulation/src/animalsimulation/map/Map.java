@@ -8,6 +8,8 @@ package animalsimulation.map;
 import animalsimulation.model.base.DataRecorder;
 import animalsimulation.model.base.SimulationSettings;
 import animalsimulation.model.base.World;
+import animalsimulation.model.bee.AIBeeScout;
+import animalsimulation.model.bee.AIBeeWorker;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeHive;
 import animalsimulation.model.bee.BeeScout;
@@ -21,6 +23,8 @@ import java.io.IOException;
 public abstract class Map {
     protected static final int WORKER_BEE = 0;
     protected static final int SCOUT_BEE = 1;
+    protected static final int AIWORKER_BEE = 2;
+    protected static final int AISCOUT_BEE = 3;
     
     protected World world;
     protected DataRecorder recorder;
@@ -52,6 +56,12 @@ public abstract class Map {
                     break;
                 case SCOUT_BEE:
                     bee = new BeeScout(hive);
+                    break;
+                case AIWORKER_BEE:
+                    bee = new AIBeeWorker(hive);
+                    break;
+                case AISCOUT_BEE:
+                    bee = new AIBeeScout(hive);
                     break;
             }
             bees[i] = bee;

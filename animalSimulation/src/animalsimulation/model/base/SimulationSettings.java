@@ -15,6 +15,8 @@ public class SimulationSettings {
     private Map map;
     private int numberOfWorkerBees;
     private int numberOfScoutBees;
+    private int numberOfAIWorkerBees;
+    private int numberOfAIScoutBees;
     private int numberOfFoodSources;
     private int recordingInterval;
     
@@ -63,5 +65,33 @@ public class SimulationSettings {
         if(recordingInterval < 1) {
             this.recordingInterval = 1;
         }
+    }
+
+    /**
+     * @return the numberOfAIWorkerBees
+     */
+    public int getNumberOfAIWorkerBees() {
+        return numberOfAIWorkerBees;
+    }
+
+    /**
+     * @param numberOfAIWorkerBees the numberOfAIWorkerBees to set
+     */
+    public void setNumberOfAIWorkerBees(int numberOfAIWorkerBees) {
+        this.numberOfAIWorkerBees = numberOfAIWorkerBees;
+    }
+
+    /**
+     * @return the numberOfAIScoutBees
+     */
+    public int getNumberOfAIScoutBees() {
+        return numberOfAIScoutBees;
+    }
+
+    /**
+     * @param numberOfAIScoutBees the numberOfAIScoutBees to set
+     */
+    public void setNumberOfAIScoutBees(int numberOfAIScoutBees) {
+        this.numberOfAIScoutBees = numberOfAIScoutBees;
     }
 }
