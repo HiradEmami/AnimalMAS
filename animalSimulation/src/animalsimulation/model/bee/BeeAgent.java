@@ -7,7 +7,6 @@ package animalsimulation.model.bee;
 
 import Jama.Matrix;
 import animalsimulation.model.base.Agent;
-import animalsimulation.model.knowledge.AIAgentKnowledge;
 import animalsimulation.model.knowledge.AgentKnowledge;
 import animalsimulation.model.knowledge.FoodKnowledge;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public abstract class BeeAgent extends Agent {
     public BeeAgent(double x, double y, BeeHive hive) {
         super(x, y);
         initKnowledge(hive);
-        initAIKnowledge(hive);
+//        initAIKnowledge(hive);
         
         hive.addBee(this);
         this.hive = hive;
@@ -45,9 +44,9 @@ public abstract class BeeAgent extends Agent {
         this.knowledge = new AgentKnowledge(hive.getCoordinates());
     }
     
-    public void initAIKnowledge(BeeHive hive){
-        this.aiknowledge = new AIAgentKnowledge(hive.getCoordinates());
-    }
+//    public void initAIKnowledge(BeeHive hive){
+//        this.aiknowledge = new AIAgentKnowledge(hive.getCoordinates());
+//    }
     
     public BeeHive getHive() {
         return hive;

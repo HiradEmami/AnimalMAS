@@ -6,7 +6,6 @@
 package animalsimulation.model.base;
 
 import animalsimulation.behavior.base.StateMachine;
-import animalsimulation.model.knowledge.AIAgentKnowledge;
 import animalsimulation.model.knowledge.AgentKnowledge;
 
 /**
@@ -22,7 +21,6 @@ public abstract class Agent extends WorldObject {
     private Group group;
     protected int speed;
     protected AgentKnowledge knowledge;
-    protected AIAgentKnowledge aiknowledge;
     protected StateMachine stateMachine;
     //private int energy;          // total available energy
 
@@ -38,10 +36,6 @@ public abstract class Agent extends WorldObject {
     
     public AgentKnowledge getKnowledge() {
         return knowledge;
-    }
-    
-    public AIAgentKnowledge getAIKnowledge() {
-        return aiknowledge;
     }
     
     public void initKnowledge() {

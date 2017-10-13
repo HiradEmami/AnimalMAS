@@ -45,7 +45,7 @@ public class AIScoutBeeExploreMovement extends BaseMovement{
         double[] b = {700,700};
         for (BeeFood foodSource : foodSources) {
             if(agent.distanceToObject(foodSource) <= foodSource.getHeight()) {
-                agent.getAIKnowledge().addnewFoodknowledge(
+                agent.getKnowledge().addnewFoodknowledge(
                     new FoodKnowledge(
                             ((BeeAgent)agent).getHive().getCoordinates(),
                             foodSource.getCoordinates(),
