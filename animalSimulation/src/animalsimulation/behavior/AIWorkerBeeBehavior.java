@@ -5,16 +5,16 @@
  */
 package animalsimulation.behavior;
 
-import animalsimulation.behavior.actions.DropFood;
-import animalsimulation.behavior.actions.GatherFood;
+import animalsimulation.behavior.actions.AIDropFood;
+import animalsimulation.behavior.actions.AIGatherFood;
 import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
 import animalsimulation.behavior.event.ActionCompletedEvent;
 import animalsimulation.behavior.event.DestinationReachedEvent;
 import animalsimulation.behavior.event.KnowledgeUpdatedEvent;
 import animalsimulation.behavior.event.MeetingAgentEvent;
+import animalsimulation.behavior.movement.AIBeeReturnMovement;
 import animalsimulation.behavior.movement.AIWorkerBeeExploidMovement;
-import animalsimulation.behavior.movement.BeeReturnMovement;
 import animalsimulation.model.base.Agent;
 
 /**
@@ -29,9 +29,9 @@ public class AIWorkerBeeBehavior extends StateMachine{
         State idle = new State("Idle", null);
         State communicate = new State("Communicate", null);
         State moveToFoodSource = new State("TravellingToFood", new AIWorkerBeeExploidMovement());
-        State gatherFood = new State("GatheringFood", new GatherFood());
-        State returnToHive = new State("Returning", new BeeReturnMovement());
-        State dropFood = new State("DroppingFood", new DropFood());
+        State gatherFood = new State("GatheringFood", new AIGatherFood());
+        State returnToHive = new State("Returning", new AIBeeReturnMovement());
+        State dropFood = new State("DroppingFood", new AIDropFood());
         
         addStateTransition(idle, communicate, MeetingAgentEvent.class);
         addStateTransition(communicate, moveToFoodSource, KnowledgeUpdatedEvent.class);

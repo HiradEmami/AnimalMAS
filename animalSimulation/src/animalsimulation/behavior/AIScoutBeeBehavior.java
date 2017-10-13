@@ -29,7 +29,6 @@ public class AIScoutBeeBehavior extends StateMachine{
         State waggleDance = new State("Waggling", new AICommunicate());
                 
         addStateTransition(exploration, returnToHive, FoodSourceFoundEvent.class);
-        addStateTransition(exploration, returnToHive, DestinationReachedEvent.class); //TEMPORARY
         addStateTransition(returnToHive, waggleDance, DestinationReachedEvent.class);
         addStateTransition(waggleDance, exploration, ActionCompletedEvent.class);
      

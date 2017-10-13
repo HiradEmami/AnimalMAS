@@ -8,7 +8,7 @@ package animalsimulation.behavior.movement;
 import animalsimulation.behavior.base.State;
 import animalsimulation.model.base.Agent;
 import animalsimulation.model.bee.BeeAgent;
-import animalsimulation.model.knowledge.AIFoodKnowledge;
+import animalsimulation.model.knowledge.FoodKnowledge;
 
 /**
  *
@@ -21,8 +21,7 @@ public class AIWorkerBeeExploidMovement extends BaseMovement{
     {
         if(agent instanceof BeeAgent)
         {
-            //AIFoodKnowledge test = ((BeeAgent)agent).getAIKnowledge().getAIFoodKnowledge().get(0);
-            double[] coordinates = {700,700};
+            double[] coordinates = ((BeeAgent)agent).getAIKnowledge().getAIFoodKnowledge().get(0).getTargetCoordinates();
             targetX = coordinates[0];
             targetY = coordinates[1];
         }

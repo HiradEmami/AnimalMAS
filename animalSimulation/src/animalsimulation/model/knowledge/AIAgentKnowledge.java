@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class AIAgentKnowledge {
     private double[] hiveLocation;
-    private ArrayList<AIFoodKnowledge> aifoodKnowledge;
+    private ArrayList<FoodKnowledge> aifoodKnowledge;
     private ArrayList<ObstacleKnowledge> obstacleKnowledge;
 
     public AIAgentKnowledge(double[] argHiveLocation) {
@@ -22,7 +22,7 @@ public class AIAgentKnowledge {
         this.aifoodKnowledge=new ArrayList<>();
     }
         
-    public void updateFoodKnowledge(ArrayList<AIFoodKnowledge> argNewData){
+    public void updateFoodKnowledge(ArrayList<FoodKnowledge> argNewData){
         for(int i=0;i<=argNewData.size()-1;i++){
             if(checkNewFoodKnowledge(argNewData.get(i).getTargetCoordinates()[0], 
                argNewData.get(i).getTargetCoordinates()[1]))
@@ -32,7 +32,7 @@ public class AIAgentKnowledge {
         }
     }
     
-    public boolean addnewFoodknowledge(AIFoodKnowledge argnew){
+    public boolean addnewFoodknowledge(FoodKnowledge argnew){
         double x = argnew.getTargetCoordinates()[0];
         double y = argnew.getTargetCoordinates()[1];
         
@@ -93,7 +93,7 @@ public class AIAgentKnowledge {
         return true;
     }
 
-    public ArrayList<AIFoodKnowledge> getAIFoodKnowledge() {
+    public ArrayList<FoodKnowledge> getAIFoodKnowledge() {
         return aifoodKnowledge;
     }
 

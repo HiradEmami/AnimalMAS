@@ -12,7 +12,7 @@ import animalsimulation.model.base.Agent;
 import animalsimulation.model.base.World;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeFood;
-import animalsimulation.model.knowledge.AIFoodKnowledge;
+import animalsimulation.model.knowledge.FoodKnowledge;
 
 /**
  *
@@ -21,8 +21,11 @@ import animalsimulation.model.knowledge.AIFoodKnowledge;
 public class AIScoutBeeExploreMovement extends BaseMovement{
     @Override
     public void initialize(Agent agent, State state) {
-        targetX = (double) Math.round(Math.random() * AnimalSimulation.getSettings().getMap().getWorld().getWidth());
-        targetY = (double) Math.round(Math.random() * AnimalSimulation.getSettings().getMap().getWorld().getHeight());
+        double tempx = (Math.random()-0.5);
+        double tempy = (Math.random()-0.5);
+        double multiplier = (1/Math.sqrt(Math.pow(tempx,2)+Math.pow(tempy,2)));
+        targetX = tempx*multiplier*agent.getSpeed();
+        targetY = tempy*multiplier*agent.getSpeed();
     }
     
     @Override
@@ -30,30 +33,25 @@ public class AIScoutBeeExploreMovement extends BaseMovement{
         BeeAgent bee = (BeeAgent) agent;
         double[] coordinates = bee.getCoordinates();
         
-        double distance = bee.distanceToLocation(targetX, targetY);
-            double[] movement = {
-                (targetX - coordinates[0]) / distance * agent.getSpeed(),
-                (targetY - coordinates[1]) / distance * agent.getSpeed()
-            };
-        agent.setCoordinates(coordinates[0] + movement[0], coordinates[1] + movement[1]);
+        agent.setCoordinates(coordinates[0] + targetX, coordinates[1] + targetY);
         
-        checkDestinationReached(agent, 1d); //TEMPORARY
         checkFoodSourceReached(bee);
         checkOutsideWorld(bee);
     }
     
     private void checkFoodSourceReached(Agent agent) { 
         BeeFood[] foodSources = AnimalSimulation.getSettings().getMap().getWorld().getWorldObjectsByClass(BeeFood.class);
+        double[] a = {500,500};
+        double[] b = {700,700};
         for (BeeFood foodSource : foodSources) {
             if(agent.distanceToObject(foodSource) <= foodSource.getHeight()) {
                 agent.getAIKnowledge().addnewFoodknowledge(
-                    new AIFoodKnowledge(
+                    new FoodKnowledge(
                             ((BeeAgent)agent).getHive().getCoordinates(),
                             foodSource.getCoordinates(),
                             -1
                     )
                 );
-                
                 agent.getStateMachine().updateState(new FoodSourceFoundEvent(this));
             }
         }
