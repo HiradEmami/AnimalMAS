@@ -85,7 +85,10 @@ public class DataRecorder {
                 Object key = iterator.next();
                 cell = row.createCell(currentColumn);
                 Object value = dataMap.get(key);
-                cell.setCellValue(value.toString());
+                
+                if(value == null) { cell.setCellValue("null"); }
+                else { cell.setCellValue(value.toString()); }
+                
                 currentColumn++;
             }
             

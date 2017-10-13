@@ -26,7 +26,7 @@ public class SingleHiveMap extends Map {
         world.addObject(hive);
         
         //Adds AIbee hive
-        BeeHive aIHive = new BeeHive("Natural Hive", world.getWidth()/2, world.getHeight()/2);
+        BeeHive aIHive = new BeeHive("AI Hive", world.getWidth()/2, world.getHeight()/2);
         world.addObject(aIHive);
                 
         // Adds food sources in a circle around the hive
@@ -56,7 +56,7 @@ public class SingleHiveMap extends Map {
         world.addObjects((WorldObject[]) aIScoutBees);
         
         // Register data sources for data collection
-        //recorder.addDataSource(hive);
+        recorder.addDataSource(hive);
         
         return world;
     }
