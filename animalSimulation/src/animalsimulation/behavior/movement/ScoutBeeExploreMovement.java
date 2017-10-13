@@ -51,7 +51,6 @@ public class ScoutBeeExploreMovement extends BaseMovement{
             if(agent.distanceToObject(foodSource) <= foodSource.getHeight()) {
                 agent.getKnowledge().addnewFoodknowledge(
                     new FoodKnowledge(
-                            ((BeeAgent)agent).getHive().getCoordinates(),
                             foodSource.getCoordinates(),
                             -1
                     )

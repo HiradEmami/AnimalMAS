@@ -21,7 +21,6 @@ public class WorkerBeeExploidMovement extends BaseMovement{
         if(agent instanceof BeeAgent)
         {
             double[] coordinates = ((BeeAgent) agent).newTargetFactor(agent);
-            //double[] coordinates = ((BeeAgent)agent).getKnowledge().getFoodKnowledge().get(0).getTargetCoordinates();
             targetX = coordinates[0];
             targetY = coordinates[1];
         }

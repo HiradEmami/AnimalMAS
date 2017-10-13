@@ -32,7 +32,6 @@ public abstract class BeeAgent extends Agent {
     public BeeAgent(double x, double y, BeeHive hive) {
         super(x, y);
         initKnowledge(hive);
-//        initAIKnowledge(hive);
         
         hive.addBee(this);
         this.hive = hive;
@@ -43,10 +42,6 @@ public abstract class BeeAgent extends Agent {
     public void initKnowledge(BeeHive hive){
         this.knowledge = new AgentKnowledge(hive.getCoordinates());
     }
-    
-//    public void initAIKnowledge(BeeHive hive){
-//        this.aiknowledge = new AIAgentKnowledge(hive.getCoordinates());
-//    }
     
     public BeeHive getHive() {
         return hive;
@@ -91,19 +86,16 @@ public abstract class BeeAgent extends Agent {
     
     public double[] newTargetFactor(Agent agent)
     {
-        ArrayList<FoodKnowledge> f = this.getKnowledge().getFoodKnowledge();
-        double[][] pos = new double[30][2];
+        ArrayList<FoodKnowledge> fk = this.getKnowledge().getFoodKnowledge();
         double[] normal = {0,1};
-        int i = 0;
         
-        for(FoodKnowledge fk:f)
-        {
-            pos[i] = fk.getTargetCoordinates();
-        }
-        int index = (int) (Math.random()*f.size());
+        int index = (int) Math.round(Math.random()*fk.size());
+        
+        if(index<=0)
+            index = 1;
         
         Vector2D agentC = new Vector2D(agent.getCoordinates());
-        Vector2D targetC = new Vector2D(f.get(index).getTargetCoordinates());
+        Vector2D targetC = new Vector2D(fk.get(index-1).getTargetCoordinates());
         double[] target = targetC.toArray();
         Vector2D u = targetC.subtract(agentC);
         double[] w = u.toArray();

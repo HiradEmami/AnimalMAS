@@ -67,30 +67,18 @@ public class SimulationSettings {
         }
     }
 
-    /**
-     * @return the numberOfAIWorkerBees
-     */
     public int getNumberOfAIWorkerBees() {
         return numberOfAIWorkerBees;
     }
 
-    /**
-     * @param numberOfAIWorkerBees the numberOfAIWorkerBees to set
-     */
     public void setNumberOfAIWorkerBees(int numberOfAIWorkerBees) {
         this.numberOfAIWorkerBees = numberOfAIWorkerBees;
     }
 
-    /**
-     * @return the numberOfAIScoutBees
-     */
     public int getNumberOfAIScoutBees() {
         return numberOfAIScoutBees;
     }
 
-    /**
-     * @param numberOfAIScoutBees the numberOfAIScoutBees to set
-     */
     public void setNumberOfAIScoutBees(int numberOfAIScoutBees) {
         this.numberOfAIScoutBees = numberOfAIScoutBees;
     }

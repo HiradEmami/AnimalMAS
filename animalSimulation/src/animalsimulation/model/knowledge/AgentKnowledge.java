@@ -27,7 +27,7 @@ public class AgentKnowledge {
     }
         
     public void updateFoodKnowledge(ArrayList<FoodKnowledge> argNewData){
-        for(int i=0;i<=argNewData.size()-1;i++){
+        for(int i=0;i<argNewData.size();i++){
             if(checkNewFoodKnowledge(argNewData.get(i).getTargetCoordinates()[0], 
                argNewData.get(i).getTargetCoordinates()[1]))
             {

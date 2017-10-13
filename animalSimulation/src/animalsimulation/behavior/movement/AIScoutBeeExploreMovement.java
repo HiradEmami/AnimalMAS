@@ -36,7 +36,7 @@ public class AIScoutBeeExploreMovement extends BaseMovement{
         agent.setCoordinates(coordinates[0] + targetX, coordinates[1] + targetY);
         
         checkFoodSourceReached(bee);
-        checkOutsideWorld(bee);
+        checkOutsideWorld(bee, state);
     }
     
     private void checkFoodSourceReached(Agent agent) { 
@@ -47,7 +47,6 @@ public class AIScoutBeeExploreMovement extends BaseMovement{
             if(agent.distanceToObject(foodSource) <= foodSource.getHeight()) {
                 agent.getKnowledge().addnewFoodknowledge(
                     new FoodKnowledge(
-                            ((BeeAgent)agent).getHive().getCoordinates(),
                             foodSource.getCoordinates(),
                             -1
                     )
@@ -57,11 +56,12 @@ public class AIScoutBeeExploreMovement extends BaseMovement{
         }
     }
     
-    private void checkOutsideWorld(BeeAgent bee) {
+    private void checkOutsideWorld(BeeAgent bee, State state) {
         World world = AnimalSimulation.getSettings().getMap().getWorld();
         
         if(bee.getCoordinates()[0] < 0 || bee.getCoordinates()[1] < 0 ||
                 bee.getCoordinates()[0] > world.getWidth() || bee.getCoordinates()[1] > world.getHeight()) {
+            initialize(bee, state);
             bee.setCoordinates(bee.getHive().getCoordinates()[0], bee.getHive().getCoordinates()[1]);
         }
     }

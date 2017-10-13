@@ -9,6 +9,7 @@ import animalsimulation.behavior.base.State;
 import animalsimulation.model.base.Agent;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.knowledge.FoodKnowledge;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,7 +22,12 @@ public class AIWorkerBeeExploidMovement extends BaseMovement{
     {
         if(agent instanceof BeeAgent)
         {
-            double[] coordinates = ((BeeAgent)agent).getKnowledge().getFoodKnowledge().get(0).getTargetCoordinates();
+            ArrayList<FoodKnowledge> fk = ((BeeAgent)agent).getKnowledge().getFoodKnowledge();
+            int index = (int) Math.round(Math.random()*fk.size());
+            if(index<=0)
+                index = 1;
+            
+            double[] coordinates = fk.get(index-1).getTargetCoordinates();
             targetX = coordinates[0];
             targetY = coordinates[1];
         }
