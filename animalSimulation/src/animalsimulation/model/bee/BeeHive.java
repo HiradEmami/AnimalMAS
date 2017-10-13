@@ -2,6 +2,7 @@ package animalsimulation.model.bee;
 
 import animalsimulation.model.base.Group;
 import animalsimulation.model.base.WorldObject;
+import animalsimulation.model.knowledge.AgentKnowledge;
 import java.awt.Color;
 
 /**
@@ -14,6 +15,7 @@ public class BeeHive extends WorldObject {
     private int gatheredFood;
     private int idleBees;
     private int activeBees;
+    protected AgentKnowledge knowledge;
     
     public BeeHive(String hiveType, double x, double y) {
         this(hiveType, x, y, null);
@@ -53,6 +55,10 @@ public class BeeHive extends WorldObject {
     
     public int getGatheredFood() {
         return gatheredFood;
+    }
+    
+    public AgentKnowledge getKnowledge() {
+        return knowledge;
     }
     
     public synchronized void addGatheredFood(int gatheredFood) {

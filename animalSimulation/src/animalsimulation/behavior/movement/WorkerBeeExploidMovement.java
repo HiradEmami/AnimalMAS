@@ -44,7 +44,7 @@ public class WorkerBeeExploidMovement extends BaseMovement{
     private void move(BeeAgent bee, double[] coordinates) {        
         if(Math.abs(coordinates[0] - targetX)<6 && Math.abs(coordinates[1] - targetY)<6)
             bee.setCoordinates(targetX, targetY);
-        else if(Math.abs(coordinates[0] - targetX)<25 && Math.abs(coordinates[1] - targetY)<25)
+        else if(Math.abs(coordinates[0] - targetX)<30 && Math.abs(coordinates[1] - targetY)<30)
         {
             double distance = bee.distanceToLocation(targetX, targetY);
             double[] movement = {
