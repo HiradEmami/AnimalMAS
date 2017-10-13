@@ -57,8 +57,8 @@ public class AICommunicate extends Action{
     }
     
     private void communicateFood (BeeAgent argFirst, BeeAgent argSecond){
-        argFirst.getKnowledge().updateFoodKnowledge(argSecond.getKnowledge().getFoodKnowledge());
-        argSecond.getKnowledge().updateFoodKnowledge(argFirst.getKnowledge().getFoodKnowledge());
+        argFirst.getAIKnowledge().updateFoodKnowledge(argSecond.getAIKnowledge().getAIFoodKnowledge());
+        argSecond.getAIKnowledge().updateFoodKnowledge(argFirst.getAIKnowledge().getAIFoodKnowledge());
     }
     
     private void communicateObstacle (BeeAgent argFirst, BeeAgent argSecond){

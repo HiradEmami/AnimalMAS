@@ -13,13 +13,13 @@ import java.util.ArrayList;
  */
 public class AIAgentKnowledge {
     private double[] hiveLocation;
-    private ArrayList<AIFoodKnowledge> foodKnowledge;
+    private ArrayList<AIFoodKnowledge> aifoodKnowledge;
     private ArrayList<ObstacleKnowledge> obstacleKnowledge;
 
     public AIAgentKnowledge(double[] argHiveLocation) {
         this.hiveLocation=argHiveLocation;
         this.obstacleKnowledge= new ArrayList<>();
-        this.foodKnowledge=new ArrayList<>();
+        this.aifoodKnowledge=new ArrayList<>();
     }
         
     public void updateFoodKnowledge(ArrayList<AIFoodKnowledge> argNewData){
@@ -27,7 +27,7 @@ public class AIAgentKnowledge {
             if(checkNewFoodKnowledge(argNewData.get(i).getTargetCoordinates()[0], 
                argNewData.get(i).getTargetCoordinates()[1]))
             {
-              foodKnowledge.add(argNewData.get(i));
+              aifoodKnowledge.add(argNewData.get(i));
             }
         }
     }
@@ -36,14 +36,14 @@ public class AIAgentKnowledge {
         double x = argnew.getTargetCoordinates()[0];
         double y = argnew.getTargetCoordinates()[1];
         
-         for(int i=0;i<=foodKnowledge.size()-1;i++){
-            if(foodKnowledge.get(i).getTargetCoordinates()[0]==x &&
-                foodKnowledge.get(i).getTargetCoordinates()[1]==y){
+         for(int i=0;i<=aifoodKnowledge.size()-1;i++){
+            if(aifoodKnowledge.get(i).getTargetCoordinates()[0]==x &&
+                aifoodKnowledge.get(i).getTargetCoordinates()[1]==y){
                 return false; //the data already exists 
                 //means this knowledge already exists (thus) nothing was added
             }
         }
-        foodKnowledge.add(argnew);
+        aifoodKnowledge.add(argnew);
         return true; 
     }
     
@@ -74,9 +74,9 @@ public class AIAgentKnowledge {
     }
         
     private boolean checkNewFoodKnowledge(double x, double y){
-        for(int i=0;i<=foodKnowledge.size()-1;i++){
-            if(foodKnowledge.get(i).getTargetCoordinates()[0]==x &&
-                foodKnowledge.get(i).getTargetCoordinates()[1]==y){
+        for(int i=0;i<=aifoodKnowledge.size()-1;i++){
+            if(aifoodKnowledge.get(i).getTargetCoordinates()[0]==x &&
+                aifoodKnowledge.get(i).getTargetCoordinates()[1]==y){
                 return false; //the data already exists
             }
         }
@@ -94,7 +94,7 @@ public class AIAgentKnowledge {
     }
 
     public ArrayList<AIFoodKnowledge> getAIFoodKnowledge() {
-        return foodKnowledge;
+        return aifoodKnowledge;
     }
 
     public ArrayList<ObstacleKnowledge> getObstacleKnowledge() {

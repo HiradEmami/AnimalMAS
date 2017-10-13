@@ -40,6 +40,10 @@ public abstract class Agent extends WorldObject {
         return knowledge;
     }
     
+    public AIAgentKnowledge getAIKnowledge() {
+        return aiknowledge;
+    }
+    
     public void initKnowledge() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -95,12 +99,5 @@ public abstract class Agent extends WorldObject {
      */
     public void setSpeed(int speed) {
         this.speed = speed;
-    }
-
-    /**
-     * @return the aiknowledge
-     */
-    public AIAgentKnowledge getAIKnowledge() {
-        return aiknowledge;
     }
 }

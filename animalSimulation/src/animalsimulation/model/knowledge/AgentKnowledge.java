@@ -104,5 +104,4 @@ public class AgentKnowledge {
     public ArrayList<ObstacleKnowledge> getObstacleKnowledge() {
         return obstacleKnowledge;
     }
-    
 }
