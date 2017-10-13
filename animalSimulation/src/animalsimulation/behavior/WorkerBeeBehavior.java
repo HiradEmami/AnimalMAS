@@ -15,7 +15,7 @@ import animalsimulation.behavior.event.*;
 import animalsimulation.behavior.movement.BeeReturnMovement;
 import animalsimulation.model.base.Agent;
 import animalsimulation.behavior.actions.*;
-import animalsimulation.behavior.movement.WorkerBeeExploidMovement;
+import animalsimulation.behavior.movement.WorkerBeeExploitMovement;
 
 public class WorkerBeeBehavior  extends StateMachine {
     
@@ -24,7 +24,7 @@ public class WorkerBeeBehavior  extends StateMachine {
         
         State idle = new State("Idle", null);
         State communicate = new State("Communicate", null);
-        State moveToFoodSource = new State("TravellingToFood", new WorkerBeeExploidMovement());
+        State moveToFoodSource = new State("TravellingToFood", new WorkerBeeExploitMovement());
         State gatherFood = new State("GatheringFood", new GatherFood());
         State returnToHive = new State("Returning", new BeeReturnMovement());
         State dropFood = new State("DroppingFood", new DropFood());

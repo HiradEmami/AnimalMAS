@@ -14,6 +14,8 @@ import animalsimulation.model.base.Agent;
 import animalsimulation.model.base.WorldObject;
 import animalsimulation.model.bee.AIBeeWorker;
 import animalsimulation.model.bee.BeeAgent;
+import animalsimulation.model.bee.BeeFood;
+import animalsimulation.model.knowledge.Knowledge;
 
 /**
  *
@@ -36,7 +38,6 @@ public class AICommunicate extends Action{
                     workerBee.getStateMachine().updateState(new MeetingAgentEvent(this));
 
                     communicateFood((BeeAgent) agent, workerBee);
-                    communicateObstacle((BeeAgent) agent, workerBee);
                     
                     return;
                 }
@@ -57,10 +58,10 @@ public class AICommunicate extends Action{
     }
     
     private void communicateFood (BeeAgent argFirst, BeeAgent argSecond){
-        argSecond.getKnowledge().updateFoodKnowledge(argFirst.getKnowledge().getFoodKnowledge());
-    }
-    
-    private void communicateObstacle (BeeAgent argFirst, BeeAgent argSecond){
-        argSecond.getKnowledge().updateObstacleKnowledge(argFirst.getKnowledge().getObstacleKnowledge());
+        BeeFood[] foodSources = argFirst.getKnowledge().getKnownWorldObjectsByClass(BeeFood.class);
+        for(WorldObject foodScource : foodSources) {
+            Knowledge[] knowledge = argFirst.getKnowledge().getObjectKnowledge(foodScource);
+            argSecond.getKnowledge().updateKnowledge(foodScource, knowledge);
+        }
     }
 }

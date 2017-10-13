@@ -7,9 +7,7 @@ package animalsimulation.model.bee;
 
 import Jama.Matrix;
 import animalsimulation.model.base.Agent;
-import animalsimulation.model.knowledge.AgentKnowledge;
-import animalsimulation.model.knowledge.FoodKnowledge;
-import java.util.ArrayList;
+import animalsimulation.model.knowledge.LocationKnowledge;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 /**
@@ -31,16 +29,14 @@ public abstract class BeeAgent extends Agent {
     
     public BeeAgent(double x, double y, BeeHive hive) {
         super(x, y);
-        initKnowledge(hive);
         
         hive.addBee(this);
         this.hive = hive;
         this.tsigma = 3;
         this.v = 1.5;
-    }
-    
-    public void initKnowledge(BeeHive hive){
-        this.knowledge = new AgentKnowledge(hive.getCoordinates());
+        
+        // All bees are aware of their hive's location.
+        knowledge.updateKnowledge(hive, new LocationKnowledge(hive.getCoordinates()));
     }
     
     public BeeHive getHive() {
@@ -86,16 +82,17 @@ public abstract class BeeAgent extends Agent {
     
     public double[] newTargetFactor(Agent agent)
     {
-        ArrayList<FoodKnowledge> fk = this.getKnowledge().getFoodKnowledge();
+        BeeFood[] foodSources = knowledge.getKnownWorldObjectsByClass(BeeFood.class);
         double[] normal = {0,1};
         
-        int index = (int) Math.round(Math.random()*fk.size());
+        int index = (int) Math.round(Math.random()*foodSources.length);
+        if(index<=0) { index = 1; }
         
-        if(index<=0)
-            index = 1;
+        LocationKnowledge location = knowledge.getObjectKnowledgeByKnowledgeClass(
+                foodSources[index - 1], LocationKnowledge.class);
         
         Vector2D agentC = new Vector2D(agent.getCoordinates());
-        Vector2D targetC = new Vector2D(fk.get(index-1).getTargetCoordinates());
+        Vector2D targetC = new Vector2D(location.getCoordinates());
         double[] target = targetC.toArray();
         Vector2D u = targetC.subtract(agentC);
         double[] w = u.toArray();

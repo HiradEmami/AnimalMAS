@@ -2,7 +2,7 @@ package animalsimulation.model.bee;
 
 import animalsimulation.model.base.Group;
 import animalsimulation.model.base.WorldObject;
-import animalsimulation.model.knowledge.AgentKnowledge;
+import animalsimulation.model.knowledge.KnowledgeBase;
 import java.awt.Color;
 
 /**
@@ -15,7 +15,7 @@ public class BeeHive extends WorldObject {
     private int gatheredFood;
     private int idleBees;
     private int activeBees;
-    protected AgentKnowledge knowledge;
+    protected KnowledgeBase knowledge; // Used by AI bees to spread knowledge.
     
     public BeeHive(String hiveType, double x, double y) {
         this(hiveType, x, y, null);
@@ -57,7 +57,7 @@ public class BeeHive extends WorldObject {
         return gatheredFood;
     }
     
-    public AgentKnowledge getKnowledge() {
+    public KnowledgeBase getKnowledge() {
         return knowledge;
     }
     

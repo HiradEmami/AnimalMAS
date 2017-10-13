@@ -6,7 +6,7 @@
 package animalsimulation.model.base;
 
 import animalsimulation.behavior.base.StateMachine;
-import animalsimulation.model.knowledge.AgentKnowledge;
+import animalsimulation.model.knowledge.KnowledgeBase;
 
 /**
  * Abstract class for describing properties shared by all types of agents.
@@ -20,7 +20,7 @@ public abstract class Agent extends WorldObject {
     
     private Group group;
     protected int speed;
-    protected AgentKnowledge knowledge;
+    protected KnowledgeBase knowledge;
     protected StateMachine stateMachine;
     //private int energy;          // total available energy
 
@@ -32,14 +32,11 @@ public abstract class Agent extends WorldObject {
         super(x, y);
         setGroup(group);
         speed = 1;
+        this.knowledge = new KnowledgeBase();
     }
     
-    public AgentKnowledge getKnowledge() {
+    public KnowledgeBase getKnowledge() {
         return knowledge;
-    }
-    
-    public void initKnowledge() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     public void act() {

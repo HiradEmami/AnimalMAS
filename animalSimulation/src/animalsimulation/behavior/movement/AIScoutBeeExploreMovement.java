@@ -13,6 +13,8 @@ import animalsimulation.model.base.World;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeFood;
 import animalsimulation.model.knowledge.FoodKnowledge;
+import animalsimulation.model.knowledge.Knowledge;
+import animalsimulation.model.knowledge.LocationKnowledge;
 
 /**
  *
@@ -45,12 +47,11 @@ public class AIScoutBeeExploreMovement extends BaseMovement{
         double[] b = {700,700};
         for (BeeFood foodSource : foodSources) {
             if(agent.distanceToObject(foodSource) <= foodSource.getHeight()) {
-                agent.getKnowledge().addnewFoodknowledge(
-                    new FoodKnowledge(
-                            foodSource.getCoordinates(),
-                            -1
-                    )
-                );
+                agent.getKnowledge().updateKnowledge(foodSource,
+                        new Knowledge[] {
+                            new LocationKnowledge(foodSource.getCoordinates()),
+                            new FoodKnowledge(-1)
+                        });
                 agent.getStateMachine().updateState(new FoodSourceFoundEvent(this));
             }
         }

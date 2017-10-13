@@ -9,13 +9,11 @@ package animalsimulation.model.knowledge;
  *
  * @author Hirad Gorgoroth
  */
-public class FoodKnowledge extends LocationKnowledge{
-   
-    private int foodStorage;
+public class FoodKnowledge implements Knowledge {
+    private final int foodStorage;
     
-    public FoodKnowledge(double[] argTargetLocation, int argFoodStorage) {
-        super(argTargetLocation);
-        this.foodStorage=argFoodStorage;   
+    public FoodKnowledge(int foodStorage) {
+        this.foodStorage= foodStorage;   
     }
 
     public int getFoodStorage() {

@@ -53,6 +53,7 @@ public class World implements BaseModel {
         if(!classMap.containsKey(c)) {
             classMap.put(c, new ArrayList<>());
         }
+        classMap.get(c).remove(object); // prevents duplicate entries.
         classMap.get(c).add(object);
         if(c != WorldObject.class) {
             addObjectToObjectSets(object, (Class<? extends WorldObject>) c.getSuperclass());
