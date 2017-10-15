@@ -7,6 +7,7 @@ package animalsimulation.behavior;
 
 import animalsimulation.behavior.actions.AIDropFood;
 import animalsimulation.behavior.actions.AIGatherFood;
+import animalsimulation.behavior.actions.UpdateHiveStatistics;
 import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
 import animalsimulation.behavior.event.ActionCompletedEvent;
@@ -28,8 +29,8 @@ public class AIWorkerBeeBehavior extends StateMachine {
     public AIWorkerBeeBehavior(Agent agent) {
         super(agent);
         
-        State idle = new State("Idle", null);
-        State communicate = new State("Communicate", null);
+        State idle = new State("Idle", new UpdateHiveStatistics());
+        State communicate = new State("Communicate",  new UpdateHiveStatistics());
         State moveToFoodSource = new State("TravellingToFood", new AIWorkerBeeExploitMovement());
         State gatherFood = new State("GatheringFood", new AIGatherFood());
         State returnToHive = new State("Returning", new AIBeeReturnMovement());

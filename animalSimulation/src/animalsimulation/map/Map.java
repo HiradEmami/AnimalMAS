@@ -53,12 +53,14 @@ public abstract class Map {
             switch(type) {
                 case WORKER_BEE:
                     bee = new BeeWorker(hive);
+                    hive.setIdleBees(hive.getIdleBees() + 1);
                     break;
                 case SCOUT_BEE:
                     bee = new BeeScout(hive);
                     break;
                 case AIWORKER_BEE:
                     bee = new AIBeeWorker(hive);
+                    hive.setIdleBees(hive.getIdleBees() + 1);
                     break;
                 case AISCOUT_BEE:
                     bee = new AIBeeScout(hive);

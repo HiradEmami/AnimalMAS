@@ -46,7 +46,7 @@ public class BeeHive extends WorldObject {
     
     public void addBees(BeeAgent[] bees) {
         for(BeeAgent bee : bees) {
-            group.addMember(bee);
+            addBee(bee);
         }
     }
     
@@ -64,6 +64,14 @@ public class BeeHive extends WorldObject {
     
     public synchronized void addGatheredFood(int gatheredFood) {
         this.gatheredFood += gatheredFood;
+    }
+    
+    public int getIdleBees() {
+        return idleBees;
+    }
+    
+    public void setIdleBees(int idleBees) {
+        this.idleBees = idleBees;
     }
     
     public synchronized void incrementActiveBees() {
