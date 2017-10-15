@@ -6,7 +6,6 @@
 package animalsimulation.model.bee;
 
 import animalsimulation.behavior.AIScoutBeeBehavior;
-import animalsimulation.model.base.WorldObject;
 import java.awt.Color;
 
 /**
@@ -17,7 +16,7 @@ public class AIBeeScout extends BeeAgent{
     public AIBeeScout(BeeHive hive) {
         super(hive);
         color = Color.ORANGE;
-        shape = WorldObject.Shape.CIRCLE;
+        shape = Shape.CIRCLE;
         width = 10;
         height = 10;
         stateMachine = new AIScoutBeeBehavior(this);

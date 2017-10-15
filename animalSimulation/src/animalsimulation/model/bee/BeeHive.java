@@ -28,6 +28,7 @@ public class BeeHive extends WorldObject {
         shape = Shape.OVAL;
         width = 40;
         height = 80;
+        knowledge = new KnowledgeBase();
         
         this.group = group;
         if(group == null) {

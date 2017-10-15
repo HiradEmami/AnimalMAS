@@ -57,6 +57,7 @@ public class SingleHiveMap extends Map {
         
         // Register data sources for data collection
         recorder.addDataSource(hive);
+        recorder.addDataSource(aIHive);
         
         return world;
     }

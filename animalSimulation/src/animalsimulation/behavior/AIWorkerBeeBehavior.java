@@ -21,7 +21,9 @@ import animalsimulation.model.base.Agent;
  *
  * @author Ebombo2
  */
-public class AIWorkerBeeBehavior extends StateMachine{
+public class AIWorkerBeeBehavior extends StateMachine {
+    
+    private static final double KnowledgeUpdateProbability = 1.0d;
     
     public AIWorkerBeeBehavior(Agent agent) {
         super(agent);
@@ -34,7 +36,7 @@ public class AIWorkerBeeBehavior extends StateMachine{
         State dropFood = new State("DroppingFood", new AIDropFood());
         
         addStateTransition(idle, communicate, MeetingAgentEvent.class);
-        addStateTransition(communicate, moveToFoodSource, KnowledgeUpdatedEvent.class);
+        addStateTransition(communicate, moveToFoodSource, KnowledgeUpdatedEvent.class, KnowledgeUpdateProbability);
         addStateTransition(moveToFoodSource, gatherFood, DestinationReachedEvent.class);
         addStateTransition(gatherFood, returnToHive, ActionCompletedEvent.class);
         addStateTransition(returnToHive, dropFood, DestinationReachedEvent.class);

@@ -55,7 +55,8 @@ public class DataRecorder {
     public void addDataSource(WorldObject dataSource) {
         try {
             dataSources.add(dataSource);
-            XSSFSheet sheet = workbook.createSheet(dataSource.toString());
+            XSSFSheet sheet = workbook.createSheet(dataSource.getClass().getSimpleName() +
+                    " " + System.identityHashCode(dataSource));
             writeHeader(sheet, dataSource);
             sheetMap.put(sheet, 1);
         } catch (IOException ex) {}
