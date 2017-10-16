@@ -19,6 +19,7 @@ public class SimulationSettings {
     private int numberOfAIScoutBees;
     private int numberOfFoodSources;
     private int recordingInterval;
+    private int simulationSteps;
     
     public SimulationSettings() {
         recordingInterval = 1;
@@ -81,5 +82,13 @@ public class SimulationSettings {
 
     public void setNumberOfAIScoutBees(int numberOfAIScoutBees) {
         this.numberOfAIScoutBees = numberOfAIScoutBees;
+    }
+    
+    public int getSimulationSteps() {
+        return simulationSteps;
+    }
+    
+    public void setSimulationSteps(int simulationSteps) {
+        this.simulationSteps = simulationSteps;
     }
 }

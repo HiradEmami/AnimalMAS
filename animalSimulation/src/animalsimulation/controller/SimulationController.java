@@ -39,11 +39,10 @@ public class SimulationController extends BaseController implements Runnable {
         
         updateViews();
         
-        if(step % settings.getRecordingInterval() == 0) {
+        step++;
+        if(step % settings.getRecordingInterval() == 0 || step == 1) {
             recorder.persistData(step);
         }
-        
-        step++;
     }
     
     public synchronized void runForever() {
@@ -76,6 +75,10 @@ public class SimulationController extends BaseController implements Runnable {
                 catch (IOException ioe) {
                     ioe.printStackTrace();
                     System.exit(1);
+                }
+                
+                if(step == settings.getSimulationSteps()) {
+                    stopSimulation();
                 }
             }
         }
