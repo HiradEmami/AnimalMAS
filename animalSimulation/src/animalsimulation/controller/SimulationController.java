@@ -58,6 +58,7 @@ public class SimulationController extends BaseController implements Runnable {
     // contained within the SimulationSettings instance.
     public void resetSimulation() {
         stopSimulation();
+        settings.getMap().getDataRecorder().reset();
         model = settings.getMap().createWorld(settings);
         updateViews();
         runForever();

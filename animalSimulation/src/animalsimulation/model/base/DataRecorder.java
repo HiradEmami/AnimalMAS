@@ -33,18 +33,16 @@ public class DataRecorder {
     }
     
     public DataRecorder(WorldObject[] dataSources) throws IOException {
-        this.dataSources = new ArrayList<>();
-        sheetMap = new HashMap<>();
-        workbook = new XSSFWorkbook();
-                
+        reset();
+        
         if(dataSources != null) {
             for(WorldObject dataSource : dataSources) {
                 addDataSource(dataSource);
             }
-        }
+        }     
         
         file = new File(OUTPUT_FILE);
-        file.createNewFile();        
+        file.createNewFile();  
     }
     
     public WorldObject[] getDataSources() {
@@ -121,5 +119,11 @@ public class DataRecorder {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         workbook.write(fileOutputStream);
         fileOutputStream.close();
+    }
+    
+    public void reset() {
+        this.dataSources = new ArrayList<>();
+        sheetMap = new HashMap<>();
+        workbook = new XSSFWorkbook();
     }
 }
