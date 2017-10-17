@@ -78,8 +78,10 @@ public class SimulationController extends BaseController implements Runnable {
                     System.exit(1);
                 }
                 
-                if(step == settings.getSimulationSteps()) {
+                if(step >= settings.getSimulationSteps()) {
                     stopSimulation();
+                    javax.swing.JOptionPane.showMessageDialog(null, "The simulation has ended.\nall"+step+" steps"
+                            + "have been completed and the data is recorded.");
                 }
             }
         }

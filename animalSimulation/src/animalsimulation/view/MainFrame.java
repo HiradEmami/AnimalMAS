@@ -222,24 +222,35 @@ public class MainFrame extends javax.swing.JFrame {
 
     //Action Event for the setup button that runs the simulation
     private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SetupButtonActionPerformed
+        
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (null, "All the data of this session will be lost\n"
+                + "Do you want to proceed with restarting the simulation?","Warning",dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
         setupWorld();           //Creating the grid and calling render method within
         repaintScreen();        //Method to remove the previously built tiles (reset UI)
+                                                  }
     }//GEN-LAST:event_jb_SetupButtonActionPerformed
 
     private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsl_animalStateChanged
         tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
-        setupWorld();           //Creating the grid and calling render method within
-        repaintScreen();        //Method to remove the previously built tiles (reset UI)
+       // setupWorld();           //Creating the grid and calling render method within
+       // repaintScreen();        //Method to remove the previously built tiles (reset UI)
     }//GEN-LAST:event_jsl_animalStateChanged
 
     private void setupWorld() {
         try {
             jsl_animal.setMaximum(100);
+        int ans = Integer.parseInt(JOptionPane.showInputDialog( "How many steps this session needs to run"
+                + "","Use a large Value e.g 100000"));
+            
             settings.setNumberOfScoutBees(jsl_animal.getValue());
             settings.setNumberOfWorkerBees(jsl_animal.getValue());
             settings.setNumberOfAIScoutBees(jsl_animal.getValue());
             settings.setNumberOfAIWorkerBees(jsl_animal.getValue());
-            this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);   //to make it full screen
+            this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); 
+            settings.setSimulationSteps(ans);//to make it full screen
+            
         } catch (Exception e) {                                         //Display the error if it failed to create the simulation
             JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);
         }
