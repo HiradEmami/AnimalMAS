@@ -35,7 +35,7 @@ public class AnimalSimulation {
     
     private static void initializeWorld() {
         settings = new SimulationSettings();
-        settings.setMap(new SingleHiveMap());
+        settings.setMap(new SingleHiveMap(1.0));
         settings.setNumberOfFoodSources(30);
         settings.setNumberOfScoutBees(10);
         settings.setNumberOfWorkerBees(10);
@@ -43,7 +43,7 @@ public class AnimalSimulation {
         settings.setNumberOfAIWorkerBees(10);
         settings.getMap().createWorld(settings);
         settings.setRecordingInterval(100);
-        settings.setSimulationSteps(10);
+        settings.setSimulationSteps(200);
         
         simulationController = new SimulationController(settings);
     }
@@ -54,6 +54,8 @@ public class AnimalSimulation {
         mainFrame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);   //setting the close function to completely exit the app
         mainFrame.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);          //to make it full screen
         //mainFrame.setResizable(true);
+        javax.swing.JOptionPane.showMessageDialog(null, "Initial test would run for  200 steps and 10 agents\n"
+                + "Use the setup button to change the settings");
         mainFrame.setVisible(true);                                             //displaying the frame
     }
 }

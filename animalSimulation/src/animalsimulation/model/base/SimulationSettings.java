@@ -20,6 +20,15 @@ public class SimulationSettings {
     private int numberOfFoodSources;
     private int recordingInterval;
     private int simulationSteps;
+    private int AIpercentage;
+
+    public int getAIpercentage() {
+        return AIpercentage;
+    }
+
+    public void setAIpercentage(int AIpercentage) {
+        this.AIpercentage = AIpercentage;
+    }
     
     public SimulationSettings() {
         recordingInterval = 1;

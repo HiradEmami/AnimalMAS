@@ -17,6 +17,12 @@ import animalsimulation.model.bee.BeeHive;
  * @author jeroen
  */
 public class SingleHiveMap extends Map {    
+
+    public SingleHiveMap(double AIknowledge) {
+        super(AIknowledge);
+    }
+
+   
     @Override
     public World createWorld(SimulationSettings settings) {
         world = new World(1000, 1000);
@@ -61,4 +67,6 @@ public class SingleHiveMap extends Map {
         
         return world;
     }
+
+    
 }

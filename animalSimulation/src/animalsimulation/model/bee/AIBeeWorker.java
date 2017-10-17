@@ -15,13 +15,13 @@ import java.awt.Color;
 public class AIBeeWorker extends BeeAgent{
     private int gatheredFood;
     
-    public AIBeeWorker(BeeHive hive) {
+    public AIBeeWorker(BeeHive hive, double knowledgepercentage) {
         super(hive);
         color = Color.RED;
         shape = Shape.CIRCLE;
         width = 10;
         height = 10;
-        stateMachine = new AIWorkerBeeBehavior(this);
+        stateMachine = new AIWorkerBeeBehavior(this, knowledgepercentage);
     }
         
     public int getGatheredFood() {

@@ -28,9 +28,11 @@ public abstract class Map {
     
     protected World world;
     protected DataRecorder recorder;
+    protected double knowledgePercentage;
     
-    public Map() {
+    public Map(double AIknowledge) {
         try {
+            this.knowledgePercentage=AIknowledge;
             recorder = new DataRecorder();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -59,7 +61,7 @@ public abstract class Map {
                     bee = new BeeScout(hive);
                     break;
                 case AIWORKER_BEE:
-                    bee = new AIBeeWorker(hive);
+                    bee = new AIBeeWorker(hive,knowledgePercentage);
                     hive.setIdleBees(hive.getIdleBees() + 1);
                     break;
                 case AISCOUT_BEE:
@@ -73,5 +75,13 @@ public abstract class Map {
     
     // Abstract methods
     
+    public void setKnowledgePercentage(double knowledgePercentage) {
+        this.knowledgePercentage = knowledgePercentage;
+    }
+
+    public double getKnowledgePercentage() {
+        return knowledgePercentage;
+    }
+
     public abstract World createWorld(SimulationSettings settings);
 }

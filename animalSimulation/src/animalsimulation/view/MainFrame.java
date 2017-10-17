@@ -7,7 +7,10 @@ package animalsimulation.view;
 
 //required imports 
 import animalsimulation.controller.SimulationController;
+import animalsimulation.map.Map;
+import animalsimulation.map.SingleHiveMap;
 import animalsimulation.model.base.SimulationSettings;
+import animalsimulation.model.base.World;
 import javax.swing.*;
 
 public class MainFrame extends javax.swing.JFrame {
@@ -241,15 +244,17 @@ public class MainFrame extends javax.swing.JFrame {
     private void setupWorld() {
         try {
             jsl_animal.setMaximum(100);
-        int ans = Integer.parseInt(JOptionPane.showInputDialog( "How many steps this session needs to run"
+        int iter = Integer.parseInt(JOptionPane.showInputDialog( "How many steps this session needs to run"
                 + "","Use a large Value e.g 100000"));
-            
+        double Knowledge = Double.parseDouble(JOptionPane.showInputDialog( "What Percentage, AI workers get knowledge"
+                + "","Use a double Value e.g 1.0 (100%) , 0.3(30%)  , 0.7 (70%)"));
+            settings.setMap(new SingleHiveMap(Knowledge));
             settings.setNumberOfScoutBees(jsl_animal.getValue());
             settings.setNumberOfWorkerBees(jsl_animal.getValue());
             settings.setNumberOfAIScoutBees(jsl_animal.getValue());
             settings.setNumberOfAIWorkerBees(jsl_animal.getValue());
             this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); 
-            settings.setSimulationSteps(ans);//to make it full screen
+            settings.setSimulationSteps(iter);//to make it full screen
             
         } catch (Exception e) {                                         //Display the error if it failed to create the simulation
             JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);

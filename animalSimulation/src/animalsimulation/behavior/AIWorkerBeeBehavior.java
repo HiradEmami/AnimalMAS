@@ -24,11 +24,11 @@ import animalsimulation.model.base.Agent;
  */
 public class AIWorkerBeeBehavior extends StateMachine {
     
-    private static final double KnowledgeUpdateProbability = 1.0d;
+    private static double KnowledgeUpdateProbability;
     
-    public AIWorkerBeeBehavior(Agent agent) {
+    public AIWorkerBeeBehavior(Agent agent, double argPercentage) {
         super(agent);
-        
+        this.KnowledgeUpdateProbability=argPercentage;
         State idle = new State("Idle", new UpdateHiveStatistics());
         State communicate = new State("Communicate",  new UpdateHiveStatistics());
         State moveToFoodSource = new State("TravellingToFood", new AIWorkerBeeExploitMovement());

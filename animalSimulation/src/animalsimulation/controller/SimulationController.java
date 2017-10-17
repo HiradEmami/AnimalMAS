@@ -52,11 +52,18 @@ public class SimulationController extends BaseController implements Runnable {
     
     public void stopSimulation() {
         thread = null;
+         if(step != 0){
+             javax.swing.JOptionPane.showMessageDialog(null, "The simulation has ended.\nall "+step+" steps"
+                            + " have been completed and the data is recorded.");
+         step=0;
+         }
+        
     }
     
     // Reset the state of the simulation using the information
     // contained within the SimulationSettings instance.
     public void resetSimulation() {
+        
         stopSimulation();
         settings.getMap().getDataRecorder().reset();
         model = settings.getMap().createWorld(settings);
@@ -80,8 +87,7 @@ public class SimulationController extends BaseController implements Runnable {
                 
                 if(step >= settings.getSimulationSteps()) {
                     stopSimulation();
-                    javax.swing.JOptionPane.showMessageDialog(null, "The simulation has ended.\nall"+step+" steps"
-                            + "have been completed and the data is recorded.");
+                   
                 }
             }
         }
