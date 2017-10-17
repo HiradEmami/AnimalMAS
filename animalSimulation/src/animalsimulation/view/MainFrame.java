@@ -248,6 +248,7 @@ public class MainFrame extends javax.swing.JFrame {
                 + "","Use a large Value e.g 100000"));
         double Knowledge = Double.parseDouble(JOptionPane.showInputDialog( "What Percentage, AI workers get knowledge"
                 + "","Use a double Value e.g 1.0 (100%) , 0.3(30%)  , 0.7 (70%)"));
+            System.out.println("before change: "+settings.getMap()+"\n"+settings.getMap().getDataRecorder());
             settings.setMap(new SingleHiveMap(Knowledge));
             settings.setNumberOfScoutBees(jsl_animal.getValue());
             settings.setNumberOfWorkerBees(jsl_animal.getValue());
@@ -255,7 +256,7 @@ public class MainFrame extends javax.swing.JFrame {
             settings.setNumberOfAIWorkerBees(jsl_animal.getValue());
             this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); 
             settings.setSimulationSteps(iter);//to make it full screen
-            
+            System.out.println("before reset: "+settings.getMap()+"\n"+settings.getMap().getDataRecorder());
         } catch (Exception e) {                                         //Display the error if it failed to create the simulation
             JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);
         }

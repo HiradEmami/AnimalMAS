@@ -17,8 +17,8 @@ import java.io.IOException;
  * @author jeroen
  */
 public class SimulationController extends BaseController implements Runnable {
-    private final SimulationSettings settings;
-    private final DataRecorder recorder;
+    private  SimulationSettings settings;
+    private  DataRecorder recorder;
     private Thread thread;
     private int step;
     
@@ -66,7 +66,9 @@ public class SimulationController extends BaseController implements Runnable {
         
         stopSimulation();
         settings.getMap().getDataRecorder().reset();
+        System.out.println("reset: "+settings.getMap()+"\n"+settings.getMap().getDataRecorder());
         model = settings.getMap().createWorld(settings);
+        recorder=settings.getMap().getDataRecorder();
         updateViews();
         runForever();
     }
