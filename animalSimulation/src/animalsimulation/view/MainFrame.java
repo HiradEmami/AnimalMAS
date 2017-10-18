@@ -17,32 +17,22 @@ public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
         initComponents();                                                   //Creating and managing the main components
-        this.imagePath = System.getProperty("user.dir") + "\\images";
-        guid_hive.setIcon(new ImageIcon(imagePath + "\\hive.jpg"));
-        guid_food.setIcon(new ImageIcon(imagePath + "\\food.jpg"));
-        guid_beeScout.setIcon(new ImageIcon(imagePath + "\\bee_scout.jpg"));
-        guid_beeWorker.setIcon(new ImageIcon(imagePath + "\\bee_worker.jpg"));
         this.pack();
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jp_worldPanel = new javax.swing.JPanel();
         jp_SetupPanel = new javax.swing.JPanel();
-        jp_infoPanel = new javax.swing.JPanel();
-        jp_guide = new javax.swing.JPanel();
-		worldPanel1 = new animalsimulation.view.WorldPanel();
+        worldPanel1 = new animalsimulation.view.WorldPanel();
+        worldPanel2 = new animalsimulation.view.WorldPanel();
+        worldPanel3 = new animalsimulation.view.WorldPanel();
+        worldPanel4 = new animalsimulation.view.WorldPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();        
-		jLabel13 = new javax.swing.JLabel();
         tlb_animal = new javax.swing.JLabel();
-        guid_food = new javax.swing.JLabel();
-        guid_hive = new javax.swing.JLabel();
-        guid_beeScout = new javax.swing.JLabel();
-        guid_beeWorker = new javax.swing.JLabel();
         jb_SetupButton = new javax.swing.JButton();
         jsl_animal = new javax.swing.JSlider();
 
@@ -55,11 +45,11 @@ public class MainFrame extends javax.swing.JFrame {
         worldPanel1.setLayout(worldPanel1Layout);
         worldPanel1Layout.setHorizontalGroup(
             worldPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
         worldPanel1Layout.setVerticalGroup(
             worldPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jp_worldPanelLayout = new javax.swing.GroupLayout(jp_worldPanel);
@@ -72,55 +62,47 @@ public class MainFrame extends javax.swing.JFrame {
             jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(worldPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+	
+        jp_worldPanel.add(worldPanel1);
 
-        jLabel13.setText("Icons:");
-
-        guid_food.setText("Food");
-
-        guid_hive.setText("Hive");
-
-        guid_beeScout.setText("Scout");
-
-        guid_beeWorker.setText("Worker");
-
-        jp_infoPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray));
-        jp_infoPanel.setLayout(new java.awt.CardLayout());
-        
-        javax.swing.GroupLayout jp_guideLayout = new javax.swing.GroupLayout(jp_guide);
-        jp_guide.setLayout(jp_guideLayout);
-        jp_guideLayout.setHorizontalGroup(
-            jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jp_guideLayout.createSequentialGroup()
-                .addGroup(jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jp_guideLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel13))
-                    .addGroup(jp_guideLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(guid_food)
-                        .addGap(66, 66, 66)
-                        .addComponent(guid_hive)
-                        .addGap(62, 62, 62)
-                        .addComponent(guid_beeScout)
-                        .addGap(70, 70, 70)
-                        .addComponent(guid_beeWorker)))
-                .addContainerGap(327, Short.MAX_VALUE))
+        javax.swing.GroupLayout worldPanel2Layout = new javax.swing.GroupLayout(worldPanel2);
+        worldPanel2.setLayout(worldPanel2Layout);
+        worldPanel2Layout.setHorizontalGroup(
+            worldPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        jp_guideLayout.setVerticalGroup(
-            jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jp_guideLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel13)
-                .addGap(40, 40, 40)
-                .addGroup(jp_guideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guid_hive)
-                    .addComponent(guid_food)
-                    .addComponent(guid_beeScout)
-                    .addComponent(guid_beeWorker))
-                .addContainerGap(78, Short.MAX_VALUE))
+        worldPanel2Layout.setVerticalGroup(
+            worldPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jp_infoPanel.add(jp_guide, "card3");
+        jp_worldPanel.add(worldPanel2);
+
+        javax.swing.GroupLayout worldPanel3Layout = new javax.swing.GroupLayout(worldPanel3);
+        worldPanel3.setLayout(worldPanel3Layout);
+        worldPanel3Layout.setHorizontalGroup(
+            worldPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        worldPanel3Layout.setVerticalGroup(
+            worldPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jp_worldPanel.add(worldPanel3);
+
+        javax.swing.GroupLayout worldPanel4Layout = new javax.swing.GroupLayout(worldPanel4);
+        worldPanel4.setLayout(worldPanel4Layout);
+        worldPanel4Layout.setHorizontalGroup(
+            worldPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        worldPanel4Layout.setVerticalGroup(
+            worldPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jp_worldPanel.add(worldPanel4);
 
         jp_SetupPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray));
 
@@ -151,86 +133,70 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jp_SetupPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(jp_SetupPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jp_SetupPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tlb_animal)
-                                    .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
+                            .addComponent(tlb_animal)
+                            .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jb_SetupButton)
                         .addGap(82, 82, 82))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addContainerGap())))
         );
         jp_SetupPanelLayout.setVerticalGroup(
             jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_SetupPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(92, 92, 92)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jb_SetupButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tlb_animal)
-                .addGap(28, 28, 28)
-                .addComponent(jb_SetupButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
-                .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5))
-                .addGap(69, 69, 69))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jsl_animal.getAccessibleContext().setAccessibleName("");
-
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jp_infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jp_worldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jp_SetupPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jp_SetupPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jp_worldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jp_SetupPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jp_infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jp_worldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jp_SetupPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jp_worldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     //Action Event for the setup button that runs the simulation
-    private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SetupButtonActionPerformed
+    private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
         setupWorld();           //Creating the grid and calling render method within
         repaintScreen();        //Method to remove the previously built tiles (reset UI)
-    }//GEN-LAST:event_jb_SetupButtonActionPerformed
+    }                                              
 
-    private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsl_animalStateChanged
+    private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {                                        
         tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
         setupWorld();           //Creating the grid and calling render method within
         repaintScreen();        //Method to remove the previously built tiles (reset UI)
-    }//GEN-LAST:event_jsl_animalStateChanged
+    }                                       
 
     private void setupWorld() {
         try {
@@ -253,22 +219,17 @@ public class MainFrame extends javax.swing.JFrame {
         simController.resetSimulation();
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel guid_beeScout;
-    private javax.swing.JLabel guid_beeWorker;
-    private javax.swing.JLabel guid_food;
-    private javax.swing.JLabel guid_hive;
+    // Variables declaration - do not modify                     
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JButton jb_SetupButton;
     private javax.swing.JPanel jp_SetupPanel;
-    private javax.swing.JPanel jp_guide;
-    private javax.swing.JPanel jp_infoPanel;
     private javax.swing.JPanel jp_worldPanel;
     private javax.swing.JSlider jsl_animal;
     private javax.swing.JLabel tlb_animal;
     private animalsimulation.view.WorldPanel worldPanel1;
-    // End of variables declaration//GEN-END:variables
+    private animalsimulation.view.WorldPanel worldPanel2;
+    private animalsimulation.view.WorldPanel worldPanel3;
+    private animalsimulation.view.WorldPanel worldPanel4;
+    // End of variables declaration                   
 }
