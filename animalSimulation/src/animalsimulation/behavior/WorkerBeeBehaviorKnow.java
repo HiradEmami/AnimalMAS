@@ -10,29 +10,27 @@ import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
 import animalsimulation.behavior.event.*;
 import animalsimulation.behavior.movement.BeeReturnMovement;
-import animalsimulation.behavior.movement.StraightWorkerBeeExploitMovement;
+import animalsimulation.behavior.movement.WorkerBeeExploitMovementKnow;
 import animalsimulation.model.base.Agent;
 
 /**
  *
  * @author Ebombo2
  */
-public class SNWorkerBeeBehavior extends StateMachine {
+public class WorkerBeeBehaviorKnow  extends StateMachine {
     
-    private static final double KnowledgeUpdateProbability = 1.0d;
-    
-    public SNWorkerBeeBehavior(Agent agent) {
+    public WorkerBeeBehaviorKnow(Agent agent) {
         super(agent);
         
-        State idle = new State("Idle", new UpdateHiveStatistics());
+        State idle = new State("Idle",  new UpdateHiveStatistics());
         State communicate = new State("Communicate",  new UpdateHiveStatistics());
-        State moveToFoodSource = new State("TravellingToFood", new StraightWorkerBeeExploitMovement());
+        State moveToFoodSource = new State("TravellingToFood", new WorkerBeeExploitMovementKnow());
         State gatherFood = new State("GatheringFood", new GatherFood());
         State returnToHive = new State("Returning", new BeeReturnMovement());
         State dropFood = new State("DroppingFood", new DropFood());
         
         addStateTransition(idle, communicate, MeetingAgentEvent.class);
-        addStateTransition(communicate, moveToFoodSource, KnowledgeUpdatedEvent.class, KnowledgeUpdateProbability);
+        addStateTransition(communicate, moveToFoodSource, KnowledgeUpdatedEvent.class);
         addStateTransition(moveToFoodSource, gatherFood, DestinationReachedEvent.class);
         addStateTransition(gatherFood, returnToHive, ActionCompletedEvent.class);
         addStateTransition(returnToHive, dropFood, DestinationReachedEvent.class);

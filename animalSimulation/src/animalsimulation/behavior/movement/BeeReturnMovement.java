@@ -11,7 +11,7 @@ import animalsimulation.model.bee.BeeAgent;
 
 /**
  *
- * @author jeroen
+ * @author Ebombo2
  */
 public class BeeReturnMovement extends BaseMovement {
 

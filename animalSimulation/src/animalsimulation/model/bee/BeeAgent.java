@@ -31,6 +31,10 @@ public abstract class BeeAgent extends Agent {
     public BeeAgent(double x, double y, BeeHive hive) {
         super(x, y);
         
+        shape = Shape.CIRCLE;
+        width = 10;
+        height = 10;
+        
         hive.addBee(this);
         this.hive = hive;
         this.tsigma = 3;

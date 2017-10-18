@@ -5,21 +5,21 @@
  */
 package animalsimulation.behavior;
 
-/**
- *
- * @author Hirad Gorgoroth
- */
 import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
 import animalsimulation.behavior.event.*;
+import animalsimulation.behavior.actions.*;
 import animalsimulation.behavior.movement.BeeReturnMovement;
 import animalsimulation.behavior.movement.ScoutBeeExploreMovement;
 import animalsimulation.model.base.Agent;
-import animalsimulation.behavior.actions.*;
 
-public class BiologicalScoutBeeBehavior extends StateMachine{
+/**
+ *
+ * @author Ebombo2
+ */
+public class ScoutBeeBehaviorOne extends StateMachine{
     
-    public BiologicalScoutBeeBehavior(Agent agent) {
+    public ScoutBeeBehaviorOne(Agent agent) {
         super(agent);
         
         State exploration = new State("Exploring", new ScoutBeeExploreMovement());

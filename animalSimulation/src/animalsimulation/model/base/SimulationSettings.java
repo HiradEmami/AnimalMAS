@@ -13,10 +13,14 @@ import animalsimulation.map.Map;
  */
 public class SimulationSettings {
     private Map map;
-    private int numberOfWorkerBees;
-    private int numberOfScoutBees;
-    private int numberOfAIWorkerBees;
-    private int numberOfAIScoutBees;
+    private int numberOfBioWorkerBees;
+    private int numberOfBioScoutBees;
+    private int numberOfKnowWorkerBees;
+    private int numberOfKnowScoutBees;
+    private int numberOfMoveWorkerBees;
+    private int numberOfMoveScoutBees;
+    private int numberOfSnWorkerBees;
+    private int numberOfSnScoutBees;
     private int numberOfFoodSources;
     private int recordingInterval;
     private int simulationSteps;
@@ -33,20 +37,20 @@ public class SimulationSettings {
         this.map = map;
     }
     
-    public int getNumberOfWorkerBees() {
-        return numberOfWorkerBees;
+    public int getNumberOfBioWorkerBees() {
+        return numberOfBioWorkerBees;
     }
     
-    public void setNumberOfWorkerBees(int numberOfWorkerBees) {
-        this.numberOfWorkerBees = numberOfWorkerBees;
+    public void setNumberOfBioWorkerBees(int numberOfBioWorkerBees) {
+        this.numberOfBioWorkerBees = numberOfBioWorkerBees;
     }
     
-    public int getNumberOfScoutBees() {
-        return numberOfScoutBees;
+    public int getNumberOfBioScoutBees() {
+        return numberOfBioScoutBees;
     }
     
-    public void setNumberOfScoutBees(int numberOfScoutBees) {
-        this.numberOfScoutBees = numberOfScoutBees;
+    public void setNumberOfBioScoutBees(int numberOfBioScoutBees) {
+        this.numberOfBioScoutBees = numberOfBioScoutBees;
     }
     
     public int getNumberOfFoodSources() {
@@ -67,22 +71,6 @@ public class SimulationSettings {
             this.recordingInterval = 1;
         }
     }
-
-    public int getNumberOfAIWorkerBees() {
-        return numberOfAIWorkerBees;
-    }
-
-    public void setNumberOfAIWorkerBees(int numberOfAIWorkerBees) {
-        this.numberOfAIWorkerBees = numberOfAIWorkerBees;
-    }
-
-    public int getNumberOfAIScoutBees() {
-        return numberOfAIScoutBees;
-    }
-
-    public void setNumberOfAIScoutBees(int numberOfAIScoutBees) {
-        this.numberOfAIScoutBees = numberOfAIScoutBees;
-    }
     
     public int getSimulationSteps() {
         return simulationSteps;
@@ -90,5 +78,53 @@ public class SimulationSettings {
     
     public void setSimulationSteps(int simulationSteps) {
         this.simulationSteps = simulationSteps;
+    }
+
+    public int getNumberOfKnowWorkerBees() {
+        return numberOfKnowWorkerBees;
+    }
+
+    public void setNumberOfKnowWorkerBees(int numberOfKnowWorkerBees) {
+        this.numberOfKnowWorkerBees = numberOfKnowWorkerBees;
+    }
+
+    public int getNumberOfKnowScoutBees() {
+        return numberOfKnowScoutBees;
+    }
+
+    public void setNumberOfKnowScoutBees(int numberOfKnowScoutBees) {
+        this.numberOfKnowScoutBees = numberOfKnowScoutBees;
+    }
+
+    public int getNumberOfMoveWorkerBees() {
+        return numberOfMoveWorkerBees;
+    }
+
+    public void setNumberOfMoveWorkerBees(int numberOfMoveWorkerBees) {
+        this.numberOfMoveWorkerBees = numberOfMoveWorkerBees;
+    }
+
+    public int getNumberOfMoveScoutBees() {
+        return numberOfMoveScoutBees;
+    }
+
+    public void setNumberOfMoveScoutBees(int numberOfMoveScoutBees) {
+        this.numberOfMoveScoutBees = numberOfMoveScoutBees;
+    }
+
+    public int getNumberOfSnWorkerBees() {
+        return numberOfSnWorkerBees;
+    }
+
+    public void setNumberOfSnWorkerBees(int numberOfSnWorkerBees) {
+        this.numberOfSnWorkerBees = numberOfSnWorkerBees;
+    }
+
+    public int getNumberOfSnScoutBees() {
+        return numberOfSnScoutBees;
+    }
+
+    public void setNumberOfSnScoutBees(int numberOfSnScoutBees) {
+        this.numberOfSnScoutBees = numberOfSnScoutBees;
     }
 }

@@ -19,7 +19,6 @@ public class AnimalSimulation {
     
     public static void main(String[] args) {  
         //ChartExamples testchart =new ChartExamples(args);
-        
         initializeWorld();
         initializeUI();
         simulationController.runForever();
@@ -37,10 +36,14 @@ public class AnimalSimulation {
         settings = new SimulationSettings();
         settings.setMap(new SingleHiveMap());
         settings.setNumberOfFoodSources(30);
-        settings.setNumberOfScoutBees(10);
-        settings.setNumberOfWorkerBees(10);
-        settings.setNumberOfAIScoutBees(10);
-        settings.setNumberOfAIWorkerBees(10);
+        settings.setNumberOfBioScoutBees(10);
+        settings.setNumberOfBioWorkerBees(10);
+        settings.setNumberOfKnowScoutBees(10);
+        settings.setNumberOfKnowWorkerBees(10);
+        settings.setNumberOfMoveScoutBees(10);
+        settings.setNumberOfMoveWorkerBees(10);
+        settings.setNumberOfSnScoutBees(10);
+        settings.setNumberOfSnWorkerBees(10);
         settings.getMap().createWorld(settings);
         settings.setRecordingInterval(100);
         settings.setSimulationSteps(100000);

@@ -5,12 +5,10 @@
  */
 package animalsimulation.behavior;
 
-import animalsimulation.behavior.actions.CommunicateCentral;
 import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
-import animalsimulation.behavior.event.ActionCompletedEvent;
-import animalsimulation.behavior.event.DestinationReachedEvent;
-import animalsimulation.behavior.event.FoodSourceFoundEvent;
+import animalsimulation.behavior.event.*;
+import animalsimulation.behavior.actions.*;
 import animalsimulation.behavior.movement.BeeReturnMovement;
 import animalsimulation.behavior.movement.ScoutBeeExploreMovement;
 import animalsimulation.model.base.Agent;
@@ -19,9 +17,9 @@ import animalsimulation.model.base.Agent;
  *
  * @author Ebombo2
  */
-public class SNScoutBeeBehavior extends StateMachine{
+public class ScoutBeeBehaviorCentral extends StateMachine{
     
-        public SNScoutBeeBehavior(Agent agent) {
+        public ScoutBeeBehaviorCentral(Agent agent) {
         super(agent);
         
         State exploration = new State("Exploring", new ScoutBeeExploreMovement());

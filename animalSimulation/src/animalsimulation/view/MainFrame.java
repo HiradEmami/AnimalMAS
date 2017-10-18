@@ -235,10 +235,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void setupWorld() {
         try {
             jsl_animal.setMaximum(100);
-            settings.setNumberOfScoutBees(jsl_animal.getValue());
-            settings.setNumberOfWorkerBees(jsl_animal.getValue());
-            settings.setNumberOfAIScoutBees(jsl_animal.getValue());
-            settings.setNumberOfAIWorkerBees(jsl_animal.getValue());
+            settings.setNumberOfBioScoutBees(jsl_animal.getValue());
+            settings.setNumberOfBioWorkerBees(jsl_animal.getValue());
+            settings.setNumberOfKnowScoutBees(jsl_animal.getValue());
+            settings.setNumberOfKnowWorkerBees(jsl_animal.getValue());
+            settings.setNumberOfMoveScoutBees(jsl_animal.getValue());
+            settings.setNumberOfMoveWorkerBees(jsl_animal.getValue());
+            settings.setNumberOfSnScoutBees(jsl_animal.getValue());
+            settings.setNumberOfSnWorkerBees(jsl_animal.getValue());
             this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);   //to make it full screen
         } catch (Exception e) {                                         //Display the error if it failed to create the simulation
             JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);

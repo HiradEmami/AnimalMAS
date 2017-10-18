@@ -5,7 +5,7 @@
  */
 package animalsimulation.model.bee;
 
-import animalsimulation.behavior.SNWorkerBeeBehavior;
+import animalsimulation.behavior.WorkerBeeBehaviorKnow;
 import java.awt.Color;
 
 /**
@@ -13,12 +13,11 @@ import java.awt.Color;
  * @author Ebombo2
  */
 public class KnowBeeWorker extends BeeAgent{
+    
     public KnowBeeWorker(BeeHive hive) {
         super(hive);
-        color = Color.RED;
-        shape = Shape.CIRCLE;
-        width = 10;
-        height = 10;
-        stateMachine = new SNWorkerBeeBehavior(this);
+        color = new Color(255,153,153);
+        stateMachine = new WorkerBeeBehaviorKnow(this);
     }
+    
 }

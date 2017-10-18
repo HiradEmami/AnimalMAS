@@ -10,14 +10,14 @@ import animalsimulation.model.base.SimulationSettings;
 import animalsimulation.model.base.World;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeHive;
-import animalsimulation.model.bee.BeeScout;
-import animalsimulation.model.bee.BeeWorker;
+import animalsimulation.model.bee.BioBeeScout;
+import animalsimulation.model.bee.BioBeeWorker;
 import animalsimulation.model.bee.KnowBeeScout;
 import animalsimulation.model.bee.KnowBeeWorker;
 import animalsimulation.model.bee.MoveBeeScout;
 import animalsimulation.model.bee.MoveBeeWorker;
-import animalsimulation.model.bee.SNBeeScout;
-import animalsimulation.model.bee.SNBeeWorker;
+import animalsimulation.model.bee.SnBeeScout;
+import animalsimulation.model.bee.SnBeeWorker;
 import java.io.IOException;
 
 /**
@@ -60,11 +60,11 @@ public abstract class Map {
             BeeAgent bee = null;
             switch(type) {
                 case WORKER_BEE:
-                    bee = new BeeWorker(hive);
+                    bee = new BioBeeWorker(hive);
                     hive.setIdleBees(hive.getIdleBees() + 1);
                     break;
                 case SCOUT_BEE:
-                    bee = new BeeScout(hive);
+                    bee = new BioBeeScout(hive);
                     break;
                 case KNOWWORKER_BEE:
                     bee = new KnowBeeWorker(hive);
@@ -81,11 +81,11 @@ public abstract class Map {
                     bee = new MoveBeeScout(hive);
                     break;
                 case SNWORKER_BEE:
-                    bee = new SNBeeWorker(hive);
+                    bee = new SnBeeWorker(hive);
                     hive.setIdleBees(hive.getIdleBees() + 1);
                     break;
                 case SNSCOUT_BEE:
-                    bee = new SNBeeScout(hive);
+                    bee = new SnBeeScout(hive);
                     break;
             }
             bees[i] = bee;
