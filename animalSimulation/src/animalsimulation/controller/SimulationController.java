@@ -79,7 +79,7 @@ public class SimulationController extends BaseController implements Runnable {
             synchronized(this) {
                 try {
                     step();
-                    Thread.sleep(20);
+                    Thread.sleep(1);
                 }
                 catch (InterruptedException ex) {}
                 catch (IOException ioe) {
