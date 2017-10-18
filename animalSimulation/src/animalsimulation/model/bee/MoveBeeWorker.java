@@ -5,30 +5,20 @@
  */
 package animalsimulation.model.bee;
 
-import animalsimulation.behavior.AIWorkerBeeBehavior;
+import animalsimulation.behavior.SNWorkerBeeBehavior;
 import java.awt.Color;
 
 /**
  *
  * @author Ebombo2
  */
-public class AIBeeWorker extends BeeAgent{
-    private int gatheredFood;
-    
-    public AIBeeWorker(BeeHive hive) {
+public class MoveBeeWorker extends BeeAgent{
+    public MoveBeeWorker(BeeHive hive) {
         super(hive);
         color = Color.RED;
         shape = Shape.CIRCLE;
         width = 10;
         height = 10;
-        stateMachine = new AIWorkerBeeBehavior(this);
-    }
-        
-    public int getGatheredFood() {
-        return gatheredFood;
-    }
-    
-    public void setGatheredFood(int gatheredFood) {
-        this.gatheredFood = gatheredFood;
+        stateMachine = new SNWorkerBeeBehavior(this);
     }
 }

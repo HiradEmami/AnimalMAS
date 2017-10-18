@@ -8,12 +8,16 @@ package animalsimulation.map;
 import animalsimulation.model.base.DataRecorder;
 import animalsimulation.model.base.SimulationSettings;
 import animalsimulation.model.base.World;
-import animalsimulation.model.bee.AIBeeScout;
-import animalsimulation.model.bee.AIBeeWorker;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeHive;
 import animalsimulation.model.bee.BeeScout;
 import animalsimulation.model.bee.BeeWorker;
+import animalsimulation.model.bee.KnowBeeScout;
+import animalsimulation.model.bee.KnowBeeWorker;
+import animalsimulation.model.bee.MoveBeeScout;
+import animalsimulation.model.bee.MoveBeeWorker;
+import animalsimulation.model.bee.SNBeeScout;
+import animalsimulation.model.bee.SNBeeWorker;
 import java.io.IOException;
 
 /**
@@ -23,8 +27,12 @@ import java.io.IOException;
 public abstract class Map {
     protected static final int WORKER_BEE = 0;
     protected static final int SCOUT_BEE = 1;
-    protected static final int AIWORKER_BEE = 2;
-    protected static final int AISCOUT_BEE = 3;
+    protected static final int KNOWWORKER_BEE = 2;
+    protected static final int KNOWSCOUT_BEE = 3;
+    protected static final int MOVEWORKER_BEE = 4;
+    protected static final int MOVESCOUT_BEE = 5;
+    protected static final int SNWORKER_BEE = 6;
+    protected static final int SNSCOUT_BEE = 7;
     
     protected World world;
     protected DataRecorder recorder;
@@ -58,12 +66,26 @@ public abstract class Map {
                 case SCOUT_BEE:
                     bee = new BeeScout(hive);
                     break;
-                case AIWORKER_BEE:
-                    bee = new AIBeeWorker(hive);
+                case KNOWWORKER_BEE:
+                    bee = new KnowBeeWorker(hive);
                     hive.setIdleBees(hive.getIdleBees() + 1);
                     break;
-                case AISCOUT_BEE:
-                    bee = new AIBeeScout(hive);
+                case KNOWSCOUT_BEE:
+                    bee = new KnowBeeScout(hive);
+                    break;
+                case MOVEWORKER_BEE:
+                    bee = new MoveBeeWorker(hive);
+                    hive.setIdleBees(hive.getIdleBees() + 1);
+                    break;
+                case MOVESCOUT_BEE:
+                    bee = new MoveBeeScout(hive);
+                    break;
+                case SNWORKER_BEE:
+                    bee = new SNBeeWorker(hive);
+                    hive.setIdleBees(hive.getIdleBees() + 1);
+                    break;
+                case SNSCOUT_BEE:
+                    bee = new SNBeeScout(hive);
                     break;
             }
             bees[i] = bee;

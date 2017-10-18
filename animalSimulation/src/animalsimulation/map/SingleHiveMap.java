@@ -48,11 +48,11 @@ public class SingleHiveMap extends Map {
         world.addObjects((WorldObject[]) scoutBees);
         
         // Adds AIworker bees to hive
-        BeeAgent[] aIWorkerBees = createBees(Map.AIWORKER_BEE, settings.getNumberOfAIWorkerBees(), aIHive);
+        BeeAgent[] aIWorkerBees = createBees(Map.SNWORKER_BEE, settings.getNumberOfAIWorkerBees(), aIHive);
         world.addObjects((WorldObject[]) aIWorkerBees);
         
         // Adds AIscout bees to hive
-        BeeAgent[] aIScoutBees = createBees(Map.AISCOUT_BEE, settings.getNumberOfAIScoutBees(), aIHive);
+        BeeAgent[] aIScoutBees = createBees(Map.SNSCOUT_BEE, settings.getNumberOfAIScoutBees(), aIHive);
         world.addObjects((WorldObject[]) aIScoutBees);
         
         // Register data sources for data collection

@@ -5,36 +5,31 @@
  */
 package animalsimulation.behavior;
 
-import animalsimulation.behavior.actions.AIDropFood;
-import animalsimulation.behavior.actions.AIGatherFood;
-import animalsimulation.behavior.actions.UpdateHiveStatistics;
+import animalsimulation.behavior.actions.*;
 import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
-import animalsimulation.behavior.event.ActionCompletedEvent;
-import animalsimulation.behavior.event.DestinationReachedEvent;
-import animalsimulation.behavior.event.KnowledgeUpdatedEvent;
-import animalsimulation.behavior.event.MeetingAgentEvent;
-import animalsimulation.behavior.movement.AIBeeReturnMovement;
-import animalsimulation.behavior.movement.AIWorkerBeeExploitMovement;
+import animalsimulation.behavior.event.*;
+import animalsimulation.behavior.movement.BeeReturnMovement;
+import animalsimulation.behavior.movement.StraightWorkerBeeExploitMovement;
 import animalsimulation.model.base.Agent;
 
 /**
  *
  * @author Ebombo2
  */
-public class AIWorkerBeeBehavior extends StateMachine {
+public class SNWorkerBeeBehavior extends StateMachine {
     
     private static final double KnowledgeUpdateProbability = 1.0d;
     
-    public AIWorkerBeeBehavior(Agent agent) {
+    public SNWorkerBeeBehavior(Agent agent) {
         super(agent);
         
         State idle = new State("Idle", new UpdateHiveStatistics());
         State communicate = new State("Communicate",  new UpdateHiveStatistics());
-        State moveToFoodSource = new State("TravellingToFood", new AIWorkerBeeExploitMovement());
-        State gatherFood = new State("GatheringFood", new AIGatherFood());
-        State returnToHive = new State("Returning", new AIBeeReturnMovement());
-        State dropFood = new State("DroppingFood", new AIDropFood());
+        State moveToFoodSource = new State("TravellingToFood", new StraightWorkerBeeExploitMovement());
+        State gatherFood = new State("GatheringFood", new GatherFood());
+        State returnToHive = new State("Returning", new BeeReturnMovement());
+        State dropFood = new State("DroppingFood", new DropFood());
         
         addStateTransition(idle, communicate, MeetingAgentEvent.class);
         addStateTransition(communicate, moveToFoodSource, KnowledgeUpdatedEvent.class, KnowledgeUpdateProbability);

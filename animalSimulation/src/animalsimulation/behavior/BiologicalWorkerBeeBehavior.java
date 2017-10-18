@@ -5,26 +5,26 @@
  */
 package animalsimulation.behavior;
 
-/**
- *
- * @author Hirad Gorgoroth
- */
+import animalsimulation.behavior.actions.*;
 import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
 import animalsimulation.behavior.event.*;
 import animalsimulation.behavior.movement.BeeReturnMovement;
+import animalsimulation.behavior.movement.WaggleWorkerBeeExploitMovement;
 import animalsimulation.model.base.Agent;
-import animalsimulation.behavior.actions.*;
-import animalsimulation.behavior.movement.WorkerBeeExploitMovement;
 
-public class WorkerBeeBehavior  extends StateMachine {
+/**
+ *
+ * @author Ebombo2
+ */
+public class BiologicalWorkerBeeBehavior  extends StateMachine {
     
-    public WorkerBeeBehavior(Agent agent) {
+    public BiologicalWorkerBeeBehavior(Agent agent) {
         super(agent);
         
         State idle = new State("Idle",  new UpdateHiveStatistics());
         State communicate = new State("Communicate",  new UpdateHiveStatistics());
-        State moveToFoodSource = new State("TravellingToFood", new WorkerBeeExploitMovement());
+        State moveToFoodSource = new State("TravellingToFood", new WaggleWorkerBeeExploitMovement());
         State gatherFood = new State("GatheringFood", new GatherFood());
         State returnToHive = new State("Returning", new BeeReturnMovement());
         State dropFood = new State("DroppingFood", new DropFood());

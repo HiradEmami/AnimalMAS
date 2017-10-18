@@ -5,22 +5,22 @@
  */
 package animalsimulation.behavior.actions;
 
-/**
- *
- * @author Hirad Gorgoroth
- */
 import animalsimulation.behavior.base.Action;
 import animalsimulation.behavior.base.State;
 import animalsimulation.model.base.Agent;
-import animalsimulation.model.bee.BeeWorker;
+import animalsimulation.model.bee.BeeAgent;
 
-public class DropFood  extends Action {
+/**
+ *
+ * @author Ebombo2
+ */
+public class DropFood extends Action {
     
     @Override
     public void initialize(Agent agent, State state) {
         setTimeOut(100);
         
-        BeeWorker bee = (BeeWorker) agent;
+        BeeAgent bee = (BeeAgent) agent;
         int gatheredFood = bee.getGatheredFood();
         bee.setGatheredFood(0);
         bee.getHive().addGatheredFood(gatheredFood);

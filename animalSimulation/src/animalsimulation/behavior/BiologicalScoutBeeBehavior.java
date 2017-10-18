@@ -17,14 +17,14 @@ import animalsimulation.behavior.movement.ScoutBeeExploreMovement;
 import animalsimulation.model.base.Agent;
 import animalsimulation.behavior.actions.*;
 
-public class ScoutBeeBehavior extends StateMachine{
+public class BiologicalScoutBeeBehavior extends StateMachine{
     
-    public ScoutBeeBehavior(Agent agent) {
+    public BiologicalScoutBeeBehavior(Agent agent) {
         super(agent);
         
         State exploration = new State("Exploring", new ScoutBeeExploreMovement());
         State returnToHive = new State("Returning", new BeeReturnMovement());
-        State waggleDance = new State("Waggling", new Communicate());
+        State waggleDance = new State("Waggling", new CommunicateOne());
                 
         addStateTransition(exploration, returnToHive, FoodSourceFoundEvent.class);
         addStateTransition(returnToHive, waggleDance, DestinationReachedEvent.class);

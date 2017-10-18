@@ -5,28 +5,28 @@
  */
 package animalsimulation.behavior;
 
-import animalsimulation.behavior.actions.AICommunicate;
+import animalsimulation.behavior.actions.CommunicateCentral;
 import animalsimulation.behavior.base.State;
 import animalsimulation.behavior.base.StateMachine;
 import animalsimulation.behavior.event.ActionCompletedEvent;
 import animalsimulation.behavior.event.DestinationReachedEvent;
 import animalsimulation.behavior.event.FoodSourceFoundEvent;
-import animalsimulation.behavior.movement.AIBeeReturnMovement;
-import animalsimulation.behavior.movement.AIScoutBeeExploreMovement;
+import animalsimulation.behavior.movement.BeeReturnMovement;
+import animalsimulation.behavior.movement.ScoutBeeExploreMovement;
 import animalsimulation.model.base.Agent;
 
 /**
  *
  * @author Ebombo2
  */
-public class AIScoutBeeBehavior extends StateMachine{
+public class SNScoutBeeBehavior extends StateMachine{
     
-        public AIScoutBeeBehavior(Agent agent) {
+        public SNScoutBeeBehavior(Agent agent) {
         super(agent);
         
-        State exploration = new State("Exploring", new AIScoutBeeExploreMovement());
-        State returnToHive = new State("Returning", new AIBeeReturnMovement());
-        State waggleDance = new State("Waggling", new AICommunicate());
+        State exploration = new State("Exploring", new ScoutBeeExploreMovement());
+        State returnToHive = new State("Returning", new BeeReturnMovement());
+        State waggleDance = new State("Waggling", new CommunicateCentral());
                 
         addStateTransition(exploration, returnToHive, FoodSourceFoundEvent.class);
         addStateTransition(returnToHive, waggleDance, DestinationReachedEvent.class);

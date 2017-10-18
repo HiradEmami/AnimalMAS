@@ -14,15 +14,14 @@ import animalsimulation.model.base.Agent;
 import animalsimulation.model.base.WorldObject;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeFood;
-import animalsimulation.model.bee.BeeWorker;
 import animalsimulation.model.knowledge.Knowledge;
 
 /**
  *
- * @author Hirad Gorgoroth
+ * @author Ebombo2
  */
-public class Communicate extends Action {
-    private BeeWorker workerBee;
+public class CommunicateOne extends Action {
+    private BeeAgent workerBee;
     
     public void initialize(Agent agent, State state) {
         setTimeOut(50); // Finish after fifty simulation steps.
@@ -32,13 +31,11 @@ public class Communicate extends Action {
                 
         for(WorldObject memberBee : memberBees) {
             // Single out an idle worker bee and update its knowledge.
-            if(memberBee instanceof BeeWorker) {
-                workerBee = (BeeWorker) memberBee;
+            if(memberBee instanceof BeeAgent) {
+                workerBee = (BeeAgent) memberBee;
                 if(workerBee.getStateMachine().getCurrentState().getStateName().equals("Idle")) {
                     workerBee.getStateMachine().updateState(new MeetingAgentEvent(this));
-
                     communicateFood((BeeAgent) agent, workerBee);
-                    
                     return;
                 }
             }

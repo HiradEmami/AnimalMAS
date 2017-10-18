@@ -12,30 +12,28 @@ import animalsimulation.behavior.event.KnowledgeUpdatedEvent;
 import animalsimulation.behavior.event.MeetingAgentEvent;
 import animalsimulation.model.base.Agent;
 import animalsimulation.model.base.WorldObject;
-import animalsimulation.model.bee.AIBeeWorker;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeFood;
-import animalsimulation.model.bee.BeeHive;
 import animalsimulation.model.knowledge.Knowledge;
-import animalsimulation.model.knowledge.KnowledgeBase;
 
 /**
  *
  * @author Ebombo2
  */
-public class AICommunicate extends Action{
+public class CommunicateCentral extends Action{
+    private BeeAgent workerBee;
+    
     public void initialize(Agent agent, State state) {
         setTimeOut(50); // Finish after fifty simulation steps.
         
         BeeAgent bee = (BeeAgent) agent;
         communicateFood((BeeAgent) agent);
-        
-        boolean idleBeesFound = false;
         WorldObject[] memberBees = bee.getHive().getAffiliatedBees();
+        boolean idleBeesFound = false;
         
         for(WorldObject memberBee : memberBees) {
-            if(memberBee instanceof AIBeeWorker) {
-                AIBeeWorker workerBee = (AIBeeWorker) memberBee;
+            if(memberBee instanceof BeeAgent) {
+                workerBee = (BeeAgent) memberBee;
                 if(workerBee.getStateMachine().getCurrentState().getStateName().equals("Idle")) {
                     workerBee.getStateMachine().updateState(new MeetingAgentEvent(this));
                     idleBeesFound = true;
@@ -58,8 +56,8 @@ public class AICommunicate extends Action{
             WorldObject[] memberBees = bee.getHive().getAffiliatedBees();
             
             for(WorldObject memberBee : memberBees) {
-                if(memberBee instanceof AIBeeWorker) {
-                    AIBeeWorker workerBee = (AIBeeWorker) memberBee;
+                if(memberBee instanceof BeeAgent) {
+                    workerBee = (BeeAgent) memberBee;
                     workerBee.getStateMachine().updateState(new KnowledgeUpdatedEvent(this));
                 }
             }

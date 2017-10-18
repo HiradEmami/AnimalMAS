@@ -22,6 +22,7 @@ public abstract class BeeAgent extends Agent {
     protected double theta;
     protected double tsigma;
     protected double v;
+    private int gatheredFood;
 
     public BeeAgent(BeeHive hive) {
         this(hive.getCoordinates()[0], hive.getCoordinates()[1], hive);
@@ -119,5 +120,13 @@ public abstract class BeeAgent extends Agent {
         Vector2D c = a.subtract(b);
         
         return(c.getNorm());
+    }
+    
+    public int getGatheredFood() {
+        return gatheredFood;
+    }
+    
+    public void setGatheredFood(int gatheredFood) {
+        this.gatheredFood = gatheredFood;
     }
 }

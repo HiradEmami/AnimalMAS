@@ -5,18 +5,18 @@
  */
 package animalsimulation.behavior.actions;
 
-/**
- *
- * @author Hirad Gorgoroth
- */
 import animalsimulation.behavior.base.Action;
 import animalsimulation.behavior.base.State;
 import animalsimulation.controller.AnimalSimulation;
 import animalsimulation.model.base.Agent;
 import animalsimulation.model.base.World;
 import animalsimulation.model.bee.BeeFood;
-import animalsimulation.model.bee.BeeWorker;
+import animalsimulation.model.bee.BeeAgent;
 
+/**
+ *
+ * @author Ebombo2
+ */
 public class GatherFood extends Action {
     private BeeFood foodSource;
     
@@ -32,7 +32,7 @@ public class GatherFood extends Action {
             }
         }
         
-        BeeWorker bee = (BeeWorker) agent;
+        BeeAgent bee = (BeeAgent) agent;
         bee.setGatheredFood(foodSource.getQualityFoodYield());
     }
     

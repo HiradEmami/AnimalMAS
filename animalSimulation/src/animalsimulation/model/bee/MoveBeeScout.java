@@ -5,20 +5,20 @@
  */
 package animalsimulation.model.bee;
 
-import animalsimulation.behavior.AIScoutBeeBehavior;
+import animalsimulation.behavior.SNScoutBeeBehavior;
 import java.awt.Color;
 
 /**
  *
  * @author Ebombo2
  */
-public class AIBeeScout extends BeeAgent{
-    public AIBeeScout(BeeHive hive) {
+public class MoveBeeScout extends BeeAgent{
+    public MoveBeeScout(BeeHive hive) {
         super(hive);
         color = Color.ORANGE;
         shape = Shape.CIRCLE;
         width = 10;
         height = 10;
-        stateMachine = new AIScoutBeeBehavior(this);
+        stateMachine = new SNScoutBeeBehavior(this);
     }
 }

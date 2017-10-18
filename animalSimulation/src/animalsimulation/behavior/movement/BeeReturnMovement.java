@@ -6,9 +6,6 @@
 package animalsimulation.behavior.movement;
 
 import animalsimulation.behavior.base.State;
-import animalsimulation.behavior.event.DestinationReachedEvent;
-import animalsimulation.behavior.event.HiveReachedEvent;
-import animalsimulation.controller.AnimalSimulation;
 import animalsimulation.model.base.Agent;
 import animalsimulation.model.bee.BeeAgent;
 

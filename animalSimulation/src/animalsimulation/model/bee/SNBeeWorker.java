@@ -5,23 +5,20 @@
  */
 package animalsimulation.model.bee;
 
-import animalsimulation.behavior.BiologicalWorkerBeeBehavior;
+import animalsimulation.behavior.SNWorkerBeeBehavior;
 import java.awt.Color;
 
 /**
  *
  * @author Ebombo2
  */
-public class BeeWorker extends BeeAgent {
-    
-    public BeeWorker(BeeHive hive) {
+public class SNBeeWorker extends BeeAgent{
+    public SNBeeWorker(BeeHive hive) {
         super(hive);
-        color = Color.BLACK;
+        color = Color.RED;
         shape = Shape.CIRCLE;
         width = 10;
         height = 10;
-        stateMachine = new BiologicalWorkerBeeBehavior(this);
-        theta = 0;
-        v = 1;
+        stateMachine = new SNWorkerBeeBehavior(this);
     }
 }
