@@ -21,7 +21,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author jeroen
  */
 public class DataRecorder {
-    public static final String OUTPUT_FILE = "SimulationOutput.xlsx";
+    public static final String OUTPUT_FILE = "SimulationOutput";
     
     private ArrayList<WorldObject> dataSources;
     private HashMap<XSSFSheet, Integer> sheetMap;
@@ -41,7 +41,7 @@ public class DataRecorder {
             }
         }     
         
-        file = new File(OUTPUT_FILE);
+        file = new File(OUTPUT_FILE + "[" + System.identityHashCode(this) + "]" + ".xlsx");
         file.createNewFile();  
     }
     

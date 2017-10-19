@@ -13,7 +13,7 @@ import javax.swing.*;
 public class MainFrame extends javax.swing.JFrame {
     private String imagePath;
     private SimulationSettings settings = animalsimulation.controller.AnimalSimulation.getSettings();
-    private SimulationController simController = animalsimulation.controller.AnimalSimulation.getSimulationController();    
+    private SimulationController[] simControllers = animalsimulation.controller.AnimalSimulation.getSimulationController();    
 
     public MainFrame() {
         initComponents();                                                   //Creating and managing the main components
@@ -26,10 +26,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         jp_worldPanel = new javax.swing.JPanel();
         jp_SetupPanel = new javax.swing.JPanel();
-        worldPanel1 = new animalsimulation.view.WorldPanel();
-        worldPanel2 = new animalsimulation.view.WorldPanel();
-        worldPanel3 = new animalsimulation.view.WorldPanel();
-        worldPanel4 = new animalsimulation.view.WorldPanel();
+        worldPanel1 = new animalsimulation.view.WorldPanel(simControllers[0]);
+        worldPanel2 = new animalsimulation.view.WorldPanel(simControllers[1]);
+        worldPanel3 = new animalsimulation.view.WorldPanel(simControllers[2]);
+        worldPanel4 = new animalsimulation.view.WorldPanel(simControllers[3]);
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         tlb_animal = new javax.swing.JLabel();
@@ -216,7 +216,9 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     private void repaintScreen() {
-        simController.resetSimulation();
+        for(SimulationController simController : simControllers) {
+            simController.resetSimulation();
+        }
     }
 
     // Variables declaration - do not modify                     

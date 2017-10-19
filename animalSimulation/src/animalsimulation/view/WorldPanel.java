@@ -1,6 +1,5 @@
 package animalsimulation.view;
 
-import animalsimulation.controller.AnimalSimulation;
 import animalsimulation.controller.BaseController;
 import animalsimulation.model.base.BaseModel;
 import animalsimulation.model.base.World;
@@ -12,11 +11,9 @@ import java.awt.Graphics;
  * @author Ebombo2
  */
 public class WorldPanel extends javax.swing.JPanel implements BaseView {
-    private final BaseController controller;
     private World world;
     
-    public WorldPanel() {
-        controller = AnimalSimulation.getSimulationController();
+    public WorldPanel(BaseController controller) {
         controller.addView(this);
     }
     
