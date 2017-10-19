@@ -41,6 +41,7 @@ public class liveChart {
         chart.addSeries("AI-waggle", ydata);
         
         this.mySwingWrapper= new SwingWrapper<XYChart>(chart);
+        //this.mySwingWrapper.
     }
    
     public void StartChart(){

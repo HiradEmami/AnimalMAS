@@ -11,98 +11,110 @@ import animalsimulation.model.base.SimulationSettings;
 import javax.swing.*;
 
 public class MainFrame extends javax.swing.JFrame {
-    private String imagePath;
     private SimulationSettings settings = animalsimulation.controller.AnimalSimulation.getSettings();
-    private SimulationController simController = animalsimulation.controller.AnimalSimulation.getSimulationController();    
-
+    private SimulationController simController = animalsimulation.controller.AnimalSimulation.getSimulationController();
+    
     public MainFrame() {
-        initComponents();                                                   //Creating and managing the main components
-        this.pack();
+        initComponents();           //Creating and managing the main components
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jp_worldPanel = new javax.swing.JPanel();
-        jp_SetupPanel = new javax.swing.JPanel();
         worldPanel1 = new animalsimulation.view.WorldPanel();
         worldPanel2 = new animalsimulation.view.WorldPanel();
         worldPanel3 = new animalsimulation.view.WorldPanel();
         worldPanel4 = new animalsimulation.view.WorldPanel();
+        jp_SetupPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        tlb_animal = new javax.swing.JLabel();
         jb_SetupButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jsl_animal = new javax.swing.JSlider();
+        tlb_animal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jp_worldPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray));
 
+        worldPanel1.setPreferredSize(new java.awt.Dimension(0, 200));
+
         javax.swing.GroupLayout worldPanel1Layout = new javax.swing.GroupLayout(worldPanel1);
         worldPanel1.setLayout(worldPanel1Layout);
         worldPanel1Layout.setHorizontalGroup(
             worldPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         worldPanel1Layout.setVerticalGroup(
             worldPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        worldPanel2.setPreferredSize(new java.awt.Dimension(0, 200));
+
+        javax.swing.GroupLayout worldPanel2Layout = new javax.swing.GroupLayout(worldPanel2);
+        worldPanel2.setLayout(worldPanel2Layout);
+        worldPanel2Layout.setHorizontalGroup(
+            worldPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        worldPanel2Layout.setVerticalGroup(
+            worldPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        worldPanel3.setPreferredSize(new java.awt.Dimension(0, 200));
+
+        javax.swing.GroupLayout worldPanel3Layout = new javax.swing.GroupLayout(worldPanel3);
+        worldPanel3.setLayout(worldPanel3Layout);
+        worldPanel3Layout.setHorizontalGroup(
+            worldPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        worldPanel3Layout.setVerticalGroup(
+            worldPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        worldPanel4.setPreferredSize(new java.awt.Dimension(0, 200));
+
+        javax.swing.GroupLayout worldPanel4Layout = new javax.swing.GroupLayout(worldPanel4);
+        worldPanel4.setLayout(worldPanel4Layout);
+        worldPanel4Layout.setHorizontalGroup(
+            worldPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        worldPanel4Layout.setVerticalGroup(
+            worldPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 214, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jp_worldPanelLayout = new javax.swing.GroupLayout(jp_worldPanel);
         jp_worldPanel.setLayout(jp_worldPanelLayout);
         jp_worldPanelLayout.setHorizontalGroup(
             jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(worldPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_worldPanelLayout.createSequentialGroup()
+                .addGroup(jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(worldPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addComponent(worldPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(worldPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addComponent(worldPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)))
         );
         jp_worldPanelLayout.setVerticalGroup(
             jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(worldPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_worldPanelLayout.createSequentialGroup()
+                .addGroup(jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(worldPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(worldPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jp_worldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(worldPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                    .addComponent(worldPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)))
         );
-	
-        jp_worldPanel.add(worldPanel1);
-
-        javax.swing.GroupLayout worldPanel2Layout = new javax.swing.GroupLayout(worldPanel2);
-        worldPanel2.setLayout(worldPanel2Layout);
-        worldPanel2Layout.setHorizontalGroup(
-            worldPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        worldPanel2Layout.setVerticalGroup(
-            worldPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jp_worldPanel.add(worldPanel2);
-
-        javax.swing.GroupLayout worldPanel3Layout = new javax.swing.GroupLayout(worldPanel3);
-        worldPanel3.setLayout(worldPanel3Layout);
-        worldPanel3Layout.setHorizontalGroup(
-            worldPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        worldPanel3Layout.setVerticalGroup(
-            worldPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jp_worldPanel.add(worldPanel3);
-
-        javax.swing.GroupLayout worldPanel4Layout = new javax.swing.GroupLayout(worldPanel4);
-        worldPanel4.setLayout(worldPanel4Layout);
-        worldPanel4Layout.setHorizontalGroup(
-            worldPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        worldPanel4Layout.setVerticalGroup(
-            worldPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jp_worldPanel.add(worldPanel4);
 
         jp_SetupPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.gray, java.awt.Color.lightGray, java.awt.Color.gray));
 
@@ -133,70 +145,75 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jp_SetupPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(jp_SetupPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tlb_animal)
-                            .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SetupPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jb_SetupButton)
-                        .addGap(82, 82, 82))
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jp_SetupPanelLayout.createSequentialGroup()
+                        .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jp_SetupPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(180, 180, 180)
+                                .addComponent(jb_SetupButton))
+                            .addGroup(jp_SetupPanelLayout.createSequentialGroup()
+                                .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tlb_animal)))
+                        .addGap(0, 917, Short.MAX_VALUE))))
         );
         jp_SetupPanelLayout.setVerticalGroup(
             jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_SetupPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jb_SetupButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tlb_animal)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jb_SetupButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jp_SetupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jsl_animal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tlb_animal))
+                .addContainerGap())
         );
 
         jsl_animal.getAccessibleContext().setAccessibleName("");
-        
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jp_SetupPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jp_worldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jp_worldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jp_SetupPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jp_SetupPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jp_worldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jp_SetupPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jp_worldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    //Action Event for the setup button that runs the simulation
-    private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        setupWorld();           //Creating the grid and calling render method within
-        repaintScreen();        //Method to remove the previously built tiles (reset UI)
-    }                                              
-
-    private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {                                        
+    private void jsl_animalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsl_animalStateChanged
+        //Reading the three main inputs from the user
         tlb_animal.setText(Integer.toString(jsl_animal.getValue()));
         setupWorld();           //Creating the grid and calling render method within
         repaintScreen();        //Method to remove the previously built tiles (reset UI)
-    }                                       
+    }//GEN-LAST:event_jsl_animalStateChanged
+
+    //Action Event for the setup button that runs the simulation
+    private void jb_SetupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SetupButtonActionPerformed
+        setupWorld();           //Creating the grid and calling render method within
+        repaintScreen();        //Method to remove the previously built tiles (reset UI)
+    }//GEN-LAST:event_jb_SetupButtonActionPerformed
 
     private void setupWorld() {
         try {
@@ -214,12 +231,12 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);
         }
     }
-    
+
     private void repaintScreen() {
         simController.resetSimulation();
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jb_SetupButton;
@@ -231,5 +248,5 @@ public class MainFrame extends javax.swing.JFrame {
     private animalsimulation.view.WorldPanel worldPanel2;
     private animalsimulation.view.WorldPanel worldPanel3;
     private animalsimulation.view.WorldPanel worldPanel4;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }
