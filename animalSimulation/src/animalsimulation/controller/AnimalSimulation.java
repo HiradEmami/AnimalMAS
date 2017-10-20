@@ -13,12 +13,11 @@ import animalsimulation.view.MainFrame;
  */
 public class AnimalSimulation {
     private static MainFrame mainFrame;
-    private static SimulationSettings settings;
+    private static SimulationSettings[] settings;
     private static SimulationController[] simulationControllers;
     
     
     public static void main(String[] args) {  
-        //ChartExamples testchart =new ChartExamples(args);
         initializeWorld();
         initializeUI();
         for(SimulationController simulationController : simulationControllers) {
@@ -30,46 +29,52 @@ public class AnimalSimulation {
         return simulationControllers;
     }
     
-    public static SimulationSettings getSettings() {
+    public static SimulationSettings[] getSettings() {
         return settings;
     }
     
     private static void initializeWorld() {
         simulationControllers = new SimulationController[4];
+        settings = new SimulationSettings[4];
+        SimulationSettings setting;
         
-        settings = createSettings();
-        settings.setNumberOfBioScoutBees(10);
-        settings.setNumberOfBioWorkerBees(10);
-        settings.getMap().createWorld(settings);
-        simulationControllers[0] = new SimulationController(settings);
+        setting = createSettings();
+        setting.setNumberOfBioScoutBees(10);
+        setting.setNumberOfBioWorkerBees(10);
+        setting.getMap().createWorld(setting);
+        simulationControllers[0] = new SimulationController(setting);
+        settings[0] = setting;
         
-        settings = createSettings();
-        settings.setNumberOfKnowScoutBees(10);
-        settings.setNumberOfKnowWorkerBees(10);
-        settings.getMap().createWorld(settings);
-        simulationControllers[1] = new SimulationController(settings);
+        setting = createSettings();
+        setting.setNumberOfKnowScoutBees(10);
+        setting.setNumberOfKnowWorkerBees(10);
+        setting.getMap().createWorld(setting);
+        simulationControllers[1] = new SimulationController(setting);
+        settings[1] = setting;
         
-        settings = createSettings();
-        settings.setNumberOfMoveScoutBees(10);
-        settings.setNumberOfMoveWorkerBees(10);
-        settings.getMap().createWorld(settings);
-        simulationControllers[2] = new SimulationController(settings);
+        setting = createSettings();
+        setting.setNumberOfMoveScoutBees(10);
+        setting.setNumberOfMoveWorkerBees(10);
+        setting.getMap().createWorld(setting);
+        simulationControllers[2] = new SimulationController(setting);
+        settings[2] = setting;
         
-        settings = createSettings();
-        settings.setNumberOfSnScoutBees(10);
-        settings.setNumberOfSnWorkerBees(10);
-        settings.getMap().createWorld(settings);
-        simulationControllers[3] = new SimulationController(settings);
+        setting = createSettings();
+        setting.setNumberOfSnScoutBees(10);
+        setting.setNumberOfSnWorkerBees(10);
+        setting.getMap().createWorld(setting);
+        simulationControllers[3] = new SimulationController(setting);
+        settings[3] = setting;
     }
     
     private static SimulationSettings createSettings() {
-        settings = new SimulationSettings();
-        settings.setMap(new SingleHiveMap());
-        settings.setNumberOfFoodSources(30);
-        settings.setRecordingInterval(100);
-        settings.setSimulationSteps(100000);
-        return settings;
-      }
+        SimulationSettings setting = new SimulationSettings();
+        setting.setMap(new SingleHiveMap());
+        setting.setNumberOfFoodSources(30);
+        setting.setRecordingInterval(100);
+        setting.setSimulationSteps(100000);
+        return setting;
+    }
     
     private static void initializeUI() {
         mainFrame = new MainFrame();                                            //creating the main frame (the UI)

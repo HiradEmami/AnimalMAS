@@ -12,6 +12,14 @@ import animalsimulation.model.base.Agent;
 import animalsimulation.model.base.World;
 import animalsimulation.model.bee.BeeAgent;
 import animalsimulation.model.bee.BeeFood;
+import animalsimulation.model.bee.BioBeeScout;
+import animalsimulation.model.bee.BioBeeWorker;
+import animalsimulation.model.bee.KnowBeeScout;
+import animalsimulation.model.bee.KnowBeeWorker;
+import animalsimulation.model.bee.MoveBeeScout;
+import animalsimulation.model.bee.MoveBeeWorker;
+import animalsimulation.model.bee.SnBeeScout;
+import animalsimulation.model.bee.SnBeeWorker;
 import animalsimulation.model.knowledge.FoodKnowledge;
 import animalsimulation.model.knowledge.Knowledge;
 import animalsimulation.model.knowledge.LocationKnowledge;
@@ -48,7 +56,25 @@ public class ScoutBeeExploreMovement extends BaseMovement{
     }
     
     private void checkFoodSourceReached(Agent agent) { 
-        BeeFood[] foodSources = AnimalSimulation.getSettings().getMap().getWorld().getWorldObjectsByClass(BeeFood.class);
+        BeeFood[] foodSources = null;
+        
+        if(agent instanceof BioBeeScout)
+        {
+            foodSources = AnimalSimulation.getSettings()[0].getMap().getWorld().getWorldObjectsByClass(BeeFood.class);  
+        }
+        if(agent instanceof KnowBeeScout)
+        {
+            foodSources = AnimalSimulation.getSettings()[1].getMap().getWorld().getWorldObjectsByClass(BeeFood.class);
+        }
+        if(agent instanceof MoveBeeScout)
+        {
+            foodSources = AnimalSimulation.getSettings()[2].getMap().getWorld().getWorldObjectsByClass(BeeFood.class);
+        }
+        if(agent instanceof SnBeeScout)
+        {
+            foodSources = AnimalSimulation.getSettings()[3].getMap().getWorld().getWorldObjectsByClass(BeeFood.class);
+        }
+        
         for (BeeFood foodSource : foodSources) {
             if(agent.distanceToObject(foodSource) <= foodSource.getHeight()) {
                 agent.getKnowledge().updateKnowledge(foodSource,
@@ -63,7 +89,24 @@ public class ScoutBeeExploreMovement extends BaseMovement{
     }
     
     private void checkOutsideWorld(BeeAgent bee) {
-        World world = AnimalSimulation.getSettings().getMap().getWorld();
+        World world = null;
+        
+        if(bee instanceof BioBeeScout)
+        {
+            world = AnimalSimulation.getSettings()[0].getMap().getWorld();    
+        }
+        if(bee instanceof KnowBeeScout)
+        {
+            world = AnimalSimulation.getSettings()[1].getMap().getWorld();    
+        }
+        if(bee instanceof MoveBeeScout)
+        {
+            world = AnimalSimulation.getSettings()[2].getMap().getWorld();    
+        }
+        if(bee instanceof SnBeeScout)
+        {
+            world = AnimalSimulation.getSettings()[3].getMap().getWorld();    
+        }
         
         if(bee.getCoordinates()[0] < 0 || bee.getCoordinates()[1] < 0 ||
                 bee.getCoordinates()[0] > world.getWidth() || bee.getCoordinates()[1] > world.getHeight()) {

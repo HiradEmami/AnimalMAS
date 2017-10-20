@@ -11,7 +11,7 @@ import animalsimulation.model.base.SimulationSettings;
 import javax.swing.*;
 
 public class MainFrame extends javax.swing.JFrame {
-    private SimulationSettings settings = animalsimulation.controller.AnimalSimulation.getSettings();
+    private SimulationSettings[] settings = animalsimulation.controller.AnimalSimulation.getSettings();
     private SimulationController[] simControllers = animalsimulation.controller.AnimalSimulation.getSimulationController();
     
     public MainFrame() {
@@ -218,14 +218,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void setupWorld() {
         try {
             jsl_animal.setMaximum(100);
-            settings.setNumberOfBioScoutBees(jsl_animal.getValue());
-            settings.setNumberOfBioWorkerBees(jsl_animal.getValue());
-            settings.setNumberOfKnowScoutBees(jsl_animal.getValue());
-            settings.setNumberOfKnowWorkerBees(jsl_animal.getValue());
-            settings.setNumberOfMoveScoutBees(jsl_animal.getValue());
-            settings.setNumberOfMoveWorkerBees(jsl_animal.getValue());
-            settings.setNumberOfSnScoutBees(jsl_animal.getValue());
-            settings.setNumberOfSnWorkerBees(jsl_animal.getValue());
+            settings[0].setNumberOfBioScoutBees(jsl_animal.getValue());
+            settings[0].setNumberOfBioWorkerBees(jsl_animal.getValue());
+            settings[1].setNumberOfKnowScoutBees(jsl_animal.getValue());
+            settings[1].setNumberOfKnowWorkerBees(jsl_animal.getValue());
+            settings[2].setNumberOfMoveScoutBees(jsl_animal.getValue());
+            settings[2].setNumberOfMoveWorkerBees(jsl_animal.getValue());
+            settings[3].setNumberOfSnScoutBees(jsl_animal.getValue());
+            settings[3].setNumberOfSnWorkerBees(jsl_animal.getValue());
             this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);   //to make it full screen
         } catch (Exception e) {                                         //Display the error if it failed to create the simulation
             JOptionPane.showMessageDialog(null, "Failed to Create the simulation!\nError: " + e);

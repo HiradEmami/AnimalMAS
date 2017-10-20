@@ -12,6 +12,10 @@ import animalsimulation.model.base.Agent;
 import animalsimulation.model.base.World;
 import animalsimulation.model.bee.BeeFood;
 import animalsimulation.model.bee.BeeAgent;
+import animalsimulation.model.bee.BioBeeWorker;
+import animalsimulation.model.bee.KnowBeeWorker;
+import animalsimulation.model.bee.MoveBeeWorker;
+import animalsimulation.model.bee.SnBeeWorker;
 
 /**
  *
@@ -23,8 +27,25 @@ public class GatherFood extends Action {
     @Override
     public void initialize(Agent agent, State state) {
         setTimeOut(100);
+        World world = null;
         
-        World world = AnimalSimulation.getSettings().getMap().getWorld();
+        if(agent instanceof BioBeeWorker)
+        {
+            world = AnimalSimulation.getSettings()[0].getMap().getWorld();    
+        }
+        if(agent instanceof KnowBeeWorker)
+        {
+            world = AnimalSimulation.getSettings()[1].getMap().getWorld();    
+        }
+        if(agent instanceof MoveBeeWorker)
+        {
+            world = AnimalSimulation.getSettings()[2].getMap().getWorld();    
+        }
+        if(agent instanceof SnBeeWorker)
+        {
+            world = AnimalSimulation.getSettings()[3].getMap().getWorld();    
+        }
+        
         for(BeeFood foodSource : world.getWorldObjectsByClass(BeeFood.class)) {
             if(agent.distanceToObject(foodSource) <= foodSource.getHeight()) {
                 this.foodSource = foodSource;
